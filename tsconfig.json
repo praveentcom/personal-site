@@ -1,0 +1,30 @@
+{
+  "extends": "@workspace/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "@workspace/web-design-system/globals.css": [
+        "../../packages/web-design-system/src/styles/globals.css"
+      ],
+      "@workspace/web-design-system/*": [
+        "../../packages/web-design-system/src/*"
+      ],
+      "@/data/*": ["./data/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "next.config.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "../../packages/web-design-system/src/**/*.tsx",
+    "../../packages/web-design-system/src/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}
