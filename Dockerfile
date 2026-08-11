@@ -3,6 +3,7 @@
 FROM node:24-alpine AS base
 
 COPY infra/secrets/run-with-aws-secrets.mjs infra/secrets/catalog.mjs /opt/avgeek/infra/secrets/
+COPY infra/scripts/run-node-entrypoint.mjs infra/scripts/runtime-secrets.mjs /opt/avgeek/infra/scripts/
 COPY config/aws-secrets.json /opt/avgeek/config/aws-secrets.json
 
 FROM base AS pruner
@@ -63,4 +64,4 @@ EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-CMD ["node", "apps/praveen-website/server.js"]
+CMD ["node", "/opt/avgeek/infra/scripts/run-node-entrypoint.mjs", "apps/praveen-website/server.js"]
