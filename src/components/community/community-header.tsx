@@ -3,6 +3,7 @@ import { Button } from "@workspace/web-design-system/components/button";
 import { CommunityTypeButton } from "@/components/community/community-type-button";
 import type { CommunityIndexItem } from "@/components/helpers/community";
 import { formatDate } from "@/components/helpers/date";
+import { Typography } from "@workspace/web-design-system/components/typography";
 
 interface CommunityTitleDetailsProps {
   contribution: CommunityIndexItem;
@@ -14,13 +15,13 @@ export function CommunityTitleDetails({
   return (
     <div className="flex-col-4">
       <div className="flex items-center min-w-0 gap-4">
-        <div className="flex items-center gap-1 shrink-0 text-muted-foreground">
-          <span>{formatDate(contribution.date)}</span>
-        </div>
+        <Typography className="shrink-0" color="muted">
+          {formatDate(contribution.date)}
+        </Typography>
         {contribution.event && (
-          <div className="flex items-center gap-1 shrink-0 text-muted-foreground">
-            <span>{contribution.event}</span>
-          </div>
+          <Typography className="shrink-0" color="muted">
+            {contribution.event}
+          </Typography>
         )}
       </div>
       <div className="flex flex-wrap gap-2">

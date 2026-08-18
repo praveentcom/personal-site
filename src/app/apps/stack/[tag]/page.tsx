@@ -11,6 +11,7 @@ import { getAllAppSlugs } from "@/components/helpers/apps";
 import { getTagImagePath } from "@/components/helpers/tag-mapper";
 import { URLS } from "@/components/helpers/urls";
 import { AppSummaryCard } from "@/components/apps/app-summary-card";
+import { TypographyHeading } from "@workspace/web-design-system/components/typography";
 
 interface PageProps {
   params: Promise<{
@@ -77,7 +78,7 @@ export default async function TagAppsPage({ params }: PageProps) {
               height={20}
               className="shrink-0 size-6"
             />
-            <h3>{tag} apps</h3>
+            <TypographyHeading level={3}>{tag} apps</TypographyHeading>
           </div>
         </PageSection>
         <PageSection yPadding="none">

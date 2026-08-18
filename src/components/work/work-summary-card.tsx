@@ -1,7 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@workspace/web-design-system/components/link";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/web-design-system/components/avatar";
+import { TypographyParagraph } from "@workspace/web-design-system/components/typography";
 
 import { formatDateShort } from "@/components/helpers/date";
 import { URLS } from "@/components/helpers/urls";
@@ -19,30 +24,21 @@ export function WorkSummaryCard({
   return (
     <article className="flex-col-1">
       {experience.image && (
-        <div className="shrink-0">
-          <Image
+        <Avatar className="shrink-0">
+          <AvatarImage
             src={experience.image}
             alt={`${experience.company} logo`}
-            width={40}
-            height={40}
-            className="object-cover size-10 rounded-sm"
           />
-        </div>
+          <AvatarFallback>{experience.company.slice(0, 1)}</AvatarFallback>
+        </Avatar>
       )}
-      <p>
-        <Link
-          href={URLS.WORK(experience.slug)}
-          className="text-foreground underline-offset-4 decoration-border pointer-fine:hover:underline"
-        >
-          {experience.company}
-        </Link>
-      </p>
-      <p className="text-muted-foreground">
+      <Link href={URLS.WORK(experience.slug)}>{experience.company}</Link>
+      <TypographyParagraph color="muted">
         {experience.role}
         <span className="before:content-['·'] before:mx-1.5">
           {formatDateShort(experience.startDate)} – {endDateText}
         </span>
-      </p>
+      </TypographyParagraph>
     </article>
   );
 }

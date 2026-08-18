@@ -6,6 +6,8 @@ import Link from "next/link";
 import { StructuredData } from "@workspace/web-design-system/components/structured-data";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
 import { Grid } from "@workspace/web-design-system/components/grid";
+import { Button } from "@workspace/web-design-system/components/button";
+import { TypographyHeading } from "@workspace/web-design-system/components/typography";
 import { plural } from "pluralize";
 
 import { ArticleCategoryButton } from "@/components/article/article-category-button";
@@ -35,6 +37,22 @@ export default async function ArticlesListPage() {
 
   return (
     <ContentPage
+      actions={
+        <Button
+          variant="ghost"
+          aria-label="RSS feed"
+          title="RSS feed"
+          render={
+            <a
+              href={URLS.RSS_FEED()}
+              target="_blank"
+              rel="noopener noreferrer"
+            />
+          }
+        >
+          <HugeiconsIcon icon={RssIcon} aria-hidden="true" />
+        </Button>
+      }
       breadcrumbAncestors={[{ href: URLS.HOME(), label: "Home" }]}
       title={articleLabel}
     >
@@ -48,21 +66,6 @@ export default async function ArticlesListPage() {
               description: `A collection of ${articleLabel.toLowerCase()} about development, technology, and more.`,
             }}
           />
-          <PageSection>
-            <div className="flex items-center justify-between">
-              <h3>{articleLabel}</h3>
-              <Link
-                href={URLS.RSS_FEED()}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="RSS feed"
-                title="RSS feed"
-                className="text-muted-foreground pointer-fine:hover:text-foreground motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease motion-reduce:transition-none"
-              >
-                <HugeiconsIcon icon={RssIcon} aria-hidden="true" />
-              </Link>
-            </div>
-          </PageSection>
           {(allCategories.length > 0 ||
             Array.from(new Set(publishedArticles.map((a) => a.year))).length >
               1) && (
@@ -71,7 +74,9 @@ export default async function ArticlesListPage() {
                 {allCategories.length > 0 && (
                   <div className="flex-col-4" aria-label="Browse by category">
                     <div className="flex items-center gap-2">
-                      <h4>Browse by category</h4>
+                      <TypographyHeading level={4}>
+                        Browse by category
+                      </TypographyHeading>
                     </div>
                     <div className="flex items-center gap-2 flex-wrap">
                       {allCategories.map((category) => (
@@ -100,7 +105,9 @@ export default async function ArticlesListPage() {
                     .length > 1 && (
                     <div className="flex-col-4" aria-label="Browse by year">
                       <div className="flex items-center gap-2">
-                        <h4>Browse by year</h4>
+                        <TypographyHeading level={4}>
+                          Browse by year
+                        </TypographyHeading>
                       </div>
                       <div className="flex items-center gap-2 flex-wrap">
                         {Array.from(
@@ -122,7 +129,9 @@ export default async function ArticlesListPage() {
             <PageSection>
               <div className="flex-col-4" aria-label="All articles">
                 <div className="flex items-center gap-2">
-                  <h4>All {articleLabel}</h4>
+                  <TypographyHeading level={4}>
+                    All {articleLabel}
+                  </TypographyHeading>
                 </div>
                 <div className="flex-col-4">
                   {publishedArticles.map((article) => (

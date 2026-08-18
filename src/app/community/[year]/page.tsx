@@ -11,6 +11,10 @@ import {
 } from "@/components/helpers/community";
 import { createPageMetadata } from "@/components/helpers/metadata";
 import { URLS } from "@/components/helpers/urls";
+import {
+  TypographyHeading,
+  TypographyParagraph,
+} from "@workspace/web-design-system/components/typography";
 
 interface PageProps {
   params: Promise<{
@@ -53,11 +57,13 @@ export default async function CommunityByYearPage({ params }: PageProps) {
           />
           <PageSection>
             <div>
-              <h2>Contributions from {year}</h2>
-              <p className="text-muted-foreground">
+              <TypographyHeading level={2}>
+                Contributions from {year}
+              </TypographyHeading>
+              <TypographyParagraph color="muted">
                 {contributions.length}{" "}
                 {pluralize("contribution", contributions.length)}
-              </p>
+              </TypographyParagraph>
             </div>
             <div className="flex-col-4">
               {contributions.map((community) => (

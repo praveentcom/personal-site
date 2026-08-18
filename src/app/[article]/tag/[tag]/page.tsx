@@ -11,6 +11,7 @@ import { getArticleLabel, getArticleSlug } from "@/components/helpers/config";
 import { createPageMetadata } from "@/components/helpers/metadata";
 import { getTagImagePath } from "@/components/helpers/tag-mapper";
 import { URLS } from "@/components/helpers/urls";
+import { TypographyHeading } from "@workspace/web-design-system/components/typography";
 
 interface PageProps {
   params: Promise<{
@@ -61,9 +62,9 @@ export default async function TagArticlePage({ params }: PageProps) {
                 height={20}
                 className="shrink-0 size-6"
               />
-              <h3>
+              <TypographyHeading level={3}>
                 {tag} {articleLabel}
-              </h3>
+              </TypographyHeading>
             </div>
             <div className="flex-col-4">
               {filteredArticles.map((article, index) => (

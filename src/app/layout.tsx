@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import "@workspace/web-design-system/styles/globals.css";
 import "@workspace/web-page-sections/styles.css";
 import { WorkspaceDocument } from "@workspace/web-design-system/layouts/workspace-document";
-import { workspaceThemes } from "@workspace/web-design-system/lib/workspace-theme";
 
 import {
   SITE_DESCRIPTION,
@@ -23,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <WorkspaceDocument config={{ theme: workspaceThemes.praveen }}>
+    <WorkspaceDocument>
       <ApplicationRuntime>{children}</ApplicationRuntime>
     </WorkspaceDocument>
   );

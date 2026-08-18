@@ -15,6 +15,7 @@ const title = `${profile.firstName} ${profile.lastName}`;
 const brand = {
   accessibleLabel: `${title} home`,
   id: "praveen",
+  logoSrc: "/favicon.png",
   title,
 } as const;
 
@@ -87,6 +88,6 @@ export const applicationPolicy = {
     privacyHref: "https://www.avgeek.io/privacy",
   },
   kind: "public",
-  themeControl: "footer",
+  themeControl: "header",
   toaster: true,
 } satisfies ApplicationPolicy;

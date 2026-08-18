@@ -1,7 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@workspace/web-design-system/components/link";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/web-design-system/components/avatar";
+import { TypographyParagraph } from "@workspace/web-design-system/components/typography";
 
 import { formatDateShort } from "@/components/helpers/date";
 import { URLS } from "@/components/helpers/urls";
@@ -17,31 +22,23 @@ export function AppSummaryCard({ app }: AppCardProps) {
   return (
     <article className="flex-col-1">
       {app.image && (
-        <div className="shrink-0">
-          <Image
-            src={app.image}
-            alt={app.title}
-            width={40}
-            height={40}
-            className="object-cover size-10 rounded-sm"
-          />
-        </div>
+        <Avatar className="shrink-0">
+          <AvatarImage src={app.image} alt={app.title} />
+          <AvatarFallback>{app.title.slice(0, 1)}</AvatarFallback>
+        </Avatar>
       )}
       <div className="flex gap-2 items-center">
-        <p>
-          <Link
-            href={URLS.APPS(app.slug)}
-            className="text-foreground underline-offset-4 decoration-border pointer-fine:hover:underline"
-          >
-            {app.title}
-          </Link>
-        </p>
+        <Link href={URLS.APPS(app.slug)}>{app.title}</Link>
         {app.githubUrl && <Badge>Open Source</Badge>}
       </div>
       {app.shortDescription && (
-        <p className="text-muted-foreground">{app.shortDescription}</p>
+        <TypographyParagraph color="muted">
+          {app.shortDescription}
+        </TypographyParagraph>
       )}
-      <p className="text-muted-foreground">{formatDateShort(app.date)}</p>
+      <TypographyParagraph color="muted">
+        {formatDateShort(app.date)}
+      </TypographyParagraph>
     </article>
   );
 }

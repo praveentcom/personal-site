@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { GridViewIcon, ListViewIcon } from "@hugeicons-pro/core-solid-rounded";
 import {
@@ -15,7 +14,13 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@workspace/web-design-system/components/toggle-group";
-import Link from "next/link";
+import { Link } from "@workspace/web-design-system/components/link";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/web-design-system/components/avatar";
+import { TypographyParagraph } from "@workspace/web-design-system/components/typography";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
 import { Grid } from "@workspace/web-design-system/components/grid";
 
@@ -56,8 +61,7 @@ export function AppsView({ apps }: AppsViewProps) {
   return (
     <>
       <PageSection>
-        <div className="flex-col-4 sm:flex-row sm:items-center sm:justify-between">
-          <h3>Apps</h3>
+        <div className="flex justify-end">
           <div className="flex items-center gap-2">
             <Select
               value={filterMode}
@@ -127,30 +131,20 @@ function ListAppRow({ app, imageUrl }: ListAppRowProps) {
   return (
     <div className="flex items-center gap-3">
       {imageUrl ? (
-        <div className="shrink-0">
-          <Image
-            src={imageUrl}
-            alt={app.title}
-            width={32}
-            height={32}
-            className="object-cover size-8 rounded-sm"
-          />
-        </div>
+        <Avatar className="shrink-0">
+          <AvatarImage src={imageUrl} alt={app.title} />
+          <AvatarFallback>{app.title.slice(0, 1)}</AvatarFallback>
+        </Avatar>
       ) : (
-        <div className="size-8 rounded-sm bg-muted shrink-0" />
+        <Avatar className="shrink-0">
+          <AvatarFallback>{app.title.slice(0, 1)}</AvatarFallback>
+        </Avatar>
       )}
-      <p>
-        <Link
-          href={URLS.APPS(app.slug)}
-          className="text-foreground underline-offset-4 decoration-border pointer-fine:hover:underline"
-        >
-          {app.title}
-        </Link>
-      </p>
+      <Link href={URLS.APPS(app.slug)}>{app.title}</Link>
       <div className="flex-1" />
-      <p className="text-muted-foreground shrink-0">
+      <TypographyParagraph className="shrink-0" color="muted">
         {formatDateShort(app.date)}
-      </p>
+      </TypographyParagraph>
     </div>
   );
 }

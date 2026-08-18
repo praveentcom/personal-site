@@ -6,10 +6,7 @@ import { Button } from "@workspace/web-design-system/components/button";
 import { Markdown } from "@workspace/web-design-system/components/markdown";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
 import { HeaderSection } from "@workspace/web-page-sections/header-section";
-import {
-  MarketingPage,
-  MarketingPageHero,
-} from "@workspace/web-page-sections/page";
+import { MarketingPage, HomepageHero } from "@workspace/web-page-sections/page";
 
 import { AppsSection } from "@/components/apps/apps-section";
 import { ArticleSection } from "@/components/article/article-section";
@@ -35,7 +32,7 @@ export default async function HomePage() {
     <MarketingPage
       structuredData={defaultSchema}
       hero={
-        <MarketingPageHero
+        <HomepageHero
           eyebrow={{
             label: "Software developer and independent builder",
             variant: "accent",

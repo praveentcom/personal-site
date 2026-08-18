@@ -13,6 +13,7 @@ import {
 } from "@/components/helpers/metadata";
 import { URLS } from "@/components/helpers/urls";
 import { EnumCommunityContributionType } from "@/types/community";
+import { TypographyHeading } from "@workspace/web-design-system/components/typography";
 
 interface PageProps {
   params: Promise<{
@@ -75,7 +76,9 @@ export default async function CommunityByTypePage({ params }: PageProps) {
             }}
           />
           <PageSection>
-            <h3>{getTypeLabel(validatedType)}</h3>
+            <TypographyHeading level={3}>
+              {getTypeLabel(validatedType)}
+            </TypographyHeading>
             <div className="flex-col-4">
               {contributions.map((community) => (
                 <CommunitySummaryCard

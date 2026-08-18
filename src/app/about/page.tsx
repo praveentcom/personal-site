@@ -22,7 +22,6 @@ export default async function AboutPage() {
       <>
         <StructuredData data={defaultSchema} />
         <PageSection>
-          <h3>About</h3>
           <Markdown content={aboutContent ?? ""} />
         </PageSection>
       </>

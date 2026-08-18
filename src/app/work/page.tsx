@@ -14,7 +14,7 @@ export default async function WorkPage() {
   return (
     <ContentPage
       breadcrumbAncestors={[{ href: URLS.HOME(), label: "Home" }]}
-      title={"Work"}
+      title={"Work experience"}
     >
       <>
         <StructuredData

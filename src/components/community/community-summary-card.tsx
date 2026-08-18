@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@workspace/web-design-system/components/link";
+import { TypographyParagraph } from "@workspace/web-design-system/components/typography";
 
 import { CommunityIndexItem } from "@/components/helpers/community";
 import { formatDate } from "@/components/helpers/date";
@@ -13,18 +14,17 @@ export function CommunitySummaryCard({
 }) {
   return (
     <article className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
-      <p className="text-base! sm:min-w-24 text-muted-foreground">
+      <TypographyParagraph className="sm:min-w-24" color="muted">
         {formatDate(contribution.date)}
-      </p>
-      <p className="sm:min-w-0">
+      </TypographyParagraph>
+      <div className="sm:min-w-0">
         <Link
           href={URLS.COMMUNITY(contribution.year, contribution.slug)}
-          className="text-foreground underline-offset-4 decoration-border sm:line-clamp-1 pointer-fine:hover:underline"
-          title={contribution.title}
+          className="sm:line-clamp-1"
         >
           {contribution.title}
         </Link>
-      </p>
+      </div>
     </article>
   );
 }

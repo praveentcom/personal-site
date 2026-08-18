@@ -12,6 +12,7 @@ import { createPageMetadata } from "@/components/helpers/metadata";
 import { URLS } from "@/components/helpers/urls";
 import { configData } from "@/data/config";
 import { Markdown } from "@workspace/web-design-system/components/markdown";
+import { TypographyHeading } from "@workspace/web-design-system/components/typography";
 
 export default async function CommunityPage() {
   const [publishedContributions, communityContent] = await Promise.all([
@@ -35,7 +36,6 @@ export default async function CommunityPage() {
             }}
           />
           <PageSection>
-            <h3>Community</h3>
             <Markdown content={communityContent ?? ""} />
           </PageSection>
           {publishedContributions.length > 0 &&
@@ -43,9 +43,9 @@ export default async function CommunityPage() {
               .length > 1 && (
               <PageSection>
                 <div className="flex-col-4" aria-label="Browse by year">
-                  <div className="flex items-center gap-2 text-muted-foreground">
-                    <h4>Browse by year</h4>
-                  </div>
+                  <TypographyHeading level={4}>
+                    Browse by year
+                  </TypographyHeading>
                   <div className="flex items-center gap-2 flex-wrap">
                     {Array.from(
                       new Set(publishedContributions.map((c) => c.year)),
@@ -64,7 +64,7 @@ export default async function CommunityPage() {
             <PageSection>
               <div className="flex-col-4" aria-label="Community contributions">
                 <div className="flex items-center gap-2">
-                  <h4>Contributions</h4>
+                  <TypographyHeading level={4}>Contributions</TypographyHeading>
                 </div>
                 <div className="flex-col-4">
                   {publishedContributions.map((community) => (

@@ -8,6 +8,7 @@ import { IntegrationsSection } from "@workspace/web-page-sections/integrations-s
 import { URLS } from "@/components/helpers/urls";
 import { App } from "@/types/app";
 import { HeaderSection } from "@workspace/web-page-sections/header-section";
+import { Typography } from "@workspace/web-design-system/components/typography";
 
 interface AppsSectionProps {
   apps: App[];
@@ -54,9 +55,7 @@ export function AppsSection({ apps }: AppsSectionProps) {
               className="size-full object-cover"
             />
           ) : (
-            <span className="text-sm font-semibold">
-              {app.title.slice(0, 1)}
-            </span>
+            <Typography weight="medium">{app.title.slice(0, 1)}</Typography>
           ),
         badges: app.stack.slice(0, 3),
       }))}

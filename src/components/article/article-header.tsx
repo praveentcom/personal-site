@@ -7,6 +7,7 @@ import type { ArticleLike } from "@/components/article/article-summary-card";
 import { TagButton } from "@/components/common/tag-button";
 import { formatDate } from "@/components/helpers/date";
 import { URLS } from "@/components/helpers/urls";
+import { Typography } from "@workspace/web-design-system/components/typography";
 
 interface ArticleTitleDetailsProps {
   article: ArticleLike;
@@ -23,13 +24,13 @@ export function ArticleTitleDetails({
     <div className="flex-col-4">
       <div className="flex flex-col sm:flex-row sm:items-center min-w-0 gap-4">
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1 shrink-0 text-muted-foreground">
-            <p>{article.readTime} min read</p>
-          </div>
+          <Typography className="shrink-0" color="muted">
+            {article.readTime} min read
+          </Typography>
           <Separator orientation="vertical" />
-          <div className="flex items-center gap-1 shrink-0 text-muted-foreground">
-            <p>Published on {formatDate(article.date)}</p>
-          </div>
+          <Typography className="shrink-0" color="muted">
+            Published on {formatDate(article.date)}
+          </Typography>
         </div>
         <div className="sm:ms-auto">
           <MarkdownDropdown text={markdown} viewUrl={mdUrl} />

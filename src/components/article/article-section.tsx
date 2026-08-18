@@ -9,6 +9,7 @@ import { ArticleSummaryCard } from "@/components/article/article-summary-card";
 import { getArticleLabel } from "@/components/helpers/config";
 import { URLS } from "@/components/helpers/urls";
 import { ArticleFrontmatter } from "@/types/article";
+import { Separator } from "@workspace/web-design-system/components/separator";
 
 const articleLabel = plural(getArticleLabel());
 
@@ -32,7 +33,6 @@ export function ArticleSection({
           <div className="flex items-center gap-2">
             <Button
               variant="ghost"
-              className="size-8 p-0"
               aria-label="RSS feed"
               render={
                 <a
@@ -52,9 +52,12 @@ export function ArticleSection({
           </div>
         }
       />
-      <div className="divide-y divide-border">
+      <div>
         {articles.map((article, index) => (
-          <ArticleSummaryCard key={index} article={article} />
+          <div key={article.slug}>
+            <ArticleSummaryCard article={article} />
+            {index < articles.length - 1 ? <Separator /> : null}
+          </div>
         ))}
       </div>
     </section>

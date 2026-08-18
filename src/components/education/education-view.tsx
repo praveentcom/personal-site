@@ -1,14 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { GridViewIcon, ListViewIcon } from "@hugeicons-pro/core-solid-rounded";
 import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@workspace/web-design-system/components/toggle-group";
-import Link from "next/link";
+import { Link } from "@workspace/web-design-system/components/link";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/web-design-system/components/avatar";
+import {
+  Typography,
+  TypographyParagraph,
+} from "@workspace/web-design-system/components/typography";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
 import { Grid } from "@workspace/web-design-system/components/grid";
 
@@ -29,8 +37,7 @@ export function EducationView({ education }: EducationViewProps) {
   return (
     <>
       <PageSection>
-        <div className="flex-col-4 sm:flex-row sm:items-center sm:justify-between">
-          <h3>Education</h3>
+        <div className="flex justify-end">
           <ToggleGroup
             value={[viewMode]}
             onValueChange={(details) => {
@@ -81,33 +88,23 @@ function ListEducationRow({ education }: ListEducationRowProps) {
   return (
     <div className="flex items-center gap-3">
       {education.image ? (
-        <div className="shrink-0">
-          <Image
-            src={education.image}
-            alt={`${education.school} logo`}
-            width={32}
-            height={32}
-            className="object-cover size-8 rounded-sm"
-          />
-        </div>
+        <Avatar className="shrink-0">
+          <AvatarImage src={education.image} alt={`${education.school} logo`} />
+          <AvatarFallback>{education.school.slice(0, 1)}</AvatarFallback>
+        </Avatar>
       ) : (
-        <div className="size-8 rounded-sm bg-muted shrink-0" />
+        <Avatar className="shrink-0">
+          <AvatarFallback>{education.school.slice(0, 1)}</AvatarFallback>
+        </Avatar>
       )}
-      <p>
-        <Link
-          href={URLS.EDUCATION(education.slug)}
-          className="text-foreground underline-offset-4 decoration-border pointer-fine:hover:underline"
-        >
-          {education.degree}
-        </Link>
-      </p>
-      <span className="text-muted-foreground hidden sm:inline">
+      <Link href={URLS.EDUCATION(education.slug)}>{education.degree}</Link>
+      <Typography className="hidden sm:inline" color="muted">
         &middot; {education.school}
-      </span>
+      </Typography>
       <div className="flex-1" />
-      <p className="text-muted-foreground shrink-0">
+      <TypographyParagraph className="shrink-0" color="muted">
         {formatDateYear(education.startDate)} – {endDateText}
-      </p>
+      </TypographyParagraph>
     </div>
   );
 }

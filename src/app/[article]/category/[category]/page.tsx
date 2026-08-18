@@ -16,6 +16,7 @@ import {
   createPageMetadata,
 } from "@/components/helpers/metadata";
 import { URLS } from "@/components/helpers/urls";
+import { TypographyHeading } from "@workspace/web-design-system/components/typography";
 
 interface PageProps {
   params: Promise<{
@@ -65,9 +66,9 @@ export default async function CategoryArticlePage({ params }: PageProps) {
             }}
           />
           <PageSection>
-            <h3>
+            <TypographyHeading level={3}>
               {category} {articleLabel}
-            </h3>
+            </TypographyHeading>
             <div className="flex-col-4">
               {filteredArticles.map((article, index) => (
                 <ArticleSummaryCard key={index} article={article} />

@@ -23,7 +23,6 @@ export default async function CoverPage() {
       <>
         <StructuredData data={defaultSchema} />
         <PageSection>
-          <h3>Cover letter</h3>
           <Markdown content={coverContent ?? ""} />
         </PageSection>
       </>

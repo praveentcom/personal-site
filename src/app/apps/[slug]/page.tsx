@@ -6,6 +6,7 @@ import { Button } from "@workspace/web-design-system/components/button";
 import { Markdown } from "@workspace/web-design-system/components/markdown";
 import { StructuredData } from "@workspace/web-design-system/components/structured-data";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
+import { TypographyParagraph } from "@workspace/web-design-system/components/typography";
 
 import { TagButton } from "@/components/common/tag-button";
 import { PROFILE_NAME } from "@/components/helpers/config";
@@ -90,14 +91,14 @@ export default async function AppPage({ params }: PageProps) {
               ))}
             </div>
             {app.date ? (
-              <p className="text-muted-foreground">
+              <TypographyParagraph color="muted">
                 {formatDateShort(app.date)}
-              </p>
+              </TypographyParagraph>
             ) : null}
             {app.coAuthors && app.coAuthors.length > 0 ? (
-              <p className="text-muted-foreground">
+              <TypographyParagraph color="muted">
                 {PROFILE_NAME}, {app.coAuthors.join(", ")}
-              </p>
+              </TypographyParagraph>
             ) : null}
           </div>
         </PageSection>

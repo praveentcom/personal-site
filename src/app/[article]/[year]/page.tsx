@@ -13,6 +13,7 @@ import {
 import { getArticleLabel, getArticleSlug } from "@/components/helpers/config";
 import { createPageMetadata } from "@/components/helpers/metadata";
 import { URLS } from "@/components/helpers/urls";
+import { TypographyHeading } from "@workspace/web-design-system/components/typography";
 
 interface PageProps {
   params: Promise<{
@@ -57,9 +58,9 @@ export default async function ArticlesByYearPage({ params }: PageProps) {
             }}
           />
           <PageSection>
-            <h3>
+            <TypographyHeading level={3}>
               {year} {articleLabel}
-            </h3>
+            </TypographyHeading>
             <div className="flex-col-4">
               {articles.map((article) => (
                 <ArticleSummaryCard key={article.slug} article={article} />

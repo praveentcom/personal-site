@@ -1,4 +1,5 @@
 import { formatDateShort } from "@/components/helpers/date";
+import { TypographyParagraph } from "@workspace/web-design-system/components/typography";
 
 /**
  * Date range display component
@@ -11,11 +12,9 @@ export function DateRange({
   endDate?: string;
 }) {
   return (
-    <div className="flex gap-1 items-center text-muted-foreground">
-      <p>
-        {startDate ? formatDateShort(startDate) : "Present"} -{" "}
-        {endDate ? formatDateShort(endDate) : "Present"}
-      </p>
-    </div>
+    <TypographyParagraph color="muted">
+      {startDate ? formatDateShort(startDate) : "Present"} -{" "}
+      {endDate ? formatDateShort(endDate) : "Present"}
+    </TypographyParagraph>
   );
 }

@@ -1,14 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { GridViewIcon, ListViewIcon } from "@hugeicons-pro/core-solid-rounded";
 import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@workspace/web-design-system/components/toggle-group";
-import Link from "next/link";
+import { Link } from "@workspace/web-design-system/components/link";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/web-design-system/components/avatar";
+import {
+  Typography,
+  TypographyParagraph,
+} from "@workspace/web-design-system/components/typography";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
 import { Grid } from "@workspace/web-design-system/components/grid";
 
@@ -29,8 +37,7 @@ export function WorkView({ work }: WorkViewProps) {
   return (
     <>
       <PageSection>
-        <div className="flex-col-4 sm:flex-row sm:items-center sm:justify-between">
-          <h3>Work Experience</h3>
+        <div className="flex justify-end">
           <ToggleGroup
             value={[viewMode]}
             onValueChange={(details) => {
@@ -81,33 +88,26 @@ function ListWorkRow({ experience }: ListWorkRowProps) {
   return (
     <div className="flex items-center gap-3">
       {experience.image ? (
-        <div className="shrink-0">
-          <Image
+        <Avatar className="shrink-0">
+          <AvatarImage
             src={experience.image}
             alt={`${experience.company} logo`}
-            width={32}
-            height={32}
-            className="object-cover size-8 rounded-sm"
           />
-        </div>
+          <AvatarFallback>{experience.company.slice(0, 1)}</AvatarFallback>
+        </Avatar>
       ) : (
-        <div className="size-8 rounded-sm bg-muted shrink-0" />
+        <Avatar className="shrink-0">
+          <AvatarFallback>{experience.company.slice(0, 1)}</AvatarFallback>
+        </Avatar>
       )}
-      <p>
-        <Link
-          href={URLS.WORK(experience.slug)}
-          className="text-foreground underline-offset-4 decoration-border pointer-fine:hover:underline"
-        >
-          {experience.company}
-        </Link>
-      </p>
-      <span className="text-muted-foreground hidden sm:inline">
+      <Link href={URLS.WORK(experience.slug)}>{experience.company}</Link>
+      <Typography className="hidden sm:inline" color="muted">
         &middot; {experience.role}
-      </span>
+      </Typography>
       <div className="flex-1" />
-      <p className="text-muted-foreground shrink-0">
+      <TypographyParagraph className="shrink-0" color="muted">
         {formatDateShort(experience.startDate)} – {endDateText}
-      </p>
+      </TypographyParagraph>
     </div>
   );
 }

@@ -19,6 +19,15 @@ const nextConfig: NextConfig = {
     // request through Next's optimizer adds latency without much upside.
     unoptimized: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/projects",
+        destination: "/apps",
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return [
       {

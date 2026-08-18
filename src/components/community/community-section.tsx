@@ -6,6 +6,7 @@ import Link from "next/link";
 import { CommunitySummaryCard } from "@/components/community/community-summary-card";
 import { URLS } from "@/components/helpers/urls";
 import { CommunityFrontmatter } from "@/types/community";
+import { TypographyHeading } from "@workspace/web-design-system/components/typography";
 
 export function CommunitySection({
   contributions,
@@ -18,9 +19,11 @@ export function CommunitySection({
       role="region"
       aria-label="Community Contributions"
     >
-      <div className="flex items-center justify-between gap-2 text-muted-foreground">
+      <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <h4>Community Contributions</h4>
+          <TypographyHeading level={4}>
+            Community Contributions
+          </TypographyHeading>
         </div>
         {contributions.length > 2 && (
           <Button render={<Link href={URLS.COMMUNITY_LIST()} />}>
