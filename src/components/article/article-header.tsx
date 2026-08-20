@@ -1,5 +1,5 @@
-import { MarkdownDropdown } from "@workspace/web-design-system/components/md-copy";
-import { Separator } from "@workspace/web-design-system/components/separator";
+import { MarkdownDropdown } from "@workspace/web-design-system/typography/md-copy";
+import { Separator } from "@workspace/web-design-system/layout/separator";
 import Link from "next/link";
 
 import { ArticleCategoryButton } from "@/components/article/article-category-button";
@@ -7,7 +7,7 @@ import type { ArticleLike } from "@/components/article/article-summary-card";
 import { TagButton } from "@/components/common/tag-button";
 import { formatDate } from "@/components/helpers/date";
 import { URLS } from "@/components/helpers/urls";
-import { Typography } from "@workspace/web-design-system/components/typography";
+import { Typography } from "@workspace/web-design-system/typography/typography";
 
 interface ArticleTitleDetailsProps {
   article: ArticleLike;

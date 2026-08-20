@@ -1,8 +1,8 @@
 import { ContentPage } from "@workspace/web-page-sections/page";
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
-import { Markdown } from "@workspace/web-design-system/components/markdown";
-import { StructuredData } from "@workspace/web-design-system/components/structured-data";
+import { Markdown } from "@workspace/web-design-system/typography/markdown";
+import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
 import { plural } from "pluralize";
 

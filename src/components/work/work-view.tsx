@@ -3,22 +3,16 @@
 import { useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { GridViewIcon, ListViewIcon } from "@hugeicons-pro/core-solid-rounded";
-import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from "@workspace/web-design-system/components/toggle-group";
-import { Link } from "@workspace/web-design-system/components/link";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@workspace/web-design-system/components/avatar";
+import { ToggleButton } from "@workspace/web-design-system/buttons/toggle-button";
+import { ToggleButtonGroup } from "@workspace/web-design-system/buttons/toggle-button-group";
+import { Link } from "@workspace/web-design-system/navigation/link";
+import { Avatar } from "@workspace/web-design-system/media/avatar";
 import {
   Typography,
   TypographyParagraph,
-} from "@workspace/web-design-system/components/typography";
+} from "@workspace/web-design-system/typography/typography";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
-import { Grid } from "@workspace/web-design-system/components/grid";
+import { Grid } from "@workspace/web-design-system/layout/grid";
 
 import { formatDateShort } from "@/components/helpers/date";
 import { URLS } from "@/components/helpers/urls";
@@ -38,23 +32,26 @@ export function WorkView({ work }: WorkViewProps) {
     <>
       <PageSection>
         <div className="flex justify-end">
-          <ToggleGroup
-            value={[viewMode]}
-            onValueChange={(details) => {
-              const newValue = details[0];
-              if (newValue) {
-                setViewMode(newValue as ViewMode);
+          <ToggleButtonGroup
+            className="shrink-0"
+            disallowEmptySelection
+            selectedKeys={[viewMode]}
+            selectionMode="single"
+            onSelectionChange={(keys) => {
+              const newValue = [...keys][0];
+              if (newValue === "grid" || newValue === "list") {
+                setViewMode(newValue);
               }
             }}
-            className="shrink-0"
           >
-            <ToggleGroupItem value="grid" aria-label="Grid view">
-              <HugeiconsIcon icon={GridViewIcon} />
-            </ToggleGroupItem>
-            <ToggleGroupItem value="list" aria-label="List view">
-              <HugeiconsIcon icon={ListViewIcon} />
-            </ToggleGroupItem>
-          </ToggleGroup>
+            <ToggleButton aria-label="Grid view" id="grid" isIconOnly>
+              <HugeiconsIcon aria-hidden="true" icon={GridViewIcon} />
+            </ToggleButton>
+            <ToggleButton aria-label="List view" id="list" isIconOnly>
+              <ToggleButtonGroup.Separator />
+              <HugeiconsIcon aria-hidden="true" icon={ListViewIcon} />
+            </ToggleButton>
+          </ToggleButtonGroup>
         </div>
       </PageSection>
       {viewMode === "grid" ? (
@@ -89,15 +86,15 @@ function ListWorkRow({ experience }: ListWorkRowProps) {
     <div className="flex items-center gap-3">
       {experience.image ? (
         <Avatar className="shrink-0">
-          <AvatarImage
+          <Avatar.Image
             src={experience.image}
             alt={`${experience.company} logo`}
           />
-          <AvatarFallback>{experience.company.slice(0, 1)}</AvatarFallback>
+          <Avatar.Fallback>{experience.company.slice(0, 1)}</Avatar.Fallback>
         </Avatar>
       ) : (
         <Avatar className="shrink-0">
-          <AvatarFallback>{experience.company.slice(0, 1)}</AvatarFallback>
+          <Avatar.Fallback>{experience.company.slice(0, 1)}</Avatar.Fallback>
         </Avatar>
       )}
       <Link href={URLS.WORK(experience.slug)}>{experience.company}</Link>

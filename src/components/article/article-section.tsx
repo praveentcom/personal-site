@@ -1,6 +1,6 @@
 import { HugeiconsIcon } from "@hugeicons/react";
 import { RssIcon } from "@hugeicons-pro/core-solid-rounded";
-import { Button } from "@workspace/web-design-system/components/button";
+import { Button } from "@workspace/web-design-system/buttons/button";
 import { HeaderSection } from "@workspace/web-page-sections/header-section";
 import Link from "next/link";
 import { plural } from "pluralize";
@@ -9,7 +9,7 @@ import { ArticleSummaryCard } from "@/components/article/article-summary-card";
 import { getArticleLabel } from "@/components/helpers/config";
 import { URLS } from "@/components/helpers/urls";
 import { ArticleFrontmatter } from "@/types/article";
-import { Separator } from "@workspace/web-design-system/components/separator";
+import { Separator } from "@workspace/web-design-system/layout/separator";
 
 const articleLabel = plural(getArticleLabel());
 

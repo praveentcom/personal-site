@@ -89,5 +89,5 @@ export const applicationPolicy = {
   },
   kind: "public",
   themeControl: "header",
-  toaster: true,
+  toasts: true,
 } satisfies ApplicationPolicy;

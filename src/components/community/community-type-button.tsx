@@ -3,7 +3,7 @@ import Link from "next/link";
 import {
   Button,
   type buttonVariants,
-} from "@workspace/web-design-system/components/button";
+} from "@workspace/web-design-system/buttons/button";
 
 import { URLS } from "@/components/helpers/urls";
 import { EnumCommunityContributionType } from "@/types/community";

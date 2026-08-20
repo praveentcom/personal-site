@@ -3,7 +3,9 @@
 import { useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Command } from "@workspace/web-design-system/components/command";
+import { Search01Icon } from "@hugeicons-pro/core-solid-rounded";
+import { Command } from "@workspace/web-design-system/navigation/command";
+import { Kbd } from "@workspace/web-design-system/typography/kbd";
 import { useCommandPaletteStore } from "@/stores/command-palette";
 import { useKeyboardShortcut } from "@/hooks/use-keyboard-shortcut";
 import { commands, commandGroups, type CommandContext } from "@/lib/commands";
@@ -39,8 +41,19 @@ export function CommandPalette() {
         <Command.Container>
           <Command.Dialog>
             <Command.InputGroup>
-              <Command.InputGroup.Input placeholder="Type a command or search…" />
+              <Command.InputGroup.Prefix>
+                <HugeiconsIcon aria-hidden="true" icon={Search01Icon} />
+              </Command.InputGroup.Prefix>
+              <Command.InputGroup.Input
+                aria-label="Search commands"
+                placeholder="Type a command or search…"
+              />
               <Command.InputGroup.ClearButton />
+              <Command.InputGroup.Suffix>
+                <Kbd variant="light">
+                  <Kbd.Content>Esc</Kbd.Content>
+                </Kbd>
+              </Command.InputGroup.Suffix>
             </Command.InputGroup>
             <Command.List
               aria-label="Commands"

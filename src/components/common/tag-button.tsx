@@ -1,4 +1,4 @@
-import { Button } from "@workspace/web-design-system/components/button";
+import { Button } from "@workspace/web-design-system/buttons/button";
 
 import { getTagImagePath } from "@/components/helpers/tag-mapper";
 

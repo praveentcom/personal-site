@@ -3,26 +3,15 @@
 import { useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { GridViewIcon, ListViewIcon } from "@hugeicons-pro/core-solid-rounded";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@workspace/web-design-system/components/select";
-import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from "@workspace/web-design-system/components/toggle-group";
-import { Link } from "@workspace/web-design-system/components/link";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@workspace/web-design-system/components/avatar";
-import { TypographyParagraph } from "@workspace/web-design-system/components/typography";
+import { Select } from "@workspace/web-design-system/pickers/select";
+import { ListBox } from "@workspace/web-design-system/collections/list-box";
+import { ToggleButton } from "@workspace/web-design-system/buttons/toggle-button";
+import { ToggleButtonGroup } from "@workspace/web-design-system/buttons/toggle-button-group";
+import { Link } from "@workspace/web-design-system/navigation/link";
+import { Avatar } from "@workspace/web-design-system/media/avatar";
+import { TypographyParagraph } from "@workspace/web-design-system/typography/typography";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
-import { Grid } from "@workspace/web-design-system/components/grid";
+import { Grid } from "@workspace/web-design-system/layout/grid";
 
 import { formatDateShort } from "@/components/helpers/date";
 import { URLS } from "@/components/helpers/urls";
@@ -64,42 +53,58 @@ export function AppsView({ apps }: AppsViewProps) {
         <div className="flex justify-end">
           <div className="flex items-center gap-2">
             <Select
-              value={filterMode}
-              onValueChange={(value) => setFilterMode(value as FilterMode)}
+              selectedKey={filterMode}
+              onSelectionChange={(value) => setFilterMode(value as FilterMode)}
+              fullWidth
+              aria-label="Filter apps by source"
             >
-              <SelectTrigger
-                className="w-fit"
-                aria-label="Filter apps by source"
-              >
-                <SelectValue>{FILTER_LABELS[filterMode]}</SelectValue>
-              </SelectTrigger>
-              <SelectContent align="end">
-                <SelectItem value="all">{FILTER_LABELS.all}</SelectItem>
-                <SelectItem value="open-source">
-                  {FILTER_LABELS["open-source"]}
-                </SelectItem>
-                <SelectItem value="closed-source">
-                  {FILTER_LABELS["closed-source"]}
-                </SelectItem>
-              </SelectContent>
+              <Select.Trigger className="w-fit">
+                <Select.Value>{FILTER_LABELS[filterMode]}</Select.Value>
+                <Select.Indicator />
+              </Select.Trigger>
+              <Select.Popover placement="bottom end">
+                <ListBox>
+                  <ListBox.Item id="all" textValue={FILTER_LABELS.all}>
+                    {FILTER_LABELS.all}
+                    <ListBox.ItemIndicator />
+                  </ListBox.Item>
+                  <ListBox.Item
+                    id="open-source"
+                    textValue={FILTER_LABELS["open-source"]}
+                  >
+                    {FILTER_LABELS["open-source"]}
+                    <ListBox.ItemIndicator />
+                  </ListBox.Item>
+                  <ListBox.Item
+                    id="closed-source"
+                    textValue={FILTER_LABELS["closed-source"]}
+                  >
+                    {FILTER_LABELS["closed-source"]}
+                    <ListBox.ItemIndicator />
+                  </ListBox.Item>
+                </ListBox>
+              </Select.Popover>
             </Select>
-            <ToggleGroup
-              value={[viewMode]}
-              onValueChange={(details) => {
-                const newValue = details[0];
-                if (newValue) {
-                  setViewMode(newValue as ViewMode);
+            <ToggleButtonGroup
+              className="shrink-0"
+              disallowEmptySelection
+              selectedKeys={[viewMode]}
+              selectionMode="single"
+              onSelectionChange={(keys) => {
+                const newValue = [...keys][0];
+                if (newValue === "grid" || newValue === "list") {
+                  setViewMode(newValue);
                 }
               }}
-              className="shrink-0"
             >
-              <ToggleGroupItem value="grid" aria-label="Grid view">
-                <HugeiconsIcon icon={GridViewIcon} />
-              </ToggleGroupItem>
-              <ToggleGroupItem value="list" aria-label="List view">
-                <HugeiconsIcon icon={ListViewIcon} />
-              </ToggleGroupItem>
-            </ToggleGroup>
+              <ToggleButton aria-label="Grid view" id="grid" isIconOnly>
+                <HugeiconsIcon aria-hidden="true" icon={GridViewIcon} />
+              </ToggleButton>
+              <ToggleButton aria-label="List view" id="list" isIconOnly>
+                <ToggleButtonGroup.Separator />
+                <HugeiconsIcon aria-hidden="true" icon={ListViewIcon} />
+              </ToggleButton>
+            </ToggleButtonGroup>
           </div>
         </div>
       </PageSection>
@@ -132,12 +137,12 @@ function ListAppRow({ app, imageUrl }: ListAppRowProps) {
     <div className="flex items-center gap-3">
       {imageUrl ? (
         <Avatar className="shrink-0">
-          <AvatarImage src={imageUrl} alt={app.title} />
-          <AvatarFallback>{app.title.slice(0, 1)}</AvatarFallback>
+          <Avatar.Image src={imageUrl} alt={app.title} />
+          <Avatar.Fallback>{app.title.slice(0, 1)}</Avatar.Fallback>
         </Avatar>
       ) : (
         <Avatar className="shrink-0">
-          <AvatarFallback>{app.title.slice(0, 1)}</AvatarFallback>
+          <Avatar.Fallback>{app.title.slice(0, 1)}</Avatar.Fallback>
         </Avatar>
       )}
       <Link href={URLS.APPS(app.slug)}>{app.title}</Link>

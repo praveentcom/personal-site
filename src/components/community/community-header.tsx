@@ -1,9 +1,9 @@
-import { Button } from "@workspace/web-design-system/components/button";
+import { Button } from "@workspace/web-design-system/buttons/button";
 
 import { CommunityTypeButton } from "@/components/community/community-type-button";
 import type { CommunityIndexItem } from "@/components/helpers/community";
 import { formatDate } from "@/components/helpers/date";
-import { Typography } from "@workspace/web-design-system/components/typography";
+import { Typography } from "@workspace/web-design-system/typography/typography";
 
 interface CommunityTitleDetailsProps {
   contribution: CommunityIndexItem;

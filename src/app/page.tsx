@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Button } from "@workspace/web-design-system/components/button";
-import { Markdown } from "@workspace/web-design-system/components/markdown";
+import { Button } from "@workspace/web-design-system/buttons/button";
+import { Markdown } from "@workspace/web-design-system/typography/markdown";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
 import { HeaderSection } from "@workspace/web-page-sections/header-section";
 import { MarketingPage, HomepageHero } from "@workspace/web-page-sections/page";
@@ -35,7 +35,6 @@ export default async function HomePage() {
         <HomepageHero
           eyebrow={{
             label: "Software developer and independent builder",
-            variant: "accent",
           }}
           title="Praveen Thirumurugan"
           description={SITE_DESCRIPTION}

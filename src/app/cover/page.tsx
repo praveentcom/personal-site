@@ -1,7 +1,7 @@
 import { ContentPage } from "@workspace/web-page-sections/page";
 import { Metadata } from "next";
-import { StructuredData } from "@workspace/web-design-system/components/structured-data";
-import { Markdown } from "@workspace/web-design-system/components/markdown";
+import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
+import { Markdown } from "@workspace/web-design-system/typography/markdown";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
 
 import { getMdContent } from "@/components/helpers/md-content";

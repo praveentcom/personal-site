@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { RssIcon } from "@hugeicons-pro/core-solid-rounded";
 import Link from "next/link";
-import { StructuredData } from "@workspace/web-design-system/components/structured-data";
+import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
-import { Grid } from "@workspace/web-design-system/components/grid";
-import { Button } from "@workspace/web-design-system/components/button";
-import { TypographyHeading } from "@workspace/web-design-system/components/typography";
+import { Grid } from "@workspace/web-design-system/layout/grid";
+import { Button } from "@workspace/web-design-system/buttons/button";
+import { TypographyHeading } from "@workspace/web-design-system/typography/typography";
 import { plural } from "pluralize";
 
 import { ArticleCategoryButton } from "@/components/article/article-category-button";

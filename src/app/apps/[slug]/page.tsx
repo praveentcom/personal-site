@@ -2,11 +2,11 @@ import { ContentPage } from "@workspace/web-page-sections/page";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Button } from "@workspace/web-design-system/components/button";
-import { Markdown } from "@workspace/web-design-system/components/markdown";
-import { StructuredData } from "@workspace/web-design-system/components/structured-data";
+import { Button } from "@workspace/web-design-system/buttons/button";
+import { Markdown } from "@workspace/web-design-system/typography/markdown";
+import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
-import { TypographyParagraph } from "@workspace/web-design-system/components/typography";
+import { TypographyParagraph } from "@workspace/web-design-system/typography/typography";
 
 import { TagButton } from "@/components/common/tag-button";
 import { PROFILE_NAME } from "@/components/helpers/config";

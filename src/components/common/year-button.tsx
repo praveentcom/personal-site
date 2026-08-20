@@ -1,4 +1,4 @@
-import { Button } from "@workspace/web-design-system/components/button";
+import { Button } from "@workspace/web-design-system/buttons/button";
 
 type YearButtonProps = Omit<React.ComponentProps<typeof Button>, "children"> & {
   year: string;

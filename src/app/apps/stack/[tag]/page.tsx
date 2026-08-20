@@ -1,8 +1,8 @@
 import { ContentPage } from "@workspace/web-page-sections/page";
 import type { Metadata } from "next";
-import { StructuredData } from "@workspace/web-design-system/components/structured-data";
+import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
-import { Grid } from "@workspace/web-design-system/components/grid";
+import { Grid } from "@workspace/web-design-system/layout/grid";
 import pluralize from "pluralize";
 
 import { ImageWithFallback } from "@/components/common/image-with-fallback";
@@ -11,7 +11,7 @@ import { getAllAppSlugs } from "@/components/helpers/apps";
 import { getTagImagePath } from "@/components/helpers/tag-mapper";
 import { URLS } from "@/components/helpers/urls";
 import { AppSummaryCard } from "@/components/apps/app-summary-card";
-import { TypographyHeading } from "@workspace/web-design-system/components/typography";
+import { TypographyHeading } from "@workspace/web-design-system/typography/typography";
 
 interface PageProps {
   params: Promise<{

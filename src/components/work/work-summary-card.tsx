@@ -1,12 +1,8 @@
 "use client";
 
-import { Link } from "@workspace/web-design-system/components/link";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@workspace/web-design-system/components/avatar";
-import { TypographyParagraph } from "@workspace/web-design-system/components/typography";
+import { Link } from "@workspace/web-design-system/navigation/link";
+import { Avatar } from "@workspace/web-design-system/media/avatar";
+import { TypographyParagraph } from "@workspace/web-design-system/typography/typography";
 
 import { formatDateShort } from "@/components/helpers/date";
 import { URLS } from "@/components/helpers/urls";
@@ -25,11 +21,11 @@ export function WorkSummaryCard({
     <article className="flex-col-1">
       {experience.image && (
         <Avatar className="shrink-0">
-          <AvatarImage
+          <Avatar.Image
             src={experience.image}
             alt={`${experience.company} logo`}
           />
-          <AvatarFallback>{experience.company.slice(0, 1)}</AvatarFallback>
+          <Avatar.Fallback>{experience.company.slice(0, 1)}</Avatar.Fallback>
         </Avatar>
       )}
       <Link href={URLS.WORK(experience.slug)}>{experience.company}</Link>

@@ -2,7 +2,7 @@
 
 import { WorkSummaryCard } from "@/components/work/work-summary-card";
 import { WorkExperience } from "@/types/work";
-import { TypographyHeading } from "@workspace/web-design-system/components/typography";
+import { TypographyHeading } from "@workspace/web-design-system/typography/typography";
 
 interface WorkExperienceSectionProps {
   workExperience: WorkExperience[];

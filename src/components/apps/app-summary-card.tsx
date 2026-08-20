@@ -1,17 +1,13 @@
 "use client";
 
-import { Link } from "@workspace/web-design-system/components/link";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@workspace/web-design-system/components/avatar";
-import { TypographyParagraph } from "@workspace/web-design-system/components/typography";
+import { Link } from "@workspace/web-design-system/navigation/link";
+import { Avatar } from "@workspace/web-design-system/media/avatar";
+import { TypographyParagraph } from "@workspace/web-design-system/typography/typography";
 
 import { formatDateShort } from "@/components/helpers/date";
 import { URLS } from "@/components/helpers/urls";
 import { App } from "@/types/app";
-import { Badge } from "@workspace/web-design-system/components/badge";
+import { Chip } from "@workspace/web-design-system/data-display/chip";
 
 interface AppCardProps {
   app: App;
@@ -23,13 +19,13 @@ export function AppSummaryCard({ app }: AppCardProps) {
     <article className="flex-col-1">
       {app.image && (
         <Avatar className="shrink-0">
-          <AvatarImage src={app.image} alt={app.title} />
-          <AvatarFallback>{app.title.slice(0, 1)}</AvatarFallback>
+          <Avatar.Image src={app.image} alt={app.title} />
+          <Avatar.Fallback>{app.title.slice(0, 1)}</Avatar.Fallback>
         </Avatar>
       )}
       <div className="flex gap-2 items-center">
         <Link href={URLS.APPS(app.slug)}>{app.title}</Link>
-        {app.githubUrl && <Badge>Open Source</Badge>}
+        {app.githubUrl && <Chip>Open Source</Chip>}
       </div>
       {app.shortDescription && (
         <TypographyParagraph color="muted">

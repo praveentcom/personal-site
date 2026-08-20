@@ -1,12 +1,8 @@
 "use client";
 
-import { Link } from "@workspace/web-design-system/components/link";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@workspace/web-design-system/components/avatar";
-import { TypographyParagraph } from "@workspace/web-design-system/components/typography";
+import { Link } from "@workspace/web-design-system/navigation/link";
+import { Avatar } from "@workspace/web-design-system/media/avatar";
+import { TypographyParagraph } from "@workspace/web-design-system/typography/typography";
 
 import { formatDateYear } from "@/components/helpers/date";
 import { URLS } from "@/components/helpers/urls";
@@ -21,8 +17,11 @@ export function EducationSummaryCard({ education }: { education: Education }) {
     <article className="flex-col-1">
       {education.image && (
         <Avatar className="shrink-0">
-          <AvatarImage src={education.image} alt={`${education.school} logo`} />
-          <AvatarFallback>{education.school.slice(0, 1)}</AvatarFallback>
+          <Avatar.Image
+            src={education.image}
+            alt={`${education.school} logo`}
+          />
+          <Avatar.Fallback>{education.school.slice(0, 1)}</Avatar.Fallback>
         </Avatar>
       )}
       <Link href={URLS.EDUCATION(education.slug)}>{education.degree}</Link>

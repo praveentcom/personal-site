@@ -1,12 +1,12 @@
 "use client";
 
-import { Button } from "@workspace/web-design-system/components/button";
+import { Button } from "@workspace/web-design-system/buttons/button";
 import Link from "next/link";
 
 import { CommunitySummaryCard } from "@/components/community/community-summary-card";
 import { URLS } from "@/components/helpers/urls";
 import { CommunityFrontmatter } from "@/types/community";
-import { TypographyHeading } from "@workspace/web-design-system/components/typography";
+import { TypographyHeading } from "@workspace/web-design-system/typography/typography";
 
 export function CommunitySection({
   contributions,

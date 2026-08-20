@@ -1,6 +1,6 @@
 import { ContentPage } from "@workspace/web-page-sections/page";
 import type { Metadata } from "next";
-import { StructuredData } from "@workspace/web-design-system/components/structured-data";
+import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
 import pluralize from "pluralize";
 
@@ -14,7 +14,7 @@ import { URLS } from "@/components/helpers/urls";
 import {
   TypographyHeading,
   TypographyParagraph,
-} from "@workspace/web-design-system/components/typography";
+} from "@workspace/web-design-system/typography/typography";
 
 interface PageProps {
   params: Promise<{

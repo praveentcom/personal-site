@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Button } from "@workspace/web-design-system/components/button";
+import { Button } from "@workspace/web-design-system/buttons/button";
 import { StatusPage } from "@workspace/web-page-sections/page";
 import { plural } from "pluralize";
 

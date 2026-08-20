@@ -1,6 +1,6 @@
 import { EducationSummaryCard } from "@/components/education/education-summary-card";
 import { Education } from "@/types/education";
-import { TypographyHeading } from "@workspace/web-design-system/components/typography";
+import { TypographyHeading } from "@workspace/web-design-system/typography/typography";
 
 interface EducationSectionProps {
   education: Education[];
