@@ -1,7 +1,6 @@
 "use client";
 
-import { Button } from "@workspace/web-design-system/buttons/button";
-import Link from "next/link";
+import { ButtonLink } from "@workspace/web-design-system/buttons/button";
 
 import { CommunitySummaryCard } from "@/components/community/community-summary-card";
 import { URLS } from "@/components/helpers/urls";
@@ -26,9 +25,7 @@ export function CommunitySection({
           </TypographyHeading>
         </div>
         {contributions.length > 2 && (
-          <Button render={<Link href={URLS.COMMUNITY_LIST()} />}>
-            View all &rarr;
-          </Button>
+          <ButtonLink href={URLS.COMMUNITY_LIST()}>View all &rarr;</ButtonLink>
         )}
       </div>
       <div className="flex-col-4">

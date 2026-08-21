@@ -53,7 +53,12 @@ export default async function CommunityPage() {
                       <YearButton
                         key={`${year}-community`}
                         year={year}
-                        render={<Link href={URLS.COMMUNITY_YEAR(year)} />}
+                        render={(props) => (
+                          <Link
+                            {...(props as React.ComponentProps<typeof Link>)}
+                            href={URLS.COMMUNITY_YEAR(year)}
+                          />
+                        )}
                       />
                     ))}
                   </div>

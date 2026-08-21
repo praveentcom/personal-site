@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@workspace/web-design-system/buttons/button";
+import { ButtonLink } from "@workspace/web-design-system/buttons/button";
 
 import { profile } from "@/data/profile";
 
@@ -48,21 +48,17 @@ export function SocialIconLinks() {
             socialIconPaths[platform as keyof typeof socialIconPaths];
 
           return (
-            <Button
+            <ButtonLink
               key={platform}
+              aria-label={platform.charAt(0).toUpperCase() + platform.slice(1)}
               variant="ghost"
               className="w-7 p-0"
-              render={
-                <a
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={platform.charAt(0).toUpperCase() + platform.slice(1)}
-                />
-              }
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               {iconPath && <Icon iconPath={iconPath} />}
-            </Button>
+            </ButtonLink>
           );
         })}
       </div>

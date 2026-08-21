@@ -2,7 +2,7 @@ import { ContentPage } from "@workspace/web-page-sections/page";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Button } from "@workspace/web-design-system/buttons/button";
+import { ButtonLink } from "@workspace/web-design-system/buttons/button";
 import { Markdown } from "@workspace/web-design-system/typography/markdown";
 import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
@@ -49,26 +49,22 @@ export default async function AppPage({ params }: PageProps) {
       actions={
         <>
           {app.githubUrl ? (
-            <Button
-              render={
-                <a
-                  href={app.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                />
-              }
+            <ButtonLink
+              href={app.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               View on GitHub
-            </Button>
+            </ButtonLink>
           ) : null}
           {app.url ? (
-            <Button
-              render={
-                <a href={app.url} target="_blank" rel="noopener noreferrer" />
-              }
+            <ButtonLink
+              href={app.url}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               View App
-            </Button>
+            </ButtonLink>
           ) : null}
         </>
       }
@@ -86,7 +82,12 @@ export default async function AppPage({ params }: PageProps) {
                   key={index}
                   tag={tag}
                   count={app.stack.filter((item) => item === tag).length}
-                  render={<Link href={URLS.APPS_STACK(tag)} />}
+                  render={(props) => (
+                    <Link
+                      {...(props as React.ComponentProps<typeof Link>)}
+                      href={URLS.APPS_STACK(tag)}
+                    />
+                  )}
                 />
               ))}
             </div>

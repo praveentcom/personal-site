@@ -6,7 +6,7 @@ import Link from "next/link";
 import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
 import { Grid } from "@workspace/web-design-system/layout/grid";
-import { Button } from "@workspace/web-design-system/buttons/button";
+import { ButtonLink } from "@workspace/web-design-system/buttons/button";
 import { TypographyHeading } from "@workspace/web-design-system/typography/typography";
 import { plural } from "pluralize";
 
@@ -38,20 +38,15 @@ export default async function ArticlesListPage() {
   return (
     <ContentPage
       actions={
-        <Button
+        <ButtonLink
           variant="ghost"
           aria-label="RSS feed"
-          title="RSS feed"
-          render={
-            <a
-              href={URLS.RSS_FEED()}
-              target="_blank"
-              rel="noopener noreferrer"
-            />
-          }
+          href={URLS.RSS_FEED()}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <HugeiconsIcon icon={RssIcon} aria-hidden="true" />
-        </Button>
+        </ButtonLink>
       }
       breadcrumbAncestors={[{ href: URLS.HOME(), label: "Home" }]}
       title={articleLabel}
@@ -88,13 +83,14 @@ export default async function ArticlesListPage() {
                               a.categories.includes(category),
                             ).length
                           }
-                          render={
+                          render={(props) => (
                             <Link
+                              {...(props as React.ComponentProps<typeof Link>)}
                               href={URLS.ARTICLES_CATEGORY(
                                 encodeURIComponent(category),
                               )}
                             />
-                          }
+                          )}
                         />
                       ))}
                     </div>
@@ -116,7 +112,14 @@ export default async function ArticlesListPage() {
                           <YearButton
                             key={`${year}-article`}
                             year={year}
-                            render={<Link href={URLS.ARTICLES_YEAR(year)} />}
+                            render={(props) => (
+                              <Link
+                                {...(props as React.ComponentProps<
+                                  typeof Link
+                                >)}
+                                href={URLS.ARTICLES_YEAR(year)}
+                              />
+                            )}
                           />
                         ))}
                       </div>

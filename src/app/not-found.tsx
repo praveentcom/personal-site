@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Button } from "@workspace/web-design-system/buttons/button";
+import { ButtonLink } from "@workspace/web-design-system/buttons/button";
 import { StatusPage } from "@workspace/web-page-sections/page";
 import { plural } from "pluralize";
 
@@ -15,13 +14,10 @@ export default function NotFound() {
     <StatusPage
       actions={
         <>
-          <Button render={<Link href={URLS.HOME()} />}>Home</Button>
-          <Button
-            variant="secondary"
-            render={<Link href={URLS.ARTICLES_LIST()} />}
-          >
+          <ButtonLink href={URLS.HOME()}>Home</ButtonLink>
+          <ButtonLink variant="secondary" href={URLS.ARTICLES_LIST()}>
             Browse {articleLabel.toLowerCase()}
-          </Button>
+          </ButtonLink>
         </>
       }
       breadcrumbAncestors={[{ href: URLS.HOME(), label: "Praveen" }]}

@@ -1,7 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import { Button } from "@workspace/web-design-system/buttons/button";
+import {
+  Button,
+  ButtonLink,
+} from "@workspace/web-design-system/buttons/button";
 import { StatusPage } from "@workspace/web-page-sections/page";
 import { plural } from "pluralize";
 
@@ -20,16 +22,13 @@ export default function Error({
     <StatusPage
       actions={
         <>
-          <Button onClick={reset}>Try again</Button>
-          <Button variant="secondary" render={<Link href={URLS.HOME()} />}>
+          <Button onPress={reset}>Try again</Button>
+          <ButtonLink variant="secondary" href={URLS.HOME()}>
             Home
-          </Button>
-          <Button
-            variant="secondary"
-            render={<Link href={URLS.ARTICLES_LIST()} />}
-          >
+          </ButtonLink>
+          <ButtonLink variant="secondary" href={URLS.ARTICLES_LIST()}>
             Browse {articleLabel.toLowerCase()}
-          </Button>
+          </ButtonLink>
         </>
       }
       breadcrumbAncestors={[{ href: URLS.HOME(), label: "Praveen" }]}

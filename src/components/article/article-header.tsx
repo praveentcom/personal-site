@@ -42,11 +42,12 @@ export function ArticleTitleDetails({
             key={index}
             category={category}
             count={article.categories.filter((c) => c === category).length}
-            render={
+            render={(props) => (
               <Link
+                {...(props as React.ComponentProps<typeof Link>)}
                 href={URLS.ARTICLES_CATEGORY(encodeURIComponent(category))}
               />
-            }
+            )}
           />
         ))}
         {article.tags.map((tag, index) => (
@@ -54,7 +55,12 @@ export function ArticleTitleDetails({
             key={index}
             tag={tag}
             count={article.tags.filter((t) => t === tag).length}
-            render={<Link href={URLS.ARTICLES_TAG(tag)} />}
+            render={(props) => (
+              <Link
+                {...(props as React.ComponentProps<typeof Link>)}
+                href={URLS.ARTICLES_TAG(tag)}
+              />
+            )}
           />
         ))}
       </div>

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 
-import { Button } from "@workspace/web-design-system/buttons/button";
+import { ButtonLink } from "@workspace/web-design-system/buttons/button";
 import { Markdown } from "@workspace/web-design-system/typography/markdown";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
 import { HeaderSection } from "@workspace/web-page-sections/header-section";
@@ -40,15 +39,12 @@ export default async function HomePage() {
           description={SITE_DESCRIPTION}
           actions={
             <>
-              <Button render={<Link href={URLS.ARTICLES_LIST()} />}>
+              <ButtonLink href={URLS.ARTICLES_LIST()}>
                 Read the articles
-              </Button>
-              <Button
-                variant="secondary"
-                render={<Link href={URLS.APPS_LIST()} />}
-              >
+              </ButtonLink>
+              <ButtonLink variant="secondary" href={URLS.APPS_LIST()}>
                 Browse the apps
-              </Button>
+              </ButtonLink>
             </>
           }
           media={
@@ -70,9 +66,9 @@ export default async function HomePage() {
             title="Build useful software, then share the decisions behind it"
             description="My work sits at the intersection of developer tools, independent products, infrastructure, and practical AI-assisted engineering."
             action={
-              <Button variant="secondary" render={<Link href={URLS.ABOUT()} />}>
+              <ButtonLink variant="secondary" href={URLS.ABOUT()}>
                 More about me
-              </Button>
+              </ButtonLink>
             }
           />
           <div className="max-w-3xl">

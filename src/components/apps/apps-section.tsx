@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@workspace/web-design-system/buttons/button";
+import { ButtonLink } from "@workspace/web-design-system/buttons/button";
 import { IntegrationsSection } from "@workspace/web-page-sections/integrations-section";
 
 import { URLS } from "@/components/helpers/urls";
@@ -31,12 +31,9 @@ export function AppsSection({ apps }: AppsSectionProps) {
             "A selection of developer tools and focused products I design, ship, and maintain."
           }
           action={
-            <Button
-              variant="secondary"
-              render={<Link href={URLS.APPS_LIST()} />}
-            >
+            <ButtonLink variant="secondary" href={URLS.APPS_LIST()}>
               View all apps
-            </Button>
+            </ButtonLink>
           }
         />
       }

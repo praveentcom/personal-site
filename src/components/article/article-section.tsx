@@ -1,8 +1,7 @@
 import { HugeiconsIcon } from "@hugeicons/react";
 import { RssIcon } from "@hugeicons-pro/core-solid-rounded";
-import { Button } from "@workspace/web-design-system/buttons/button";
+import { ButtonLink } from "@workspace/web-design-system/buttons/button";
 import { HeaderSection } from "@workspace/web-page-sections/header-section";
-import Link from "next/link";
 import { plural } from "pluralize";
 
 import { ArticleSummaryCard } from "@/components/article/article-summary-card";
@@ -31,23 +30,19 @@ export function ArticleSection({
         description="Notes on developer tools, product engineering, infrastructure, AI-assisted workflows, and the decisions behind shipped software."
         action={
           <div className="flex items-center gap-2">
-            <Button
+            <ButtonLink
               variant="ghost"
               aria-label="RSS feed"
-              render={
-                <a
-                  href={URLS.RSS_FEED()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                />
-              }
+              href={URLS.RSS_FEED()}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <HugeiconsIcon icon={RssIcon} aria-hidden="true" />
-            </Button>
+            </ButtonLink>
             {showAllArticles ? (
-              <Button render={<Link href={URLS.ARTICLES_LIST()} />}>
+              <ButtonLink href={URLS.ARTICLES_LIST()}>
                 View all articles
-              </Button>
+              </ButtonLink>
             ) : null}
           </div>
         }
