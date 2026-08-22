@@ -2,7 +2,6 @@ import { ContentPage } from "@workspace/web-page-sections/page";
 import type { Metadata } from "next";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { RssIcon } from "@hugeicons-pro/core-solid-rounded";
-import Link from "next/link";
 import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
 import { Grid } from "@workspace/web-design-system/layout/grid";
@@ -10,9 +9,9 @@ import { ButtonLink } from "@workspace/web-design-system/buttons/button";
 import { TypographyHeading } from "@workspace/web-design-system/typography/typography";
 import { plural } from "pluralize";
 
-import { ArticleCategoryButton } from "@/components/article/article-category-button";
+import { ArticleCategoryButtonLink } from "@/components/article/article-category-button";
 import { ArticleSummaryCard } from "@/components/article/article-summary-card";
-import { YearButton } from "@/components/common/year-button";
+import { YearButtonLink } from "@/components/common/year-button";
 import {
   getAllArticleSlugs,
   getAllCategories,
@@ -75,7 +74,7 @@ export default async function ArticlesListPage() {
                     </div>
                     <div className="flex items-center gap-2 flex-wrap">
                       {allCategories.map((category) => (
-                        <ArticleCategoryButton
+                        <ArticleCategoryButtonLink
                           key={category}
                           category={category}
                           count={
@@ -83,13 +82,8 @@ export default async function ArticlesListPage() {
                               a.categories.includes(category),
                             ).length
                           }
-                          render={(props) => (
-                            <Link
-                              {...(props as React.ComponentProps<typeof Link>)}
-                              href={URLS.ARTICLES_CATEGORY(
-                                encodeURIComponent(category),
-                              )}
-                            />
+                          href={URLS.ARTICLES_CATEGORY(
+                            encodeURIComponent(category),
                           )}
                         />
                       ))}
@@ -109,17 +103,10 @@ export default async function ArticlesListPage() {
                         {Array.from(
                           new Set(publishedArticles.map((a) => a.year)),
                         ).map((year) => (
-                          <YearButton
+                          <YearButtonLink
                             key={`${year}-article`}
                             year={year}
-                            render={(props) => (
-                              <Link
-                                {...(props as React.ComponentProps<
-                                  typeof Link
-                                >)}
-                                href={URLS.ARTICLES_YEAR(year)}
-                              />
-                            )}
+                            href={URLS.ARTICLES_YEAR(year)}
                           />
                         ))}
                       </div>

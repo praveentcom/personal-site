@@ -1,7 +1,18 @@
-import { Button } from "@workspace/web-design-system/buttons/button";
+import {
+  Button,
+  ButtonLink,
+} from "@workspace/web-design-system/buttons/button";
 
 type ArticleCategoryButtonProps = Omit<
   React.ComponentProps<typeof Button>,
+  "children"
+> & {
+  category: string;
+  count?: number;
+};
+
+type ArticleCategoryButtonLinkProps = Omit<
+  React.ComponentProps<typeof ButtonLink>,
   "children"
 > & {
   category: string;
@@ -21,5 +32,21 @@ export function ArticleCategoryButton({
     <Button {...props} variant={variant} className={className}>
       {label}
     </Button>
+  );
+}
+
+export function ArticleCategoryButtonLink({
+  category,
+  className,
+  count,
+  variant = "secondary",
+  ...props
+}: ArticleCategoryButtonLinkProps) {
+  const label = count && count > 1 ? `${category} (${count})` : category;
+
+  return (
+    <ButtonLink {...props} variant={variant} className={className}>
+      {label}
+    </ButtonLink>
   );
 }

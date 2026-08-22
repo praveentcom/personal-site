@@ -1,10 +1,9 @@
 import { MarkdownDropdown } from "@workspace/web-design-system/typography/md-copy";
 import { Separator } from "@workspace/web-design-system/layout/separator";
-import Link from "next/link";
 
-import { ArticleCategoryButton } from "@/components/article/article-category-button";
+import { ArticleCategoryButtonLink } from "@/components/article/article-category-button";
 import type { ArticleLike } from "@/components/article/article-summary-card";
-import { TagButton } from "@/components/common/tag-button";
+import { TagButtonLink } from "@/components/common/tag-button";
 import { formatDate } from "@/components/helpers/date";
 import { URLS } from "@/components/helpers/urls";
 import { Typography } from "@workspace/web-design-system/typography/typography";
@@ -38,29 +37,19 @@ export function ArticleTitleDetails({
       </div>
       <div className="flex flex-wrap gap-2">
         {article.categories.map((category, index) => (
-          <ArticleCategoryButton
+          <ArticleCategoryButtonLink
             key={index}
             category={category}
             count={article.categories.filter((c) => c === category).length}
-            render={(props) => (
-              <Link
-                {...(props as React.ComponentProps<typeof Link>)}
-                href={URLS.ARTICLES_CATEGORY(encodeURIComponent(category))}
-              />
-            )}
+            href={URLS.ARTICLES_CATEGORY(encodeURIComponent(category))}
           />
         ))}
         {article.tags.map((tag, index) => (
-          <TagButton
+          <TagButtonLink
             key={index}
             tag={tag}
             count={article.tags.filter((t) => t === tag).length}
-            render={(props) => (
-              <Link
-                {...(props as React.ComponentProps<typeof Link>)}
-                href={URLS.ARTICLES_TAG(tag)}
-              />
-            )}
+            href={URLS.ARTICLES_TAG(tag)}
           />
         ))}
       </div>

@@ -1,14 +1,13 @@
 import { ContentPage } from "@workspace/web-page-sections/page";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { ButtonLink } from "@workspace/web-design-system/buttons/button";
 import { Markdown } from "@workspace/web-design-system/typography/markdown";
 import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
 import { TypographyParagraph } from "@workspace/web-design-system/typography/typography";
 
-import { TagButton } from "@/components/common/tag-button";
+import { TagButtonLink } from "@/components/common/tag-button";
 import { PROFILE_NAME } from "@/components/helpers/config";
 import { formatDateShort } from "@/components/helpers/date";
 import {
@@ -78,16 +77,11 @@ export default async function AppPage({ params }: PageProps) {
           <div className="grid gap-3">
             <div className="flex flex-wrap gap-2">
               {app.stack.map((tag, index) => (
-                <TagButton
+                <TagButtonLink
                   key={index}
                   tag={tag}
                   count={app.stack.filter((item) => item === tag).length}
-                  render={(props) => (
-                    <Link
-                      {...(props as React.ComponentProps<typeof Link>)}
-                      href={URLS.APPS_STACK(tag)}
-                    />
-                  )}
+                  href={URLS.APPS_STACK(tag)}
                 />
               ))}
             </div>

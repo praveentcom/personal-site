@@ -1,10 +1,9 @@
 import { ContentPage } from "@workspace/web-page-sections/page";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
 import { PageSection } from "@workspace/web-design-system/layouts/page";
 
-import { YearButton } from "@/components/common/year-button";
+import { YearButtonLink } from "@/components/common/year-button";
 import { CommunitySummaryCard } from "@/components/community/community-summary-card";
 import { getAllCommunitySlugs } from "@/components/helpers/community";
 import { getMdContent } from "@/components/helpers/md-content";
@@ -50,15 +49,10 @@ export default async function CommunityPage() {
                     {Array.from(
                       new Set(publishedContributions.map((c) => c.year)),
                     ).map((year) => (
-                      <YearButton
+                      <YearButtonLink
                         key={`${year}-community`}
                         year={year}
-                        render={(props) => (
-                          <Link
-                            {...(props as React.ComponentProps<typeof Link>)}
-                            href={URLS.COMMUNITY_YEAR(year)}
-                          />
-                        )}
+                        href={URLS.COMMUNITY_YEAR(year)}
                       />
                     ))}
                   </div>

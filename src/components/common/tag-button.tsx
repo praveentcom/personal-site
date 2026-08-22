@@ -1,4 +1,7 @@
-import { Button } from "@workspace/web-design-system/buttons/button";
+import {
+  Button,
+  ButtonLink,
+} from "@workspace/web-design-system/buttons/button";
 
 import { getTagImagePath } from "@/components/helpers/tag-mapper";
 
@@ -10,18 +13,24 @@ type TagButtonProps = Omit<React.ComponentProps<typeof Button>, "children"> & {
   count?: number;
 };
 
-export function TagButton({
-  tag,
-  className,
-  showIcon = true,
+type TagButtonLinkProps = Omit<
+  React.ComponentProps<typeof ButtonLink>,
+  "children"
+> & {
+  tag: string;
+  showIcon?: boolean;
+  count?: number;
+};
+
+function TagButtonContent({
   count,
-  variant = "secondary",
-  ...props
-}: TagButtonProps) {
+  showIcon,
+  tag,
+}: Pick<TagButtonProps, "count" | "showIcon" | "tag">) {
   const label = count && count > 1 ? `${tag} (${count})` : tag;
 
   return (
-    <Button {...props} variant={variant} className={className}>
+    <>
       {showIcon && (
         <ImageWithFallback
           src={getTagImagePath(tag)}
@@ -32,6 +41,36 @@ export function TagButton({
         />
       )}
       <span>{label}</span>
+    </>
+  );
+}
+
+export function TagButton({
+  tag,
+  className,
+  showIcon = true,
+  count,
+  variant = "secondary",
+  ...props
+}: TagButtonProps) {
+  return (
+    <Button {...props} variant={variant} className={className}>
+      <TagButtonContent count={count} showIcon={showIcon} tag={tag} />
     </Button>
+  );
+}
+
+export function TagButtonLink({
+  tag,
+  className,
+  showIcon = true,
+  count,
+  variant = "secondary",
+  ...props
+}: TagButtonLinkProps) {
+  return (
+    <ButtonLink {...props} variant={variant} className={className}>
+      <TagButtonContent count={count} showIcon={showIcon} tag={tag} />
+    </ButtonLink>
   );
 }
