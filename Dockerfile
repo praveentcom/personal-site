@@ -53,9 +53,9 @@ RUN adduser --system --uid 1001 nextjs
 
 # Copy built artifacts from builder
 # Standalone output preserves monorepo structure: standalone/apps/praveen-website/server.js
-COPY --from=builder /app/apps/praveen-website/.next/standalone ./
-COPY --from=builder /app/apps/praveen-website/.next/static ./apps/praveen-website/.next/static
-COPY --from=builder /app/apps/praveen-website/public ./apps/praveen-website/public
+COPY --from=builder --chown=nextjs:nodejs /app/apps/praveen-website/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/apps/praveen-website/.next/static ./apps/praveen-website/.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/apps/praveen-website/public ./apps/praveen-website/public
 
 USER nextjs
 
