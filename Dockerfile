@@ -23,7 +23,7 @@ COPY --from=pruner /repo/out/json/ ./
 COPY infra/scripts/install-pnpm-with-aws-secrets.sh /usr/local/bin/install-pnpm-with-aws-secrets
 
 RUN --mount=type=cache,id=god-pnpm-store,target=/pnpm/store,sharing=locked \
-  --mount=type=secret,id=GOD_BUILD_ENV_JSON,env=GOD_ENV_JSON \
+  --mount=type=secret,id=TOWBAR_BUILD_ENV_JSON,env=GOD_ENV_JSON \
   install-pnpm-with-aws-secrets
 
 FROM installer AS builder
@@ -36,7 +36,7 @@ COPY --from=pruner /repo/config/brand-families.json ./config/brand-families.json
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV SENTRY_RELEASE=${APP_NAME}@${SOURCE_COMMIT}
 
-RUN --mount=type=secret,id=GOD_BUILD_ENV_JSON,env=GOD_ENV_JSON \
+RUN --mount=type=secret,id=TOWBAR_BUILD_ENV_JSON,env=GOD_ENV_JSON \
   node /opt/avgeek/infra/secrets/run-with-aws-secrets.mjs json --preserve-env=SENTRY_RELEASE -- pnpm --filter ${APP_NAME} build
 
 FROM base AS runner
