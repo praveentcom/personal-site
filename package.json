@@ -62,7 +62,9 @@
     "remark-gfm": "^4.0.1",
     "tailwindcss": "catalog:",
     "zod": "catalog:",
-    "zustand": "catalog:"
+    "zustand": "catalog:",
+    "@workspace/web-runtime": "workspace:*",
+    "@workspace/image-assets": "workspace:*"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "catalog:",

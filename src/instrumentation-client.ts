@@ -1,7 +1,7 @@
 import {
   captureRouterTransitionStart,
   initializeSentryClient,
-} from "@workspace/web-design-system/lib/sentry-client";
+} from "@workspace/web-runtime/sentry-client";
 
 initializeSentryClient();
 

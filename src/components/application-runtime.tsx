@@ -1,7 +1,7 @@
 "use client";
 
-import { ApplicationFooter } from "@workspace/web-design-system/layouts/application-footer";
-import { ApplicationNavbar } from "@workspace/web-design-system/layouts/application-navbar";
+import { AppFooter } from "@/components/navigation/app-footer";
+import { AppNavbar } from "@/components/navigation/app-navbar";
 import type { ReactNode } from "react";
 
 import { CommandPalette } from "@/components/command-palette/command-palette";
@@ -14,15 +14,12 @@ import {
 export function ApplicationRuntime({ children }: { children: ReactNode }) {
   return (
     <>
-      <ApplicationNavbar
+      <AppNavbar
         config={applicationHeader}
         showThemeSwitcher={applicationPolicy.themeControl === "header"}
       />
       <main className="mx-auto min-w-0 w-full max-w-5xl">{children}</main>
-      <ApplicationFooter
-        config={applicationFooter}
-        policy={applicationPolicy}
-      />
+      <AppFooter config={applicationFooter} policy={applicationPolicy} />
       <CommandPalette />
     </>
   );

@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { createRobotsConfig } from "@workspace/web-design-system/lib/robots";
+import { createRobotsConfig } from "@workspace/web-runtime/robots";
 
 import { BASE_URL, URLS } from "@/components/helpers/urls";
 

@@ -3,8 +3,8 @@ import type {
   FooterConfig,
   HeaderConfig,
   ShellIconName,
-} from "@workspace/web-design-system/layouts/application-shell-types";
-import { avgeekOfficeAddresses } from "@workspace/web-design-system/lib/legal-entities";
+} from "@/components/navigation/navigation-types";
+import { avgeekOfficeAddresses } from "@/lib/company";
 
 import { getNavigationItems } from "@/components/helpers/config";
 import { URLS } from "@/components/helpers/urls";

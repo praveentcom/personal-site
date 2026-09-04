@@ -1,4 +1,4 @@
-import { createHealthResponse } from "@workspace/web-design-system/lib/health-route";
+import { createHealthResponse } from "@workspace/web-runtime/health-route";
 
 export const dynamic = "force-dynamic";
 

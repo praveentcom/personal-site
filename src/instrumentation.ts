@@ -1,7 +1,7 @@
 import {
   captureRequestError,
   registerSentry,
-} from "@workspace/web-design-system/lib/sentry";
+} from "@workspace/web-runtime/sentry";
 
 export async function register() {
   await registerSentry();

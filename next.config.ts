@@ -1,5 +1,5 @@
 import createMDX from "@next/mdx";
-import { createNextConfig } from "@workspace/web-design-system/lib/next-config";
+import { createNextConfig } from "@workspace/web-runtime/next-config";
 import type { NextConfig } from "next";
 
 const withMDX = createMDX({
