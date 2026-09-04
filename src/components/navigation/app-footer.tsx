@@ -1,14 +1,14 @@
 "use client";
 import { getBrandLogoProps } from "@workspace/image-assets/constants/brand-assets";
 
-import { cn } from "@workspace/web-design-system/lib/utils";
-import { BrandLockup } from "@workspace/web-design-system/media/brand-lockup";
-import { Link } from "@workspace/web-design-system/navigation/link";
-import { OfficeLocations } from "@workspace/web-design-system/overlays/office-locations";
+import { cn } from "@avgeek-inc/ds-web/lib/utils";
+import { BrandLockup } from "@avgeek-inc/ds-web/media/brand-lockup";
+import { Link } from "@avgeek-inc/ds-web/navigation/link";
+import { OfficeLocations } from "@avgeek-inc/ds-web/overlays/office-locations";
 import {
   TypographyParagraph,
   TypographyText,
-} from "@workspace/web-design-system/typography/typography";
+} from "@avgeek-inc/ds-web/typography/typography";
 import { FooterCopyright } from "./footer-copyright";
 
 import type {

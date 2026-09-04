@@ -1,4 +1,4 @@
-import { ButtonLink } from "@workspace/web-design-system/buttons/button";
+import { ButtonLink } from "@avgeek-inc/ds-web/buttons/button";
 
 import { URLS } from "@/components/helpers/urls";
 import { EnumCommunityContributionType } from "@/types/community";

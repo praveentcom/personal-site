@@ -1,10 +1,10 @@
-import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
+import { StructuredData } from "@avgeek-inc/ds-web/utilities/structured-data";
 import { HeroSection } from "@workspace/web-page-sections/hero-section";
 import type { Metadata } from "next";
 import Image from "next/image";
 
-import { ButtonLink } from "@workspace/web-design-system/buttons/button";
-import { Markdown } from "@workspace/web-design-system/typography/markdown";
+import { ButtonLink } from "@avgeek-inc/ds-web/buttons/button";
+import { Markdown } from "@avgeek-inc/ds-web/typography/markdown";
 
 import { HeaderSection } from "@workspace/web-page-sections/header-section";
 

@@ -1,7 +1,7 @@
 import { TitleSection } from "@workspace/web-page-sections/title-section";
 
-import { Markdown } from "@workspace/web-design-system/typography/markdown";
-import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
+import { Markdown } from "@avgeek-inc/ds-web/typography/markdown";
+import { StructuredData } from "@avgeek-inc/ds-web/utilities/structured-data";
 import type { Metadata } from "next";
 
 import { getMdContent } from "@/components/helpers/md-content";

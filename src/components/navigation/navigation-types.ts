@@ -1,5 +1,5 @@
 import type { BrandName } from "@workspace/image-assets/constants/brand-assets";
-import type { CompanyOffice } from "@workspace/web-design-system/overlays/office-locations";
+import type { CompanyOffice } from "@avgeek-inc/ds-web/overlays/office-locations";
 
 import type { IconSvgElement as SidebarIcon } from "@hugeicons/react";
 

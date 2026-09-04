@@ -1,4 +1,4 @@
-@import "@workspace/web-design-system/globals.css";
+@import "@avgeek-inc/ds-web/globals.css";
 @import "@workspace/web-runtime/browser.css";
 
 @source "../**/*.{ts,tsx}";

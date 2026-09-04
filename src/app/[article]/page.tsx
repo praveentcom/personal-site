@@ -2,12 +2,12 @@ import { TitleSection } from "@workspace/web-page-sections/title-section";
 
 import { RssIcon } from "@hugeicons-pro/core-solid-rounded";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
+import { StructuredData } from "@avgeek-inc/ds-web/utilities/structured-data";
 import type { Metadata } from "next";
 
-import { ButtonLink } from "@workspace/web-design-system/buttons/button";
-import { Grid } from "@workspace/web-design-system/layout/grid";
-import { TypographyHeading } from "@workspace/web-design-system/typography/typography";
+import { ButtonLink } from "@avgeek-inc/ds-web/buttons/button";
+import { Grid } from "@avgeek-inc/ds-web/layout/grid";
+import { TypographyHeading } from "@avgeek-inc/ds-web/typography/typography";
 import { plural } from "pluralize";
 
 import { ArticleCategoryButtonLink } from "@/components/article/article-category-button";

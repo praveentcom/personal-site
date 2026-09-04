@@ -1,7 +1,7 @@
 "use client";
 
-import { Link } from "@workspace/web-design-system/navigation/link";
-import { TypographyParagraph } from "@workspace/web-design-system/typography/typography";
+import { Link } from "@avgeek-inc/ds-web/navigation/link";
+import { TypographyParagraph } from "@avgeek-inc/ds-web/typography/typography";
 
 import { CommunityIndexItem } from "@/components/helpers/community";
 import { formatDate } from "@/components/helpers/date";

@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ButtonLink } from "@workspace/web-design-system/buttons/button";
+import { ButtonLink } from "@avgeek-inc/ds-web/buttons/button";
 import { IntegrationsSection } from "@workspace/web-page-sections/integrations-section";
 
 import { URLS } from "@/components/helpers/urls";
 import { App } from "@/types/app";
 import { HeaderSection } from "@workspace/web-page-sections/header-section";
-import { Typography } from "@workspace/web-design-system/typography/typography";
+import { Typography } from "@avgeek-inc/ds-web/typography/typography";
 
 interface AppsSectionProps {
   apps: App[];

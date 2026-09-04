@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { useRouter } from "next/navigation";
 import { HugeiconsIcon } from "@hugeicons/react";
 
-import { CommandPalette as CommandPalettePrimitive } from "@workspace/web-design-system/navigation/command-palette";
+import { CommandPalette as CommandPalettePrimitive } from "@avgeek-inc/ds-web/navigation/command-palette";
 import { commands, commandGroups, type CommandContext } from "@/lib/commands";
 
 export function CommandPalette() {

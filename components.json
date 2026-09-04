@@ -15,8 +15,8 @@
     "components": "@/components",
     "hooks": "@/hooks",
     "lib": "@/lib",
-    "utils": "@workspace/web-design-system/lib/utils",
-    "ui": "@workspace/web-design-system/components"
+    "utils": "@avgeek-inc/ds-web/lib/utils",
+    "ui": "@avgeek-inc/ds-web/components"
   },
   "menuColor": "default",
   "menuAccent": "subtle",

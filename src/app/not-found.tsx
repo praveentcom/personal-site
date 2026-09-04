@@ -1,4 +1,4 @@
-import { ButtonLink } from "@workspace/web-design-system/buttons/button";
+import { ButtonLink } from "@avgeek-inc/ds-web/buttons/button";
 import { TitleSection } from "@workspace/web-page-sections/title-section";
 import type { Metadata } from "next";
 

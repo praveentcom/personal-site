@@ -1,9 +1,9 @@
 import { TitleSection } from "@workspace/web-page-sections/title-section";
 
-import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
+import { StructuredData } from "@avgeek-inc/ds-web/utilities/structured-data";
 import type { Metadata } from "next";
 
-import { Grid } from "@workspace/web-design-system/layout/grid";
+import { Grid } from "@avgeek-inc/ds-web/layout/grid";
 import pluralize from "pluralize";
 
 import { AppSummaryCard } from "@/components/apps/app-summary-card";
@@ -12,7 +12,7 @@ import { getAllAppSlugs } from "@/components/helpers/apps";
 import { createPageMetadata } from "@/components/helpers/metadata";
 import { getTagImagePath } from "@/components/helpers/tag-mapper";
 import { URLS } from "@/components/helpers/urls";
-import { TypographyHeading } from "@workspace/web-design-system/typography/typography";
+import { TypographyHeading } from "@avgeek-inc/ds-web/typography/typography";
 
 interface PageProps {
   params: Promise<{

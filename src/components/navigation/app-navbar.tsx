@@ -3,22 +3,19 @@
 import { useState, type ComponentProps, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Navbar } from "@workspace/web-design-system/navigation/navbar";
-import { useSidebar } from "@workspace/web-design-system/navigation/sidebar";
-import { Dropdown } from "@workspace/web-design-system/collections/dropdown";
-import {
-  Button,
-  buttonVariants,
-} from "@workspace/web-design-system/buttons/button";
+import { Navbar } from "@avgeek-inc/ds-web/navigation/navbar";
+import { useSidebar } from "@avgeek-inc/ds-web/navigation/sidebar";
+import { Dropdown } from "@avgeek-inc/ds-web/collections/dropdown";
+import { Button, buttonVariants } from "@avgeek-inc/ds-web/buttons/button";
 import Image from "next/image";
-import { Avatar } from "@workspace/web-design-system/media/avatar";
-import { BrandLockup } from "@workspace/web-design-system/media/brand-lockup";
-import { Separator } from "@workspace/web-design-system/layout/separator";
-import { ThemeSwitcher } from "@workspace/web-design-system/controls/theme-switcher";
+import { Avatar } from "@avgeek-inc/ds-web/media/avatar";
+import { BrandLockup } from "@avgeek-inc/ds-web/media/brand-lockup";
+import { Separator } from "@avgeek-inc/ds-web/layout/separator";
+import { ThemeSwitcher } from "@avgeek-inc/ds-web/controls/theme-switcher";
 import {
   getGravatarUrl,
   getProfileInitials,
-} from "@workspace/web-design-system/lib/gravatar";
+} from "@avgeek-inc/ds-web/lib/gravatar";
 import { getBrandLogoProps } from "@workspace/image-assets/constants/brand-assets";
 import { ShellIcon } from "./shell-icon";
 import type {

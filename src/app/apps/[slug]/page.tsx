@@ -1,12 +1,12 @@
 import { TitleSection } from "@workspace/web-page-sections/title-section";
 
-import { ButtonLink } from "@workspace/web-design-system/buttons/button";
-import { Markdown } from "@workspace/web-design-system/typography/markdown";
-import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
+import { ButtonLink } from "@avgeek-inc/ds-web/buttons/button";
+import { Markdown } from "@avgeek-inc/ds-web/typography/markdown";
+import { StructuredData } from "@avgeek-inc/ds-web/utilities/structured-data";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { TypographyParagraph } from "@workspace/web-design-system/typography/typography";
+import { TypographyParagraph } from "@avgeek-inc/ds-web/typography/typography";
 
 import { TagButtonLink } from "@/components/common/tag-button";
 import { getAllAppSlugs, getAppBySlugContent } from "@/components/helpers/apps";

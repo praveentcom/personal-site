@@ -1,6 +1,6 @@
 "use client";
 
-import { ButtonLink } from "@workspace/web-design-system/buttons/button";
+import { ButtonLink } from "@avgeek-inc/ds-web/buttons/button";
 
 import { profile } from "@/data/profile";
 

@@ -1,7 +1,4 @@
-import {
-  Button,
-  ButtonLink,
-} from "@workspace/web-design-system/buttons/button";
+import { Button, ButtonLink } from "@avgeek-inc/ds-web/buttons/button";
 
 type YearButtonProps = Omit<React.ComponentProps<typeof Button>, "children"> & {
   year: string;

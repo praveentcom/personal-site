@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  Button,
-  ButtonLink,
-} from "@workspace/web-design-system/buttons/button";
+import { Button, ButtonLink } from "@avgeek-inc/ds-web/buttons/button";
 import { TitleSection } from "@workspace/web-page-sections/title-section";
 
 import { plural } from "pluralize";

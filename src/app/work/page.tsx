@@ -1,6 +1,6 @@
 import { TitleSection } from "@workspace/web-page-sections/title-section";
 
-import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
+import { StructuredData } from "@avgeek-inc/ds-web/utilities/structured-data";
 import type { Metadata } from "next";
 
 import { createPageMetadata } from "@/components/helpers/metadata";

@@ -1,6 +1,6 @@
 import { TitleSection } from "@workspace/web-page-sections/title-section";
 
-import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
+import { StructuredData } from "@avgeek-inc/ds-web/utilities/structured-data";
 import type { Metadata } from "next";
 
 import { YearButtonLink } from "@/components/common/year-button";
@@ -10,8 +10,8 @@ import { getMdContent } from "@/components/helpers/md-content";
 import { createPageMetadata } from "@/components/helpers/metadata";
 import { URLS } from "@/components/helpers/urls";
 import { configData } from "@/data/config";
-import { Markdown } from "@workspace/web-design-system/typography/markdown";
-import { TypographyHeading } from "@workspace/web-design-system/typography/typography";
+import { Markdown } from "@avgeek-inc/ds-web/typography/markdown";
+import { TypographyHeading } from "@avgeek-inc/ds-web/typography/typography";
 
 export default async function CommunityPage() {
   const [publishedContributions, communityContent] = await Promise.all([

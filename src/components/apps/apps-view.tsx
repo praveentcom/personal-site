@@ -2,16 +2,16 @@
 
 import { GridViewIcon, ListViewIcon } from "@hugeicons-pro/core-solid-rounded";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ToggleButton } from "@workspace/web-design-system/buttons/toggle-button";
-import { ToggleButtonGroup } from "@workspace/web-design-system/buttons/toggle-button-group";
-import { ListBox } from "@workspace/web-design-system/collections/list-box";
-import { Avatar } from "@workspace/web-design-system/media/avatar";
-import { Link } from "@workspace/web-design-system/navigation/link";
-import { Select } from "@workspace/web-design-system/pickers/select";
-import { TypographyParagraph } from "@workspace/web-design-system/typography/typography";
+import { ToggleButton } from "@avgeek-inc/ds-web/buttons/toggle-button";
+import { ToggleButtonGroup } from "@avgeek-inc/ds-web/buttons/toggle-button-group";
+import { ListBox } from "@avgeek-inc/ds-web/collections/list-box";
+import { Avatar } from "@avgeek-inc/ds-web/media/avatar";
+import { Link } from "@avgeek-inc/ds-web/navigation/link";
+import { Select } from "@avgeek-inc/ds-web/pickers/select";
+import { TypographyParagraph } from "@avgeek-inc/ds-web/typography/typography";
 import { useState } from "react";
 
-import { Grid } from "@workspace/web-design-system/layout/grid";
+import { Grid } from "@avgeek-inc/ds-web/layout/grid";
 
 import { AppSummaryCard } from "@/components/apps/app-summary-card";
 import { formatDateShort } from "@/components/helpers/date";

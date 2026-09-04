@@ -1,8 +1,8 @@
 "use client";
 
-import { Link } from "@workspace/web-design-system/navigation/link";
-import { Avatar } from "@workspace/web-design-system/media/avatar";
-import { TypographyParagraph } from "@workspace/web-design-system/typography/typography";
+import { Link } from "@avgeek-inc/ds-web/navigation/link";
+import { Avatar } from "@avgeek-inc/ds-web/media/avatar";
+import { TypographyParagraph } from "@avgeek-inc/ds-web/typography/typography";
 
 import { formatDateShort } from "@/components/helpers/date";
 import { URLS } from "@/components/helpers/urls";

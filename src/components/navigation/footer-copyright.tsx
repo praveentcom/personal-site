@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 
 import { CookieConsentSettings } from "@workspace/web-runtime/cookie-consent-settings";
-import { TypographyText } from "@workspace/web-design-system/typography/typography";
+import { TypographyText } from "@avgeek-inc/ds-web/typography/typography";
 
 import type { ApplicationPolicy } from "./navigation-types";
 

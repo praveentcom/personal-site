@@ -1,7 +1,7 @@
 import { InterfaceAnimationPolicy } from "@workspace/web-runtime/interface-animation-policy";
 import { createAccessibilityScript } from "@workspace/web-runtime/accessibility-script";
 import { themeBootstrapScript } from "@workspace/web-runtime/theme-bootstrap";
-import { ToastProvider } from "@workspace/web-design-system/overlays/toast";
+import { ToastProvider } from "@avgeek-inc/ds-web/overlays/toast";
 import { AgentationFeedback } from "@workspace/web-runtime/agentation-feedback";
 import { PersistedThemeProvider as Providers } from "@workspace/web-runtime/browser-theme";
 import type { Metadata } from "next";

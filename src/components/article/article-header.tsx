@@ -1,12 +1,12 @@
-import { MarkdownDropdown } from "@workspace/web-design-system/typography/md-copy";
-import { Separator } from "@workspace/web-design-system/layout/separator";
+import { MarkdownDropdown } from "@avgeek-inc/ds-web/typography/md-copy";
+import { Separator } from "@avgeek-inc/ds-web/layout/separator";
 
 import { ArticleCategoryButtonLink } from "@/components/article/article-category-button";
 import type { ArticleLike } from "@/components/article/article-summary-card";
 import { TagButtonLink } from "@/components/common/tag-button";
 import { formatDate } from "@/components/helpers/date";
 import { URLS } from "@/components/helpers/urls";
-import { Typography } from "@workspace/web-design-system/typography/typography";
+import { Typography } from "@avgeek-inc/ds-web/typography/typography";
 
 interface ArticleTitleDetailsProps {
   article: ArticleLike;

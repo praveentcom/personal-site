@@ -1,5 +1,5 @@
 import { formatDateShort } from "@/components/helpers/date";
-import { TypographyParagraph } from "@workspace/web-design-system/typography/typography";
+import { TypographyParagraph } from "@avgeek-inc/ds-web/typography/typography";
 
 /**
  * Date range display component

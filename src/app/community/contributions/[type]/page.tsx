@@ -1,6 +1,6 @@
 import { TitleSection } from "@workspace/web-page-sections/title-section";
 
-import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
+import { StructuredData } from "@avgeek-inc/ds-web/utilities/structured-data";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -14,7 +14,7 @@ import {
 } from "@/components/helpers/metadata";
 import { URLS } from "@/components/helpers/urls";
 import { EnumCommunityContributionType } from "@/types/community";
-import { TypographyHeading } from "@workspace/web-design-system/typography/typography";
+import { TypographyHeading } from "@avgeek-inc/ds-web/typography/typography";
 
 interface PageProps {
   params: Promise<{
