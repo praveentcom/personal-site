@@ -1,3 +1,3 @@
 "use client";
 
-export { ObservabilityGlobalError as default } from "@workspace/web-runtime/observability-global-error";
+export { SentryGlobalError as default } from "@avgeek-inc/observability-sentry/next/global-error";

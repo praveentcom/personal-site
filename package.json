@@ -48,6 +48,7 @@
     "@types/mdx": "^2.0.13",
     "@types/pluralize": "^0.0.33",
     "@avgeek-inc/ds-web": "0.1.3",
+    "@avgeek-inc/observability-sentry": "0.1.3",
     "@workspace/web-page-sections": "workspace:*",
     "class-variance-authority": "catalog:",
     "date-fns": "catalog:",

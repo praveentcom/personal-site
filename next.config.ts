@@ -1,4 +1,5 @@
 import createMDX from "@next/mdx";
+import { withSentry } from "@avgeek-inc/observability-sentry/next-config";
 import { createNextConfig } from "@workspace/web-runtime/next-config";
 import type { NextConfig } from "next";
 
@@ -6,10 +7,12 @@ const withMDX = createMDX({
   extension: /\.mdx?$/,
 });
 
-const baseConfig = createNextConfig((config) => withMDX(config), {
-  sentryProject: "praveen-website",
-  transpilePackages: ["@workspace/web-page-sections"],
-});
+const baseConfig = withSentry(
+  createNextConfig((config) => withMDX(config), {
+    transpilePackages: ["@workspace/web-page-sections"],
+  }),
+  { project: "praveen-website" },
+);
 
 const nextConfig: NextConfig = {
   ...baseConfig,

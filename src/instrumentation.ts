@@ -1,7 +1,7 @@
 import {
   captureRequestError,
   registerSentry,
-} from "@workspace/web-runtime/sentry";
+} from "@avgeek-inc/observability-sentry/next/server";
 
 export async function register() {
   await registerSentry();
