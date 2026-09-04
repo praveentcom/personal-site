@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
 import { ButtonLink } from "@workspace/web-design-system/buttons/button";
-import { StatusPage } from "@workspace/web-page-sections/page";
+import { TitleSection } from "@workspace/web-page-sections/title-section";
+import type { Metadata } from "next";
+
 import { plural } from "pluralize";
 
 import { getArticleLabel } from "@/components/helpers/config";
@@ -11,7 +12,8 @@ const articleLabel = plural(getArticleLabel());
 
 export default function NotFound() {
   return (
-    <StatusPage
+    <TitleSection
+      titleLevel={1}
       actions={
         <>
           <ButtonLink href={URLS.HOME()}>Home</ButtonLink>

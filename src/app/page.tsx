@@ -1,11 +1,12 @@
+import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
+import { HeroSection } from "@workspace/web-page-sections/hero-section";
 import type { Metadata } from "next";
 import Image from "next/image";
 
 import { ButtonLink } from "@workspace/web-design-system/buttons/button";
 import { Markdown } from "@workspace/web-design-system/typography/markdown";
-import { PageSection } from "@workspace/web-design-system/layouts/page";
+
 import { HeaderSection } from "@workspace/web-page-sections/header-section";
-import { MarketingPage, HomepageHero } from "@workspace/web-page-sections/page";
 
 import { AppsSection } from "@/components/apps/apps-section";
 import { ArticleSection } from "@/components/article/article-section";
@@ -28,38 +29,35 @@ export default async function HomePage() {
     ]);
 
   return (
-    <MarketingPage
-      structuredData={defaultSchema}
-      hero={
-        <HomepageHero
-          eyebrow={{
-            label: "Software developer and independent builder",
-          }}
-          title="Praveen Thirumurugan"
-          description={SITE_DESCRIPTION}
-          actions={
-            <>
-              <ButtonLink href={URLS.ARTICLES_LIST()}>
-                Read the articles
-              </ButtonLink>
-              <ButtonLink variant="secondary" href={URLS.APPS_LIST()}>
-                Browse the apps
-              </ButtonLink>
-            </>
-          }
-          media={
-            <Image
-              src="/og-image.png"
-              alt="Praveen Thirumurugan, software developer and indie builder"
-              width={1200}
-              height={630}
-              priority
-            />
-          }
-        />
-      }
-    >
-      <PageSection>
+    <>
+      <HeroSection
+        eyebrow={{
+          label: "Software developer and independent builder",
+        }}
+        title="Praveen Thirumurugan"
+        description={SITE_DESCRIPTION}
+        actions={
+          <>
+            <ButtonLink href={URLS.ARTICLES_LIST()}>
+              Read the articles
+            </ButtonLink>
+            <ButtonLink variant="secondary" href={URLS.APPS_LIST()}>
+              Browse the apps
+            </ButtonLink>
+          </>
+        }
+        media={
+          <Image
+            src="/og-image.png"
+            alt="Praveen Thirumurugan, software developer and indie builder"
+            width={1200}
+            height={630}
+            priority
+          />
+        }
+        prominence="homepage"
+      ></HeroSection>
+      <section className="grid gap-6 px-5 sm:px-6 py-10">
         <section className="grid gap-6">
           <HeaderSection
             label="About"
@@ -75,18 +73,19 @@ export default async function HomePage() {
             <Markdown content={profileContent ?? ""} />
           </div>
         </section>
-      </PageSection>
-
+      </section>
       {apps.length > 0 ? (
-        <PageSection>
+        <section className="grid gap-6 px-5 sm:px-6 py-10">
           <AppsSection apps={apps} />
-        </PageSection>
+        </section>
       ) : null}
-
-      <PageSection>
+      <section className="grid gap-6 px-5 sm:px-6 py-10">
         <ArticleSection articles={recentArticles} />
-      </PageSection>
-    </MarketingPage>
+      </section>
+      {[defaultSchema].flat().map((data, index) => (
+        <StructuredData key={index} data={data} />
+      ))}
+    </>
   );
 }
 

@@ -4,7 +4,8 @@ import {
   Button,
   ButtonLink,
 } from "@workspace/web-design-system/buttons/button";
-import { StatusPage } from "@workspace/web-page-sections/page";
+import { TitleSection } from "@workspace/web-page-sections/title-section";
+
 import { plural } from "pluralize";
 
 import { getArticleLabel } from "@/components/helpers/config";
@@ -19,7 +20,8 @@ export default function Error({
   reset: () => void;
 }) {
   return (
-    <StatusPage
+    <TitleSection
+      titleLevel={1}
       actions={
         <>
           <Button onPress={reset}>Try again</Button>

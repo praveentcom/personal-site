@@ -1,14 +1,8 @@
 "use client";
 
+import { ApplicationFooter } from "@workspace/web-design-system/layouts/application-footer";
+import { ApplicationNavbar } from "@workspace/web-design-system/layouts/application-navbar";
 import type { ReactNode } from "react";
-
-import { AppLayout } from "@workspace/web-design-system/navigation/app-layout";
-import {
-  AppShell,
-  ApplicationFooter,
-  ApplicationNavbar,
-} from "@workspace/web-design-system/layouts/app-shell";
-import { AppShellOverlay } from "@workspace/web-design-system/layouts/app-shell-overlay";
 
 import { CommandPalette } from "@/components/command-palette/command-palette";
 import {
@@ -20,29 +14,16 @@ import {
 export function ApplicationRuntime({ children }: { children: ReactNode }) {
   return (
     <>
-      <AppShell contentWidth="compact" policy={applicationPolicy}>
-        <AppLayout
-          footer={
-            <ApplicationFooter
-              config={applicationFooter}
-              policy={applicationPolicy}
-            />
-          }
-          navbar={
-            <ApplicationNavbar
-              config={applicationHeader}
-              showThemeSwitcher={applicationPolicy.themeControl === "header"}
-            />
-          }
-          scrollMode="page"
-          toggleShortcut={false}
-        >
-          <AppShell.Content>{children}</AppShell.Content>
-        </AppLayout>
-      </AppShell>
-      <AppShellOverlay layer="command">
-        <CommandPalette />
-      </AppShellOverlay>
+      <ApplicationNavbar
+        config={applicationHeader}
+        showThemeSwitcher={applicationPolicy.themeControl === "header"}
+      />
+      <main className="mx-auto min-w-0 w-full max-w-5xl">{children}</main>
+      <ApplicationFooter
+        config={applicationFooter}
+        policy={applicationPolicy}
+      />
+      <CommandPalette />
     </>
   );
 }

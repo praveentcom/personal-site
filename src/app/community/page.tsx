@@ -1,7 +1,7 @@
-import { ContentPage } from "@workspace/web-page-sections/page";
-import type { Metadata } from "next";
+import { TitleSection } from "@workspace/web-page-sections/title-section";
+
 import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
-import { PageSection } from "@workspace/web-design-system/layouts/page";
+import type { Metadata } from "next";
 
 import { YearButtonLink } from "@/components/common/year-button";
 import { CommunitySummaryCard } from "@/components/community/community-summary-card";
@@ -20,65 +20,61 @@ export default async function CommunityPage() {
   ]);
 
   return (
-    <ContentPage
-      breadcrumbAncestors={[{ href: URLS.HOME(), label: "Home" }]}
-      title={"Community"}
-    >
-      {
-        <>
-          <StructuredData
-            data={{
-              "@context": "https://schema.org",
-              "@type": "CollectionPage",
-              name: `Community Contributions`,
-              description: configData.seo.description || "",
-            }}
-          />
-          <PageSection>
-            <Markdown content={communityContent ?? ""} />
-          </PageSection>
-          {publishedContributions.length > 0 &&
-            Array.from(new Set(publishedContributions.map((c) => c.year)))
-              .length > 1 && (
-              <PageSection>
-                <div className="flex-col-4" aria-label="Browse by year">
-                  <TypographyHeading level={4}>
-                    Browse by year
-                  </TypographyHeading>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    {Array.from(
-                      new Set(publishedContributions.map((c) => c.year)),
-                    ).map((year) => (
-                      <YearButtonLink
-                        key={`${year}-community`}
-                        year={year}
-                        href={URLS.COMMUNITY_YEAR(year)}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </PageSection>
-            )}
-          {publishedContributions.length > 0 && (
-            <PageSection>
-              <div className="flex-col-4" aria-label="Community contributions">
-                <div className="flex items-center gap-2">
-                  <TypographyHeading level={4}>Contributions</TypographyHeading>
-                </div>
-                <div className="flex-col-4">
-                  {publishedContributions.map((community) => (
-                    <CommunitySummaryCard
-                      key={`${community.year}-${community.slug}`}
-                      contribution={community}
-                    />
-                  ))}
-                </div>
+    <>
+      <TitleSection
+        titleLevel={1}
+        breadcrumbAncestors={[{ href: URLS.HOME(), label: "Home" }]}
+        title={"Community"}
+      />
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: `Community Contributions`,
+          description: configData.seo.description || "",
+        }}
+      />
+      <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
+        <Markdown content={communityContent ?? ""} />
+      </section>
+      {publishedContributions.length > 0 &&
+        Array.from(new Set(publishedContributions.map((c) => c.year))).length >
+          1 && (
+          <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
+            <div className="flex-col-4" aria-label="Browse by year">
+              <TypographyHeading level={4}>Browse by year</TypographyHeading>
+              <div className="flex items-center gap-2 flex-wrap">
+                {Array.from(
+                  new Set(publishedContributions.map((c) => c.year)),
+                ).map((year) => (
+                  <YearButtonLink
+                    key={`${year}-community`}
+                    year={year}
+                    href={URLS.COMMUNITY_YEAR(year)}
+                  />
+                ))}
               </div>
-            </PageSection>
-          )}
-        </>
-      }
-    </ContentPage>
+            </div>
+          </section>
+        )}
+      {publishedContributions.length > 0 && (
+        <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
+          <div className="flex-col-4" aria-label="Community contributions">
+            <div className="flex items-center gap-2">
+              <TypographyHeading level={4}>Contributions</TypographyHeading>
+            </div>
+            <div className="flex-col-4">
+              {publishedContributions.map((community) => (
+                <CommunitySummaryCard
+                  key={`${community.year}-${community.slug}`}
+                  contribution={community}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+    </>
   );
 }
 

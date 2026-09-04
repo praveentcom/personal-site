@@ -1,7 +1,7 @@
-import { ContentPage } from "@workspace/web-page-sections/page";
-import type { Metadata } from "next";
+import { TitleSection } from "@workspace/web-page-sections/title-section";
+
 import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
-import { PageSection } from "@workspace/web-design-system/layouts/page";
+import type { Metadata } from "next";
 
 import { createPageMetadata } from "@/components/helpers/metadata";
 import { URLS } from "@/components/helpers/urls";
@@ -12,25 +12,25 @@ export default async function WorkPage() {
   const work = await getAllWorkSlugs();
 
   return (
-    <ContentPage
-      breadcrumbAncestors={[{ href: URLS.HOME(), label: "Home" }]}
-      title={"Work experience"}
-    >
-      <>
-        <StructuredData
-          data={{
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            name: `Work Experience`,
-            description:
-              "A comprehensive overview of my professional work experience and career journey.",
-          }}
-        />
-        <PageSection width="full" xPadding="none" yPadding="none">
-          <WorkView work={work} />
-        </PageSection>
-      </>
-    </ContentPage>
+    <>
+      <TitleSection
+        titleLevel={1}
+        breadcrumbAncestors={[{ href: URLS.HOME(), label: "Home" }]}
+        title={"Work experience"}
+      />
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: `Work Experience`,
+          description:
+            "A comprehensive overview of my professional work experience and career journey.",
+        }}
+      />
+      <section className="grid gap-6">
+        <WorkView work={work} />
+      </section>
+    </>
   );
 }
 

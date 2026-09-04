@@ -1,9 +1,9 @@
-import { ContentPage } from "@workspace/web-page-sections/page";
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { TitleSection } from "@workspace/web-page-sections/title-section";
+
 import { Markdown } from "@workspace/web-design-system/typography/markdown";
 import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
-import { PageSection } from "@workspace/web-design-system/layouts/page";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import { DateRange } from "@/components/common/date-range";
 import { TagButton } from "@/components/common/tag-button";
@@ -41,34 +41,34 @@ export default async function WorkExperiencePage({ params }: PageProps) {
   const { meta: work, content } = workData;
 
   return (
-    <ContentPage
-      breadcrumbAncestors={[
-        { href: URLS.HOME(), label: "Home" },
-        { href: URLS.WORK_LIST(), label: "Work" },
-      ]}
-      description={work.role}
-      image={work.image ? { alt: work.company, src: work.image } : undefined}
-      title={work.company}
-    >
-      <>
-        <StructuredData data={generateWorkSchema(work)} />
-        <PageSection>
-          <div className="grid gap-3">
-            <DateRange startDate={work.startDate} endDate={work.endDate} />
-            {work.skills && work.skills.length > 0 ? (
-              <div className="flex flex-wrap gap-2">
-                {work.skills.map((tag, index) => (
-                  <TagButton key={index} tag={tag} />
-                ))}
-              </div>
-            ) : null}
-          </div>
-        </PageSection>
-        <PageSection>
-          <Markdown content={content} />
-        </PageSection>
-      </>
-    </ContentPage>
+    <>
+      <TitleSection
+        titleLevel={1}
+        breadcrumbAncestors={[
+          { href: URLS.HOME(), label: "Home" },
+          { href: URLS.WORK_LIST(), label: "Work" },
+        ]}
+        description={work.role}
+        image={work.image ? { alt: work.company, src: work.image } : undefined}
+        title={work.company}
+      />
+      <StructuredData data={generateWorkSchema(work)} />
+      <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
+        <div className="grid gap-3">
+          <DateRange startDate={work.startDate} endDate={work.endDate} />
+          {work.skills && work.skills.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {work.skills.map((tag, index) => (
+                <TagButton key={index} tag={tag} />
+              ))}
+            </div>
+          ) : null}
+        </div>
+      </section>
+      <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
+        <Markdown content={content} />
+      </section>
+    </>
   );
 }
 

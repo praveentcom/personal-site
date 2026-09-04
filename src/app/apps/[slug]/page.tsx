@@ -1,20 +1,21 @@
-import { ContentPage } from "@workspace/web-page-sections/page";
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { TitleSection } from "@workspace/web-page-sections/title-section";
+
 import { ButtonLink } from "@workspace/web-design-system/buttons/button";
 import { Markdown } from "@workspace/web-design-system/typography/markdown";
 import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
-import { PageSection } from "@workspace/web-design-system/layouts/page";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+
 import { TypographyParagraph } from "@workspace/web-design-system/typography/typography";
 
 import { TagButtonLink } from "@/components/common/tag-button";
+import { getAllAppSlugs, getAppBySlugContent } from "@/components/helpers/apps";
 import { PROFILE_NAME } from "@/components/helpers/config";
 import { formatDateShort } from "@/components/helpers/date";
 import {
   createNotFoundMetadata,
   createPageMetadata,
 } from "@/components/helpers/metadata";
-import { getAllAppSlugs, getAppBySlugContent } from "@/components/helpers/apps";
 import { generateAppSchema } from "@/components/helpers/structured-data";
 import { URLS } from "@/components/helpers/urls";
 
@@ -40,68 +41,68 @@ export default async function AppPage({ params }: PageProps) {
   const { meta: app, content } = appData;
 
   return (
-    <ContentPage
-      breadcrumbAncestors={[
-        { href: URLS.HOME(), label: "Home" },
-        { href: URLS.APPS_LIST(), label: "Apps" },
-      ]}
-      actions={
-        <>
-          {app.githubUrl ? (
-            <ButtonLink
-              href={app.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View on GitHub
-            </ButtonLink>
-          ) : null}
-          {app.url ? (
-            <ButtonLink
-              href={app.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View App
-            </ButtonLink>
-          ) : null}
-        </>
-      }
-      description={app.description}
-      image={app.image ? { alt: app.title, src: app.image } : undefined}
-      title={app.title}
-    >
-      <>
-        <StructuredData data={generateAppSchema(app)} />
-        <PageSection>
-          <div className="grid gap-3">
-            <div className="flex flex-wrap gap-2">
-              {app.stack.map((tag, index) => (
-                <TagButtonLink
-                  key={index}
-                  tag={tag}
-                  count={app.stack.filter((item) => item === tag).length}
-                  href={URLS.APPS_STACK(tag)}
-                />
-              ))}
-            </div>
-            {app.date ? (
-              <TypographyParagraph color="muted">
-                {formatDateShort(app.date)}
-              </TypographyParagraph>
+    <>
+      <TitleSection
+        titleLevel={1}
+        breadcrumbAncestors={[
+          { href: URLS.HOME(), label: "Home" },
+          { href: URLS.APPS_LIST(), label: "Apps" },
+        ]}
+        actions={
+          <>
+            {app.githubUrl ? (
+              <ButtonLink
+                href={app.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View on GitHub
+              </ButtonLink>
             ) : null}
-            {app.coAuthors && app.coAuthors.length > 0 ? (
-              <TypographyParagraph color="muted">
-                {PROFILE_NAME}, {app.coAuthors.join(", ")}
-              </TypographyParagraph>
+            {app.url ? (
+              <ButtonLink
+                href={app.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View App
+              </ButtonLink>
             ) : null}
+          </>
+        }
+        description={app.description}
+        image={app.image ? { alt: app.title, src: app.image } : undefined}
+        title={app.title}
+      />
+      <StructuredData data={generateAppSchema(app)} />
+      <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
+        <div className="grid gap-3">
+          <div className="flex flex-wrap gap-2">
+            {app.stack.map((tag, index) => (
+              <TagButtonLink
+                key={index}
+                tag={tag}
+                count={app.stack.filter((item) => item === tag).length}
+                href={URLS.APPS_STACK(tag)}
+              />
+            ))}
           </div>
-        </PageSection>
-        <PageSection>
-          <Markdown content={content} />
-        </PageSection>
-      </>
-    </ContentPage>
+          {app.date ? (
+            <TypographyParagraph color="muted">
+              {formatDateShort(app.date)}
+            </TypographyParagraph>
+          ) : null}
+          {app.coAuthors && app.coAuthors.length > 0 ? (
+            <TypographyParagraph color="muted">
+              {PROFILE_NAME}, {app.coAuthors.join(", ")}
+            </TypographyParagraph>
+          ) : null}
+        </div>
+      </section>
+      <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
+        <Markdown content={content} />
+      </section>
+    </>
   );
 }
 

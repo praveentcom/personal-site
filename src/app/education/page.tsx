@@ -1,38 +1,35 @@
-import { ContentPage } from "@workspace/web-page-sections/page";
-import type { Metadata } from "next";
-import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
-import { PageSection } from "@workspace/web-design-system/layouts/page";
+import { TitleSection } from "@workspace/web-page-sections/title-section";
 
+import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
+import type { Metadata } from "next";
+
+import { EducationView } from "@/components/education/education-view";
 import { getAllEducationSlugs } from "@/components/helpers/education";
 import { createPageMetadata } from "@/components/helpers/metadata";
 import { URLS } from "@/components/helpers/urls";
-import { EducationView } from "@/components/education/education-view";
 
 export default async function EducationPage() {
   const education = await getAllEducationSlugs();
 
   return (
-    <ContentPage
-      breadcrumbAncestors={[{ href: URLS.HOME(), label: "Home" }]}
-      title={"Education"}
-    >
-      {
-        <>
-          <StructuredData
-            data={{
-              "@context": "https://schema.org",
-              "@type": "CollectionPage",
-              name: `Education`,
-              description:
-                "My academic background and educational qualifications.",
-            }}
-          />
-          <PageSection width="full" xPadding="none" yPadding="none">
-            <EducationView education={education} />
-          </PageSection>
-        </>
-      }
-    </ContentPage>
+    <>
+      <TitleSection
+        titleLevel={1}
+        breadcrumbAncestors={[{ href: URLS.HOME(), label: "Home" }]}
+        title={"Education"}
+      />
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: `Education`,
+          description: "My academic background and educational qualifications.",
+        }}
+      />
+      <section className="grid gap-6">
+        <EducationView education={education} />
+      </section>
+    </>
   );
 }
 

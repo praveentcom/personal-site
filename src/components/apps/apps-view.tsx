@@ -1,22 +1,22 @@
 "use client";
 
-import { useState } from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
 import { GridViewIcon, ListViewIcon } from "@hugeicons-pro/core-solid-rounded";
-import { Select } from "@workspace/web-design-system/pickers/select";
-import { ListBox } from "@workspace/web-design-system/collections/list-box";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { ToggleButton } from "@workspace/web-design-system/buttons/toggle-button";
 import { ToggleButtonGroup } from "@workspace/web-design-system/buttons/toggle-button-group";
-import { Link } from "@workspace/web-design-system/navigation/link";
+import { ListBox } from "@workspace/web-design-system/collections/list-box";
 import { Avatar } from "@workspace/web-design-system/media/avatar";
+import { Link } from "@workspace/web-design-system/navigation/link";
+import { Select } from "@workspace/web-design-system/pickers/select";
 import { TypographyParagraph } from "@workspace/web-design-system/typography/typography";
-import { PageSection } from "@workspace/web-design-system/layouts/page";
+import { useState } from "react";
+
 import { Grid } from "@workspace/web-design-system/layout/grid";
 
+import { AppSummaryCard } from "@/components/apps/app-summary-card";
 import { formatDateShort } from "@/components/helpers/date";
 import { URLS } from "@/components/helpers/urls";
 import { App } from "@/types/app";
-import { AppSummaryCard } from "@/components/apps/app-summary-card";
 
 interface AppsViewProps {
   apps: App[];
@@ -49,7 +49,7 @@ export function AppsView({ apps }: AppsViewProps) {
 
   return (
     <>
-      <PageSection>
+      <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
         <div className="flex justify-end">
           <div className="flex items-center gap-2">
             <Select
@@ -107,20 +107,23 @@ export function AppsView({ apps }: AppsViewProps) {
             </ToggleButtonGroup>
           </div>
         </div>
-      </PageSection>
+      </section>
       {viewMode === "grid" ? (
-        <PageSection yPadding="none">
+        <section className="grid gap-6 px-5 sm:px-6">
           <Grid columns={[1, 2, 2]}>
             {filteredApps.map((app) => (
               <AppSummaryCard key={app.slug} app={app} />
             ))}
           </Grid>
-        </PageSection>
+        </section>
       ) : (
         filteredApps.map((app) => (
-          <PageSection key={app.slug}>
+          <section
+            className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6"
+            key={app.slug}
+          >
             <ListAppRow app={app} imageUrl={app.image} />
-          </PageSection>
+          </section>
         ))
       )}
     </>

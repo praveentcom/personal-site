@@ -1,9 +1,14 @@
+import { createAccessibilityScript } from "@workspace/web-design-system/lib/accessibility-script";
+import { themeBootstrapScript } from "@workspace/web-design-system/lib/theme";
+import { ToastProvider } from "@workspace/web-design-system/overlays/toast";
+import { AgentationFeedback } from "@workspace/web-design-system/utilities/agentation-feedback";
+import { Providers } from "@workspace/web-design-system/utilities/providers";
 import type { Metadata } from "next";
 
 import "@workspace/web-design-system/styles/globals.css";
 import "@workspace/web-page-sections/styles.css";
-import { WorkspaceDocument } from "@workspace/web-design-system/layouts/workspace-document";
 
+import { ApplicationRuntime } from "@/components/application-runtime";
 import {
   SITE_DESCRIPTION,
   SITE_IMAGE,
@@ -12,7 +17,6 @@ import {
 import { createPageMetadata } from "@/components/helpers/metadata";
 import { BASE_URL, URLS } from "@/components/helpers/urls";
 import { configData } from "@/data/config";
-import { ApplicationRuntime } from "@/components/application-runtime";
 
 export const revalidate = 3600;
 
@@ -22,9 +26,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <WorkspaceDocument>
-      <ApplicationRuntime>{children}</ApplicationRuntime>
-    </WorkspaceDocument>
+    <html lang="en" data-theme="default" suppressHydrationWarning>
+      <head>
+        <script
+          id="color-scheme-bootstrap"
+          dangerouslySetInnerHTML={{ __html: themeBootstrapScript }}
+        />
+        <script
+          id="accessibility-bootstrap"
+          dangerouslySetInnerHTML={{ __html: createAccessibilityScript({}) }}
+        />
+      </head>
+      <body className="font-sans min-h-dvh max-w-full overflow-x-clip">
+        <Providers>
+          <ApplicationRuntime>{children}</ApplicationRuntime>
+          <ToastProvider />
+          <AgentationFeedback />
+        </Providers>
+      </body>
+    </html>
   );
 }
 

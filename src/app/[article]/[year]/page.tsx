@@ -1,14 +1,15 @@
-import { ContentPage } from "@workspace/web-page-sections/page";
+import { TitleSection } from "@workspace/web-page-sections/title-section";
+
+import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
-import { PageSection } from "@workspace/web-design-system/layouts/page";
+
 import { plural } from "pluralize";
 
 import { ArticleSummaryCard } from "@/components/article/article-summary-card";
 import {
-  getAllArticlesIndex,
   getAllArticleSlugs,
+  getAllArticlesIndex,
 } from "@/components/helpers/article";
 import { getArticleLabel, getArticleSlug } from "@/components/helpers/config";
 import { createPageMetadata } from "@/components/helpers/metadata";
@@ -40,36 +41,34 @@ export default async function ArticlesByYearPage({ params }: PageProps) {
   }
 
   return (
-    <ContentPage
-      breadcrumbAncestors={[
-        { href: URLS.HOME(), label: "Home" },
-        { href: URLS.ARTICLES_LIST(), label: articleLabel },
-      ]}
-      title={`${year} ${articleLabel}`}
-    >
-      {
-        <>
-          <StructuredData
-            data={{
-              "@context": "https://schema.org",
-              "@type": "CollectionPage",
-              name: `${year} ${articleLabel}`,
-              description: `${articles.length} ${articleLabel} published in ${year}.`,
-            }}
-          />
-          <PageSection>
-            <TypographyHeading level={3}>
-              {year} {articleLabel}
-            </TypographyHeading>
-            <div className="flex-col-4">
-              {articles.map((article) => (
-                <ArticleSummaryCard key={article.slug} article={article} />
-              ))}
-            </div>
-          </PageSection>
-        </>
-      }
-    </ContentPage>
+    <>
+      <TitleSection
+        titleLevel={1}
+        breadcrumbAncestors={[
+          { href: URLS.HOME(), label: "Home" },
+          { href: URLS.ARTICLES_LIST(), label: articleLabel },
+        ]}
+        title={`${year} ${articleLabel}`}
+      />
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: `${year} ${articleLabel}`,
+          description: `${articles.length} ${articleLabel} published in ${year}.`,
+        }}
+      />
+      <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
+        <TypographyHeading level={3}>
+          {year} {articleLabel}
+        </TypographyHeading>
+        <div className="flex-col-4">
+          {articles.map((article) => (
+            <ArticleSummaryCard key={article.slug} article={article} />
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
 

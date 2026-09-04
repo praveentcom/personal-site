@@ -1,9 +1,9 @@
-import { ContentPage } from "@workspace/web-page-sections/page";
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { TitleSection } from "@workspace/web-page-sections/title-section";
+
 import { Markdown } from "@workspace/web-design-system/typography/markdown";
 import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
-import { PageSection } from "@workspace/web-design-system/layouts/page";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import { DateRange } from "@/components/common/date-range";
 import { formatDateShort } from "@/components/helpers/date";
@@ -40,32 +40,32 @@ export default async function EducationPage({ params }: PageProps) {
   const { meta: education, content } = educationData;
 
   return (
-    <ContentPage
-      breadcrumbAncestors={[
-        { href: URLS.HOME(), label: "Home" },
-        { href: URLS.EDUCATION_LIST(), label: "Education" },
-      ]}
-      description={education.degree}
-      image={
-        education.image
-          ? { alt: education.school, src: education.image }
-          : undefined
-      }
-      title={education.school}
-    >
-      <>
-        <StructuredData data={generateEducationSchema(education)} />
-        <PageSection>
-          <DateRange
-            startDate={education.startDate}
-            endDate={education.endDate}
-          />
-        </PageSection>
-        <PageSection>
-          <Markdown content={content} />
-        </PageSection>
-      </>
-    </ContentPage>
+    <>
+      <TitleSection
+        titleLevel={1}
+        breadcrumbAncestors={[
+          { href: URLS.HOME(), label: "Home" },
+          { href: URLS.EDUCATION_LIST(), label: "Education" },
+        ]}
+        description={education.degree}
+        image={
+          education.image
+            ? { alt: education.school, src: education.image }
+            : undefined
+        }
+        title={education.school}
+      />
+      <StructuredData data={generateEducationSchema(education)} />
+      <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
+        <DateRange
+          startDate={education.startDate}
+          endDate={education.endDate}
+        />
+      </section>
+      <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
+        <Markdown content={content} />
+      </section>
+    </>
   );
 }
 

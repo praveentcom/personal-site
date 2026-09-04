@@ -1,7 +1,8 @@
-import { ContentPage } from "@workspace/web-page-sections/page";
-import type { Metadata } from "next";
+import { TitleSection } from "@workspace/web-page-sections/title-section";
+
 import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
-import { PageSection } from "@workspace/web-design-system/layouts/page";
+import type { Metadata } from "next";
+
 import { plural } from "pluralize";
 
 import { ArticleSummaryCard } from "@/components/article/article-summary-card";
@@ -36,45 +37,43 @@ export default async function TagArticlePage({ params }: PageProps) {
   );
 
   return (
-    <ContentPage
-      breadcrumbAncestors={[
-        { href: URLS.HOME(), label: "Home" },
-        { href: URLS.ARTICLES_LIST(), label: articleLabel },
-      ]}
-      title={`${tag} ${articleLabel}`}
-    >
-      {
-        <>
-          <StructuredData
-            data={{
-              "@context": "https://schema.org",
-              "@type": "CollectionPage",
-              name: `${tag} ${articleLabel}`,
-              description: `${filteredArticles.length} ${articleLabel.toLowerCase()} tagged with ${tag}.`,
-            }}
+    <>
+      <TitleSection
+        titleLevel={1}
+        breadcrumbAncestors={[
+          { href: URLS.HOME(), label: "Home" },
+          { href: URLS.ARTICLES_LIST(), label: articleLabel },
+        ]}
+        title={`${tag} ${articleLabel}`}
+      />
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: `${tag} ${articleLabel}`,
+          description: `${filteredArticles.length} ${articleLabel.toLowerCase()} tagged with ${tag}.`,
+        }}
+      />
+      <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
+        <div className="flex items-center gap-3">
+          <ImageWithFallback
+            src={getTagImagePath(tag)}
+            alt={`${tag} icon`}
+            width={20}
+            height={20}
+            className="shrink-0 size-6"
           />
-          <PageSection>
-            <div className="flex items-center gap-3">
-              <ImageWithFallback
-                src={getTagImagePath(tag)}
-                alt={`${tag} icon`}
-                width={20}
-                height={20}
-                className="shrink-0 size-6"
-              />
-              <TypographyHeading level={3}>
-                {tag} {articleLabel}
-              </TypographyHeading>
-            </div>
-            <div className="flex-col-4">
-              {filteredArticles.map((article, index) => (
-                <ArticleSummaryCard key={index} article={article} />
-              ))}
-            </div>
-          </PageSection>
-        </>
-      }
-    </ContentPage>
+          <TypographyHeading level={3}>
+            {tag} {articleLabel}
+          </TypographyHeading>
+        </div>
+        <div className="flex-col-4">
+          {filteredArticles.map((article, index) => (
+            <ArticleSummaryCard key={index} article={article} />
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
 

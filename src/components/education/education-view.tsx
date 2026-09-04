@@ -1,23 +1,23 @@
 "use client";
 
-import { useState } from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
 import { GridViewIcon, ListViewIcon } from "@hugeicons-pro/core-solid-rounded";
+import { HugeiconsIcon } from "@hugeicons/react";
 import { ToggleButton } from "@workspace/web-design-system/buttons/toggle-button";
 import { ToggleButtonGroup } from "@workspace/web-design-system/buttons/toggle-button-group";
-import { Link } from "@workspace/web-design-system/navigation/link";
 import { Avatar } from "@workspace/web-design-system/media/avatar";
+import { Link } from "@workspace/web-design-system/navigation/link";
 import {
   Typography,
   TypographyParagraph,
 } from "@workspace/web-design-system/typography/typography";
-import { PageSection } from "@workspace/web-design-system/layouts/page";
+import { useState } from "react";
+
 import { Grid } from "@workspace/web-design-system/layout/grid";
 
+import { EducationSummaryCard } from "@/components/education/education-summary-card";
 import { formatDateYear } from "@/components/helpers/date";
 import { URLS } from "@/components/helpers/urls";
 import { Education } from "@/types/education";
-import { EducationSummaryCard } from "@/components/education/education-summary-card";
 
 interface EducationViewProps {
   education: Education[];
@@ -30,7 +30,7 @@ export function EducationView({ education }: EducationViewProps) {
 
   return (
     <>
-      <PageSection>
+      <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
         <div className="flex justify-end">
           <ToggleButtonGroup
             className="shrink-0"
@@ -53,20 +53,23 @@ export function EducationView({ education }: EducationViewProps) {
             </ToggleButton>
           </ToggleButtonGroup>
         </div>
-      </PageSection>
+      </section>
       {viewMode === "grid" ? (
-        <PageSection yPadding="none">
+        <section className="grid gap-6 px-5 sm:px-6">
           <Grid columns={[1, 2, 2]}>
             {education.map((edu, index) => (
               <EducationSummaryCard key={index} education={edu} />
             ))}
           </Grid>
-        </PageSection>
+        </section>
       ) : (
         education.map((edu) => (
-          <PageSection key={edu.slug}>
+          <section
+            className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6"
+            key={edu.slug}
+          >
             <ListEducationRow education={edu} />
-          </PageSection>
+          </section>
         ))
       )}
     </>

@@ -1,8 +1,9 @@
-import { ContentPage } from "@workspace/web-page-sections/page";
+import { TitleSection } from "@workspace/web-page-sections/title-section";
+
+import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { StructuredData } from "@workspace/web-design-system/utilities/structured-data";
-import { PageSection } from "@workspace/web-design-system/layouts/page";
+
 import { plural } from "pluralize";
 
 import { ArticleSummaryCard } from "@/components/article/article-summary-card";
@@ -48,36 +49,34 @@ export default async function CategoryArticlePage({ params }: PageProps) {
   const filteredArticles = await getArticlesByCategory(category);
 
   return (
-    <ContentPage
-      breadcrumbAncestors={[
-        { href: URLS.HOME(), label: "Home" },
-        { href: URLS.ARTICLES_LIST(), label: articleLabel },
-      ]}
-      title={`${category} ${articleLabel}`}
-    >
-      {
-        <>
-          <StructuredData
-            data={{
-              "@context": "https://schema.org",
-              "@type": "CollectionPage",
-              name: `${category} ${articleLabel}`,
-              description: `${filteredArticles.length} ${articleLabel} published in this category.`,
-            }}
-          />
-          <PageSection>
-            <TypographyHeading level={3}>
-              {category} {articleLabel}
-            </TypographyHeading>
-            <div className="flex-col-4">
-              {filteredArticles.map((article, index) => (
-                <ArticleSummaryCard key={index} article={article} />
-              ))}
-            </div>
-          </PageSection>
-        </>
-      }
-    </ContentPage>
+    <>
+      <TitleSection
+        titleLevel={1}
+        breadcrumbAncestors={[
+          { href: URLS.HOME(), label: "Home" },
+          { href: URLS.ARTICLES_LIST(), label: articleLabel },
+        ]}
+        title={`${category} ${articleLabel}`}
+      />
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: `${category} ${articleLabel}`,
+          description: `${filteredArticles.length} ${articleLabel} published in this category.`,
+        }}
+      />
+      <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
+        <TypographyHeading level={3}>
+          {category} {articleLabel}
+        </TypographyHeading>
+        <div className="flex-col-4">
+          {filteredArticles.map((article, index) => (
+            <ArticleSummaryCard key={index} article={article} />
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
 

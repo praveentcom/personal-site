@@ -87,7 +87,5 @@ export const applicationPolicy = {
   cookieConsent: {
     privacyHref: "https://www.avgeek.io/privacy",
   },
-  kind: "public",
   themeControl: "header",
-  toasts: true,
 } satisfies ApplicationPolicy;
