@@ -72,8 +72,8 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@avgeek-inc/eslint-config": "0.1.1",
-    "@avgeek-inc/ts-config": "0.1.1",
+    "@avgeek-inc/config-eslint": "0.1.2",
+    "@avgeek-inc/config-ts": "0.1.2",
     "eslint": "catalog:",
     "typescript": "catalog:"
   }
