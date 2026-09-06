@@ -14,11 +14,6 @@ interface AppsSectionProps {
   apps: App[];
 }
 
-const localAppLogos: Record<string, string> = {
-  dnsdeck: "/projects/dnsdeck/logo.png",
-  illustrate: "/projects/illustrate/logo.png",
-};
-
 export function AppsSection({ apps }: AppsSectionProps) {
   return (
     <IntegrationsSection
@@ -42,18 +37,17 @@ export function AppsSection({ apps }: AppsSectionProps) {
         name: app.title,
         description: app.shortDescription ?? app.description,
         href: URLS.APPS(app.slug),
-        logo:
-          localAppLogos[app.slug] || app.image ? (
-            <Image
-              src={localAppLogos[app.slug] ?? app.image ?? ""}
-              alt=""
-              width={64}
-              height={64}
-              className="size-full object-cover"
-            />
-          ) : (
-            <Typography weight="medium">{app.title.slice(0, 1)}</Typography>
-          ),
+        logo: app.image ? (
+          <Image
+            src={app.image}
+            alt=""
+            width={64}
+            height={64}
+            className="size-full object-cover"
+          />
+        ) : (
+          <Typography weight="medium">{app.title.slice(0, 1)}</Typography>
+        ),
         badges: app.stack.slice(0, 3),
       }))}
       renderLink={(item, children, className) => (

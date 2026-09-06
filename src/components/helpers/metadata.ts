@@ -46,6 +46,7 @@ export function createPageMetadata(_: {
   const icons = getFaviconPaths();
 
   const metadata: Metadata = {
+    metadataBase: new URL(BASE_URL),
     title: _.title ? `${_.title} | ${SITE_TITLE}` : SITE_TITLE,
     description: _.description || "",
     icons: {
@@ -66,7 +67,7 @@ export function createPageMetadata(_: {
       type: _.type || "website",
       images: [ogImage],
       siteName: SITE_TITLE,
-      url: _.url ? `${BASE_URL}${_.url}` : undefined,
+      url: _.url ? new URL(_.url, BASE_URL).href : undefined,
     },
     twitter: {
       card: configData.seo.twitterCard || "summary_large_image",
