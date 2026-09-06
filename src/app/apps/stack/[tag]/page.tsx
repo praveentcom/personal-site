@@ -73,13 +73,15 @@ export default async function TagAppsPage({ params }: PageProps) {
       />
       <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
         <div className="flex items-center gap-3">
-          <ImageWithFallback
-            src={getTagImagePath(tag)}
-            alt={`${tag} icon`}
-            width={20}
-            height={20}
-            className="shrink-0 size-6"
-          />
+          {getTagImagePath(tag) && (
+            <ImageWithFallback
+              src={getTagImagePath(tag)!}
+              alt={`${tag} icon`}
+              width={20}
+              height={20}
+              className="shrink-0 size-6"
+            />
+          )}
           <TypographyHeading level={3}>{tag} apps</TypographyHeading>
         </div>
       </section>

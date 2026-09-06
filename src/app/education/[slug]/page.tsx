@@ -1,6 +1,5 @@
 import { TitleSection } from "@avgeek-inc/ds-web-sections/title-section";
 
-import { Markdown } from "@avgeek-inc/ds-web/typography/markdown";
 import { StructuredData } from "@avgeek-inc/ds-web/utilities/structured-data";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -37,7 +36,7 @@ export default async function EducationPage({ params }: PageProps) {
     notFound();
   }
 
-  const { meta: education, content } = educationData;
+  const { meta: education, Content } = educationData;
 
   return (
     <>
@@ -63,7 +62,7 @@ export default async function EducationPage({ params }: PageProps) {
         />
       </section>
       <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
-        <Markdown content={content} />
+        <Content />
       </section>
     </>
   );

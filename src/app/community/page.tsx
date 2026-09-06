@@ -6,17 +6,17 @@ import type { Metadata } from "next";
 import { YearButtonLink } from "@/components/common/year-button";
 import { CommunitySummaryCard } from "@/components/community/community-summary-card";
 import { getAllCommunitySlugs } from "@/components/helpers/community";
-import { getMdContent } from "@/components/helpers/md-content";
+import { getContentComponent } from "@/lib/mdx";
 import { createPageMetadata } from "@/components/helpers/metadata";
 import { URLS } from "@/components/helpers/urls";
 import { configData } from "@/data/config";
-import { Markdown } from "@avgeek-inc/ds-web/typography/markdown";
+
 import { TypographyHeading } from "@avgeek-inc/ds-web/typography/typography";
 
 export default async function CommunityPage() {
-  const [publishedContributions, communityContent] = await Promise.all([
+  const [publishedContributions, Content] = await Promise.all([
     getAllCommunitySlugs(),
-    getMdContent("community/intro.md"),
+    getContentComponent("profile", "community"),
   ]);
 
   return (
@@ -35,7 +35,7 @@ export default async function CommunityPage() {
         }}
       />
       <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
-        <Markdown content={communityContent ?? ""} />
+        <Content />
       </section>
       {publishedContributions.length > 0 &&
         Array.from(new Set(publishedContributions.map((c) => c.year))).length >

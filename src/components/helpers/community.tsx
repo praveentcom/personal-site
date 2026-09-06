@@ -1,81 +1,35 @@
-import matter from "gray-matter";
+import { getContentComponent } from "@/lib/mdx";
+import { cache } from "react";
+import { CommunitySchema } from "@/types/community";
+import { readEntries, isPublished, contentYear } from "@/lib/content";
 
-import {
-  getCommunityManifest,
-  getContentByObjectKey,
-} from "@/components/helpers/content-source";
-import {
-  generatePlaceholderImageUrl,
-  PLACEHOLDER_COLORS,
-} from "@/components/helpers/image";
-import { type CommunityFrontmatter } from "@/types/community";
-
-export type CommunityIndexItem = CommunityFrontmatter;
-
-function normalizeCommunity(
-  contribution: Awaited<
-    ReturnType<typeof getCommunityManifest>
-  >["items"][number],
-): CommunityIndexItem {
-  return {
-    title: contribution.title ?? "",
-    description: contribution.description ?? "",
-    date: contribution.date ?? "",
-    published: contribution.published ?? true,
-    image:
-      contribution.image ||
-      generatePlaceholderImageUrl({
-        text: contribution.title ?? "",
-        backgroundColor: PLACEHOLDER_COLORS.GRAY,
-        textColor: PLACEHOLDER_COLORS.WHITE,
-      }),
-    ogImage: contribution.ogImage ?? undefined,
-    slug: contribution.slug,
-    year: contribution.year,
-    youtubeUrl: contribution.youtubeUrl ?? undefined,
-    externalLinks: contribution.externalLinks ?? [],
-    type: contribution.type as CommunityFrontmatter["type"],
-    event: contribution.event ?? undefined,
-  };
+const getEntries = cache(async () =>
+  (await readEntries("community", CommunitySchema))
+    .filter((entry) => isPublished(entry.meta))
+    .map(({ meta, slug, content }) => ({
+      meta: {
+        ...meta,
+        slug,
+        year: contentYear(meta.date),
+        image: meta.image ?? "/og-image.png",
+      },
+      raw: content,
+    }))
+    .sort((a, b) => b.meta.date.localeCompare(a.meta.date)),
+);
+export async function getAllCommunitySlugs() {
+  return (await getEntries()).map((entry) => entry.meta);
 }
-
-export async function getAllCommunitySlugs(): Promise<CommunityIndexItem[]> {
-  const manifest = await getCommunityManifest();
-
-  return manifest.items
-    .map(normalizeCommunity)
-    .filter((contribution) => contribution.published);
+export type CommunityIndexItem = Awaited<
+  ReturnType<typeof getAllCommunitySlugs>
+>[number];
+export async function getAllCommunityIndex(limit?: number) {
+  const entries = await getAllCommunitySlugs();
+  return limit === undefined ? entries : entries.slice(0, limit);
 }
-
-export async function getAllCommunityIndex(
-  limit?: number,
-): Promise<CommunityIndexItem[]> {
-  const items = await getAllCommunitySlugs();
-  return typeof limit === "number" ? items.slice(0, limit) : items;
-}
-
-export async function getCommunityBySlugRaw(
-  slug: string,
-): Promise<{ meta: CommunityIndexItem; raw: string } | null> {
-  const manifest = await getCommunityManifest();
-  const match = manifest.items.find(
-    (contribution) => contribution.slug === slug,
-  );
-
-  if (!match) {
-    return null;
-  }
-
-  const rawSource = await getContentByObjectKey(match.objectKey);
-
-  if (!rawSource) {
-    return null;
-  }
-
-  const { content } = matter(rawSource);
-
-  return {
-    meta: normalizeCommunity(match),
-    raw: content,
-  };
+export async function getCommunityBySlugRaw(slug: string) {
+  const entry = (await getEntries()).find((entry) => entry.meta.slug === slug);
+  return entry
+    ? { ...entry, Content: await getContentComponent("community", slug) }
+    : null;
 }

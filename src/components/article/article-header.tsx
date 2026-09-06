@@ -41,7 +41,7 @@ export function ArticleTitleDetails({
             key={index}
             category={category}
             count={article.categories.filter((c) => c === category).length}
-            href={URLS.ARTICLES_CATEGORY(encodeURIComponent(category))}
+            href={URLS.ARTICLES_CATEGORY(category)}
           />
         ))}
         {article.tags.map((tag, index) => (

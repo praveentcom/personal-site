@@ -44,7 +44,7 @@ export const configData: ConfigData = {
   misc: {
     content: {
       articleLabel: "Article",
-      articleSlug: "articles",
+      articleSlug: "blog",
     },
     footerLabel: "Build. Ship. Repeat.",
     locale: "en-IN",

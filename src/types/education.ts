@@ -7,13 +7,13 @@ const EducationSchema = z.object({
   startDate: z
     .union([z.string(), z.date()])
     .transform((val) =>
-      val instanceof Date ? val.toISOString().split("T")[0] : val,
+      val instanceof Date ? val.toISOString().slice(0, 10) : val,
     ),
   endDate: z
     .union([z.string(), z.date()])
     .optional()
     .transform((val) =>
-      val instanceof Date ? val.toISOString().split("T")[0] : val,
+      val instanceof Date ? val.toISOString().slice(0, 10) : val,
     ),
   image: z.string().optional(),
   ogImage: z.string().optional(),

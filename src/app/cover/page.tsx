@@ -1,17 +1,16 @@
 import { TitleSection } from "@avgeek-inc/ds-web-sections/title-section";
 
-import { Markdown } from "@avgeek-inc/ds-web/typography/markdown";
 import { StructuredData } from "@avgeek-inc/ds-web/utilities/structured-data";
 import { Metadata } from "next";
 
-import { getMdContent } from "@/components/helpers/md-content";
+import { getContentComponent } from "@/lib/mdx";
 import { createPageMetadata } from "@/components/helpers/metadata";
 import { generateDefaultSchema } from "@/components/helpers/structured-data";
 import { URLS } from "@/components/helpers/urls";
 
 export default async function CoverPage() {
-  const [coverContent, defaultSchema] = await Promise.all([
-    getMdContent("profile/cover.md"),
+  const [Content, defaultSchema] = await Promise.all([
+    getContentComponent("profile", "cover"),
     generateDefaultSchema(),
   ]);
 
@@ -24,7 +23,7 @@ export default async function CoverPage() {
       />
       <StructuredData data={defaultSchema} />
       <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
-        <Markdown content={coverContent ?? ""} />
+        <Content />
       </section>
     </>
   );

@@ -8,28 +8,14 @@ import { BASE_URL, URLS } from "@/components/helpers/urls";
 import { configData } from "@/data/config";
 import { profile } from "@/data/profile";
 
-/**
- * Build the complete RSS feed URL for the site
- * @returns Complete RSS feed URL (e.g., "https://devmdx.com/feed.xml")
- */
 export function buildRSSFeedUrl(): string {
   return `${BASE_URL}${URLS.RSS_FEED()}`;
 }
 
-/**
- * Build complete article URL for RSS feeds
- * @param year - Article year
- * @param slug - Article slug
- * @returns Complete article URL (e.g., "https://devmdx.com/articles/2025/my-article")
- */
-export function buildArticleRSSUrl(year: string, slug: string): string {
-  return `${BASE_URL}${URLS.ARTICLES(year, slug)}`;
+export function buildArticleRSSUrl(slug: string): string {
+  return `${BASE_URL}${URLS.ARTICLES(slug)}`;
 }
 
-/**
- * Get RSS feed metadata for use in HTML head
- * @returns Object with RSS feed metadata
- */
 export function getRSSFeedMetadata() {
   return {
     url: buildRSSFeedUrl(),
@@ -39,7 +25,7 @@ export function getRSSFeedMetadata() {
     language: "en-us",
     managingEditor: profile.email || "",
     webMaster: profile.email || "",
-    generator: "DevMDX RSS Feed Generator",
+    generator: "Praveen Website",
     categories: [
       "articles",
       "blog",
@@ -63,36 +49,6 @@ export function getRSSFeedMetadata() {
   };
 }
 
-/**
- * Get the image MIME type from the image URL
- * @param imageUrl - The image URL to get the MIME type for
- * @returns The image MIME type
- */
-function getImageMimeType(imageUrl: string): string {
-  const extension = imageUrl.toLowerCase().split(".").pop() || "";
-
-  switch (extension) {
-    case "jpg":
-    case "jpeg":
-      return "image/jpeg";
-    case "png":
-      return "image/png";
-    case "gif":
-      return "image/gif";
-    case "webp":
-      return "image/webp";
-    case "svg":
-      return "image/svg+xml";
-    default:
-      return "image/png";
-  }
-}
-
-/**
- * Get all published articles formatted for RSS
- * @param limit - Maximum number of articles to return (default: 20)
- * @returns Array of articles with RSS-formatted data
- */
 export async function getArticlesForRSS(limit: number = 20) {
   const articles = await getAllArticlesIndex();
 
@@ -100,20 +56,11 @@ export async function getArticlesForRSS(limit: number = 20) {
     .filter((article) => article.published !== false)
     .slice(0, limit)
     .map((article) => {
-      const imageUrl = article.ogImage || article.image;
-
       return {
         ...article,
-        url: buildArticleRSSUrl(article.year, article.slug),
+        url: buildArticleRSSUrl(article.slug),
         pubDate: new Date(article.date).toUTCString(),
         author: `${profile.email || ""} (${PROFILE_NAME})`,
-        imageData: imageUrl
-          ? {
-              url: imageUrl,
-              type: getImageMimeType(imageUrl),
-              length: 512000,
-            }
-          : null,
       };
     });
 }
@@ -136,9 +83,6 @@ export async function generateRSSFeed(): Promise<string> {
   const metadata = getRSSFeedMetadata();
   const rssItems = articles
     .map((article) => {
-      const imageEnclosure = article.imageData
-        ? `<enclosure url="${escapeXml(article.imageData.url)}" type="${escapeXml(article.imageData.type)}" length="${article.imageData.length}" />`
-        : "";
       const categories =
         article.categories
           ?.map((category) => `<category>${wrapCdata(category)}</category>`)
@@ -152,7 +96,7 @@ export async function generateRSSFeed(): Promise<string> {
       <guid isPermaLink="true">${escapeXml(article.url)}</guid>
       <pubDate>${escapeXml(article.pubDate)}</pubDate>
       <author>${escapeXml(article.author)}</author>
-      ${imageEnclosure ? `${imageEnclosure}\n      ` : ""}${categories}
+      ${categories}
     </item>`;
     })
     .join("");
@@ -203,29 +147,4 @@ export async function createRSSResponse() {
   } catch {
     return new Response("Error generating RSS feed", { status: 500 });
   }
-}
-
-/**
- * Build RSS feed URL with optional parameters
- * @param options - Optional parameters for RSS feed
- * @returns RSS feed URL with query parameters
- */
-export function buildRSSFeedUrlWithParams(options?: {
-  category?: string;
-  tag?: string;
-  year?: string;
-}): string {
-  const baseUrl = buildRSSFeedUrl();
-
-  if (!options) {
-    return baseUrl;
-  }
-
-  const params = new URLSearchParams();
-  if (options.category) params.append("category", options.category);
-  if (options.tag) params.append("tag", options.tag);
-  if (options.year) params.append("year", options.year);
-
-  const queryString = params.toString();
-  return queryString ? `${baseUrl}?${queryString}` : baseUrl;
 }

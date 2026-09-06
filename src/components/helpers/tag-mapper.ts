@@ -1,19 +1,13 @@
-const TAG_IMAGE_BASE_PATH = "https://cdn.praveent.com/icons/";
+const icons: Record<string, string> = {
+  AWS: "/images/tags/aws.png",
+  macOS: "/images/tags/macos.png",
+  Xcode: "/images/tags/xcode.png",
+  Swift: "/images/tags/swift.png",
+  iOS: "/images/tags/ios.png",
+  Vercel: "/images/tags/vercel.png",
+  "Google Cloud Platform": "/images/tags/googlecloudplatform.png",
+};
 
-/**
- * Convert tag to lowercase filename format with spaces, dashes, and periods removed
- * @param tag - The tag to convert
- * @returns The lowercase filename with spaces, dashes, and periods removed
- */
-function toLowercaseFilename(tag: string): string {
-  return tag.toLowerCase().replace(/[\s .-]+/g, "");
-}
-
-/**
- * Get the image path for a tag
- * @param tag - The tag to get the image path for
- * @returns The image path for the tag
- */
-export function getTagImagePath(tag: string): string {
-  return `${TAG_IMAGE_BASE_PATH}${toLowercaseFilename(tag)}.png`;
+export function getTagImagePath(tag: string): string | undefined {
+  return icons[tag];
 }

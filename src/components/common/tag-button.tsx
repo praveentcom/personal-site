@@ -24,13 +24,14 @@ function TagButtonContent({
   showIcon,
   tag,
 }: Pick<TagButtonProps, "count" | "showIcon" | "tag">) {
+  const icon = getTagImagePath(tag);
   const label = count && count > 1 ? `${tag} (${count})` : tag;
 
   return (
     <>
-      {showIcon && (
+      {showIcon && icon && (
         <ImageWithFallback
-          src={getTagImagePath(tag)}
+          src={icon}
           alt={`${tag} icon`}
           width={20}
           height={20}

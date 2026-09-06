@@ -1,7 +1,7 @@
 import { TitleSection } from "@avgeek-inc/ds-web-sections/title-section";
 
 import { ButtonLink } from "@avgeek-inc/ds-web/buttons/button";
-import { Markdown } from "@avgeek-inc/ds-web/typography/markdown";
+
 import { StructuredData } from "@avgeek-inc/ds-web/utilities/structured-data";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -38,7 +38,7 @@ export default async function AppPage({ params }: PageProps) {
     notFound();
   }
 
-  const { meta: app, content } = appData;
+  const { meta: app, Content } = appData;
 
   return (
     <>
@@ -100,7 +100,7 @@ export default async function AppPage({ params }: PageProps) {
         </div>
       </section>
       <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
-        <Markdown content={content} />
+        <Content />
       </section>
     </>
   );

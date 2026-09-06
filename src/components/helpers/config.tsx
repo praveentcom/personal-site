@@ -37,14 +37,6 @@ export function getArticleLabel(): string {
 }
 
 /**
- * Get the article URL slug from config or fallback
- * @returns The article URL slug
- */
-export function getArticleSlug(): string {
-  return configData.misc.content?.articleSlug || "articles";
-}
-
-/**
  * Get the navigation items from config or fallback
  * @returns The navigation items
  */

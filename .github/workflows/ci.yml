@@ -1,0 +1,36 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      HEROUI_AUTH_TOKEN: ${{ secrets.HEROUI_AUTH_TOKEN }}
+      SENTRY_ALLOW_MISSING: "true"
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: corepack enable
+      - name: Install dependencies
+        env:
+          GITHUB_PACKAGES_TOKEN: ${{ secrets.PACKAGES_READ_TOKEN }}
+          HUGEICONS_LICENSE_KEY: ${{ secrets.HUGEICONS_LICENSE_KEY }}
+        run: |
+          umask 077
+          npmrc="$(mktemp)"
+          trap 'rm -f "$npmrc"' EXIT
+          printf '//npm.pkg.github.com/:_authToken=%s\n//npm.hugeicons.com/:_authToken=%s\n' \
+            "$GITHUB_PACKAGES_TOKEN" "$HUGEICONS_LICENSE_KEY" > "$npmrc"
+          NPM_CONFIG_USERCONFIG="$npmrc" pnpm install --frozen-lockfile --config.blockExoticSubdeps=false
+      - run: pnpm verify
+      - run: pnpm build

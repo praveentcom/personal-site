@@ -28,10 +28,7 @@ export function ArticleSummaryCard({ article }: { article: ArticleLike }) {
           {formatDate(article.date)}
         </TypographyParagraph>
         <div className="grid min-w-0 gap-1">
-          <Link
-            href={URLS.ARTICLES(article.year, article.slug)}
-            className="sm:line-clamp-1"
-          >
+          <Link href={URLS.ARTICLES(article.slug)} className="sm:line-clamp-1">
             {article.title}
           </Link>
           {article.description ? (

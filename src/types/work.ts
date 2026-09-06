@@ -7,13 +7,13 @@ const WorkExperienceSchema = z.object({
   startDate: z
     .union([z.string(), z.date()])
     .transform((val) =>
-      val instanceof Date ? val.toISOString().split("T")[0] : val,
+      val instanceof Date ? val.toISOString().slice(0, 10) : val,
     ),
   endDate: z
     .union([z.string(), z.date()])
     .optional()
     .transform((val) =>
-      val instanceof Date ? val.toISOString().split("T")[0] : val,
+      val instanceof Date ? val.toISOString().slice(0, 10) : val,
     ),
   skills: z.array(z.string()).optional(),
   image: z.string().optional(),

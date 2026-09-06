@@ -1,6 +1,5 @@
-import { getArticleSlug } from "@/components/helpers/config";
-
-export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "";
+export const BASE_URL =
+  process.env.NEXT_PUBLIC_BASE_URL || "https://www.praveent.com";
 
 export const URLS = {
   HOME: () => "/",
@@ -10,15 +9,13 @@ export const URLS = {
   RSS_FEED: () => "/blog/rss.xml",
   RSS_FEED_LEGACY: () => "/feed.xml",
 
-  ARTICLES: (year: string, slug: string) =>
-    `/${getArticleSlug()}/${year}/${slug}`,
-  ARTICLE_MARKDOWN: (year: string, slug: string) =>
-    `/${getArticleSlug()}/${year}/${slug}.md`,
-  ARTICLES_LIST: () => `/${getArticleSlug()}`,
-  ARTICLES_YEAR: (year: string) => `/${getArticleSlug()}/${year}`,
-  ARTICLES_TAG: (tag: string) => `/${getArticleSlug()}/tag/${tag}`,
+  ARTICLES: (slug: string) => `/blog/${encodeURIComponent(slug)}`,
+  ARTICLE_MARKDOWN: (slug: string) => `/blog/${encodeURIComponent(slug)}/md`,
+  ARTICLES_LIST: () => "/blog",
+  ARTICLES_YEAR: (year: string) => `/blog/year/${year}`,
+  ARTICLES_TAG: (tag: string) => `/blog/tag/${encodeURIComponent(tag)}`,
   ARTICLES_CATEGORY: (category: string) =>
-    `/${getArticleSlug()}/category/${category}`,
+    `/blog/category/${encodeURIComponent(category)}`,
 
   APPS_LIST: () => "/apps",
   APPS: (slug: string) => `/apps/${slug}`,

@@ -1,68 +1,29 @@
-import matter from "gray-matter";
+import { cache } from "react";
+import { AppSchema } from "@/types/app";
+import { readEntries, contentYear } from "@/lib/content";
+import { getContentComponent } from "@/lib/mdx";
 
-import {
-  getAppManifest,
-  getContentByObjectKey,
-} from "@/components/helpers/content-source";
-import {
-  generatePlaceholderImageUrl,
-  PLACEHOLDER_COLORS,
-} from "@/components/helpers/image";
-import { App } from "@/types/app";
+const getEntries = cache(async () =>
+  (await readEntries("apps", AppSchema))
+    .map(({ meta, slug, content }) => ({
+      meta: {
+        ...meta,
+        slug,
+        year: contentYear(meta.date),
+        image: meta.image ?? "/og-image.png",
+      },
+      content,
+    }))
+    .sort((a, b) => b.meta.date.localeCompare(a.meta.date)),
+);
 
-export type AppIndexItem = App;
-
-function normalizeApp(
-  app: Awaited<ReturnType<typeof getAppManifest>>["items"][number],
-): AppIndexItem {
-  return {
-    slug: app.slug,
-    title: app.title ?? "",
-    description: app.description ?? "",
-    shortDescription: app.shortDescription ?? undefined,
-    image:
-      app.image ||
-      generatePlaceholderImageUrl({
-        text: app.title ?? "",
-        backgroundColor: PLACEHOLDER_COLORS.GRAY,
-        textColor: PLACEHOLDER_COLORS.WHITE,
-      }),
-    stack: app.stack ?? [],
-    url: app.url ?? undefined,
-    githubUrl: app.githubUrl ?? undefined,
-    appStoreUrl: app.appStoreUrl ?? undefined,
-    coAuthors: app.coAuthors ?? [],
-    date: app.date ?? "",
-    ogImage: app.ogImage ?? undefined,
-    year: app.year,
-  };
+export async function getAllAppSlugs() {
+  return (await getEntries()).map((entry) => entry.meta);
 }
-
-export async function getAllAppSlugs(): Promise<AppIndexItem[]> {
-  const manifest = await getAppManifest();
-  return manifest.items.map(normalizeApp);
-}
-
-export async function getAppBySlugContent(
-  slug: string,
-): Promise<{ meta: AppIndexItem; content: string } | null> {
-  const manifest = await getAppManifest();
-  const match = manifest.items.find((app) => app.slug === slug);
-
-  if (!match) {
-    return null;
-  }
-
-  const rawSource = await getContentByObjectKey(match.objectKey);
-
-  if (!rawSource) {
-    return null;
-  }
-
-  const { content } = matter(rawSource);
-
-  return {
-    meta: normalizeApp(match),
-    content,
-  };
+export type AppIndexItem = Awaited<ReturnType<typeof getAllAppSlugs>>[number];
+export async function getAppBySlugContent(slug: string) {
+  const entry = (await getEntries()).find((entry) => entry.meta.slug === slug);
+  return entry
+    ? { ...entry, Content: await getContentComponent("apps", slug) }
+    : null;
 }

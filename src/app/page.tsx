@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 import { ButtonLink } from "@avgeek-inc/ds-web/buttons/button";
-import { Markdown } from "@avgeek-inc/ds-web/typography/markdown";
 
 import { HeaderSection } from "@avgeek-inc/ds-web-sections/header-section";
 
@@ -13,20 +12,19 @@ import { ArticleSection } from "@/components/article/article-section";
 import { getAllAppSlugs } from "@/components/helpers/apps";
 import { getAllArticlesIndex } from "@/components/helpers/article";
 import { SITE_DESCRIPTION, SITE_IMAGE } from "@/components/helpers/config";
-import { getMdContent } from "@/components/helpers/md-content";
+import { getContentComponent } from "@/lib/mdx";
 import { createPageMetadata } from "@/components/helpers/metadata";
 import { generateDefaultSchema } from "@/components/helpers/structured-data";
 import { URLS } from "@/components/helpers/urls";
 import { configData } from "@/data/config";
 
 export default async function HomePage() {
-  const [recentArticles, apps, profileContent, defaultSchema] =
-    await Promise.all([
-      getAllArticlesIndex(20),
-      getAllAppSlugs(),
-      getMdContent("profile/intro.md"),
-      generateDefaultSchema(),
-    ]);
+  const [recentArticles, apps, Content, defaultSchema] = await Promise.all([
+    getAllArticlesIndex(20),
+    getAllAppSlugs(),
+    getContentComponent("profile", "intro"),
+    generateDefaultSchema(),
+  ]);
 
   return (
     <>
@@ -70,7 +68,7 @@ export default async function HomePage() {
             }
           />
           <div className="max-w-3xl">
-            <Markdown content={profileContent ?? ""} />
+            <Content />
           </div>
         </section>
       </section>

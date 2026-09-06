@@ -1,87 +1,56 @@
-import matter from "gray-matter";
+import { cache } from "react";
+import { ArticleSchema } from "@/types/article";
+import { readEntries, isPublished, contentYear } from "@/lib/content";
+import { getContentComponent } from "@/lib/mdx";
 
-import {
-  getArticleManifest,
-  getContentByObjectKey,
-} from "@/components/helpers/content-source";
-import { generatePlaceholderImageUrl } from "@/components/helpers/image";
-import { type ArticleFrontmatter } from "@/types/article";
+const getArticles = cache(async () =>
+  (await readEntries("blog", ArticleSchema))
+    .filter((entry) => isPublished(entry.meta))
+    .map(({ meta, slug, content }) => ({
+      meta: {
+        ...meta,
+        slug,
+        year: contentYear(meta.date),
+        image: meta.image ?? "/og-image.png",
+        readTime: Math.max(1, Math.ceil(content.split(/\s+/).length / 200)),
+      },
+      raw: content,
+    }))
+    .sort((a, b) => b.meta.date.localeCompare(a.meta.date)),
+);
 
-export type ArticleIndexItem = ArticleFrontmatter;
-
-function normalizeArticle(
-  article: Awaited<ReturnType<typeof getArticleManifest>>["items"][number],
-): ArticleIndexItem {
-  return {
-    title: article.title ?? "",
-    description: article.description ?? "",
-    date: article.date ?? "",
-    tags: article.tags ?? [],
-    categories: article.categories ?? [],
-    published: article.published ?? true,
-    private: article.private ?? false,
-    ogImage: article.ogImage ?? undefined,
-    image:
-      article.image ||
-      generatePlaceholderImageUrl({ text: article.title ?? "" }),
-    slug: article.slug,
-    year: article.year,
-    readTime: article.readTime,
-  };
+export type ArticleIndexItem = Awaited<
+  ReturnType<typeof getAllArticleSlugs>
+>[number];
+export async function getAllArticleSlugs() {
+  return (await getArticles()).map((entry) => entry.meta);
 }
-
-export async function getAllArticleSlugs(): Promise<ArticleIndexItem[]> {
-  const manifest = await getArticleManifest();
-
-  return manifest.items
-    .map(normalizeArticle)
-    .filter((article) => article.published && !article.private);
-}
-
-export async function getAllArticlesIndex(
-  limit?: number,
-): Promise<ArticleIndexItem[]> {
+export async function getAllArticlesIndex(limit?: number) {
   const articles = await getAllArticleSlugs();
-  return typeof limit === "number" ? articles.slice(0, limit) : articles;
+  return limit === undefined ? articles : articles.slice(0, limit);
 }
-
-export async function getArticleBySlugRaw(
-  slug: string,
-): Promise<{ meta: ArticleIndexItem; raw: string } | null> {
-  const manifest = await getArticleManifest();
-  const match = manifest.items.find((article) => article.slug === slug);
-
-  if (!match) {
-    return null;
-  }
-
-  const rawSource = await getContentByObjectKey(match.objectKey);
-
-  if (!rawSource) {
-    return null;
-  }
-
-  const { content } = matter(rawSource);
-
-  return {
-    meta: normalizeArticle(match),
-    raw: content,
-  };
+export async function getArticleBySlugRaw(slug: string) {
+  return (
+    (await getArticles()).find((entry) => entry.meta.slug === slug) ?? null
+  );
 }
-
-export async function getAllCategories(): Promise<string[]> {
-  const articles = await getAllArticlesIndex();
-  return Array.from(new Set(articles.flatMap((article) => article.categories)));
+export async function getArticleContent(slug: string) {
+  return getContentComponent("blog", slug);
 }
-
-export async function getAllTags(): Promise<string[]> {
-  const articles = await getAllArticlesIndex();
-  return Array.from(new Set(articles.flatMap((article) => article.tags)));
+export async function getAllCategories() {
+  return [
+    ...new Set(
+      (await getAllArticleSlugs()).flatMap((article) => article.categories),
+    ),
+  ];
 }
-
-export async function getArticlesByCategory(
-  category: string,
-): Promise<ArticleIndexItem[]> {
-  const articles = await getAllArticlesIndex();
-  return articles.filter((article) => article.categories.includes(category));
+export async function getAllTags() {
+  return [
+    ...new Set((await getAllArticleSlugs()).flatMap((article) => article.tags)),
+  ];
+}
+export async function getArticlesByCategory(category: string) {
+  return (await getAllArticleSlugs()).filter((article) =>
+    article.categories.includes(category),
+  );
 }

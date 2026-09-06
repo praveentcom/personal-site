@@ -56,14 +56,12 @@ export async function generateDefaultSchema() {
  * @returns The article schema
  */
 export function generateArticleSchema(article: Article) {
-  const year = new Date(article.date).getFullYear().toString();
-
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: article.title,
     description: article.description,
-    image: article.image,
+    image: new URL(article.image, BASE_URL).href,
     datePublished: new Date(article.date).toISOString(),
     dateModified: new Date(article.date).toISOString(),
     author: {
@@ -79,7 +77,7 @@ export function generateArticleSchema(article: Article) {
         url: configData.seo.image,
       },
     },
-    url: URLS.ARTICLES(year, article.slug),
+    url: new URL(URLS.ARTICLES(article.slug), BASE_URL).href,
     wordCount: article.content?.split(" ").length || 0,
     timeRequired: `PT${Math.max(1, Math.ceil((article.content?.split(" ").length || 0) / 200))}M`,
     keywords: article.tags.join(", "),

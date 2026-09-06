@@ -1,63 +1,31 @@
-import matter from "gray-matter";
+import { cache } from "react";
+import { EducationSchema } from "@/types/education";
+import { readEntries, contentYear } from "@/lib/content";
+import { getContentComponent } from "@/lib/mdx";
 
-import {
-  getContentByObjectKey,
-  getEducationManifest,
-} from "@/components/helpers/content-source";
-import {
-  generatePlaceholderImageUrl,
-  PLACEHOLDER_COLORS,
-} from "@/components/helpers/image";
-import { Education } from "@/types/education";
+const getEntries = cache(async () =>
+  (await readEntries("education", EducationSchema))
+    .map(({ meta, slug, content }) => ({
+      meta: {
+        ...meta,
+        slug,
+        year: contentYear(meta.startDate),
+        image: meta.image ?? "/og-image.png",
+      },
+      content,
+    }))
+    .sort((a, b) => b.meta.startDate.localeCompare(a.meta.startDate)),
+);
 
-export type EducationIndexItem = Education;
-
-function normalizeEducation(
-  education: Awaited<ReturnType<typeof getEducationManifest>>["items"][number],
-): EducationIndexItem {
-  return {
-    slug: education.slug,
-    degree: education.degree ?? "",
-    school: education.school ?? "",
-    startDate: education.startDate ?? "",
-    endDate: education.endDate ?? undefined,
-    image:
-      education.image ||
-      generatePlaceholderImageUrl({
-        text: education.school ?? "",
-        backgroundColor: PLACEHOLDER_COLORS.GRAY,
-        textColor: PLACEHOLDER_COLORS.WHITE,
-      }),
-    ogImage: education.ogImage ?? undefined,
-    year: education.year,
-  };
+export async function getAllEducationSlugs() {
+  return (await getEntries()).map((entry) => entry.meta);
 }
-
-export async function getAllEducationSlugs(): Promise<EducationIndexItem[]> {
-  const manifest = await getEducationManifest();
-  return manifest.items.map(normalizeEducation);
-}
-
-export async function getEducationBySlugContent(
-  slug: string,
-): Promise<{ meta: EducationIndexItem; content: string } | null> {
-  const manifest = await getEducationManifest();
-  const match = manifest.items.find((education) => education.slug === slug);
-
-  if (!match) {
-    return null;
-  }
-
-  const rawSource = await getContentByObjectKey(match.objectKey);
-
-  if (!rawSource) {
-    return null;
-  }
-
-  const { content } = matter(rawSource);
-
-  return {
-    meta: normalizeEducation(match),
-    content,
-  };
+export type EducationIndexItem = Awaited<
+  ReturnType<typeof getAllEducationSlugs>
+>[number];
+export async function getEducationBySlugContent(slug: string) {
+  const entry = (await getEntries()).find((entry) => entry.meta.slug === slug);
+  return entry
+    ? { ...entry, Content: await getContentComponent("education", slug) }
+    : null;
 }
