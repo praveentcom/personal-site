@@ -1,13 +1,12 @@
-import { InterfaceAnimationPolicy } from "@workspace/web-runtime/interface-animation-policy";
-import { createAccessibilityScript } from "@workspace/web-runtime/accessibility-script";
-import { themeBootstrapScript } from "@workspace/web-runtime/theme-bootstrap";
+import { InterfaceAnimationPolicy } from "@avgeek-inc/runtime-web/interface-animation-policy";
+import { createAccessibilityScript } from "@avgeek-inc/runtime-web/accessibility-script";
+import { themeBootstrapScript } from "@avgeek-inc/runtime-web/theme-bootstrap";
 import { ToastProvider } from "@avgeek-inc/ds-web/overlays/toast";
-import { AgentationFeedback } from "@workspace/web-runtime/agentation-feedback";
-import { PersistedThemeProvider as Providers } from "@workspace/web-runtime/browser-theme";
+import { AgentationFeedback } from "@avgeek-inc/runtime-web/agentation-feedback";
+import { PersistedThemeProvider as Providers } from "@avgeek-inc/runtime-web/browser-theme";
 import type { Metadata } from "next";
 
 import "./globals.css";
-import "@workspace/web-page-sections/styles.css";
 
 import { ApplicationRuntime } from "@/components/application-runtime";
 import {

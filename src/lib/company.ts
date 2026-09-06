@@ -1,4 +1,4 @@
-import { getCountryFlagProps } from "@workspace/image-assets/constants/delivery";
+import { getCountryFlag } from "@avgeek-inc/ref-data/flags";
 export interface CompanyOffice {
   address: string;
   city: string;
@@ -25,7 +25,7 @@ export const avgeekEntityRelationship = `${avgeekIndiaEntity.name} is the Indian
 export const avgeekLegalEntityContactItems = [
   {
     countryCode: "US",
-    flagSrc: getCountryFlagProps("US").src,
+    flagSrc: getCountryFlag("US").src,
     countryName: "United States",
     key: "us-entity",
     value: avgeekUsEntity.name,
@@ -36,7 +36,7 @@ export const avgeekLegalEntityContactItems = [
   },
   {
     countryCode: "IN",
-    flagSrc: getCountryFlagProps("IN").src,
+    flagSrc: getCountryFlag("IN").src,
     countryName: "India",
     key: "in-entity",
     value: avgeekIndiaEntity.name,
@@ -52,7 +52,7 @@ export const avgeekOfficeAddresses = [
     address: avgeekUsEntity.address,
     city: "Detroit",
     countryCode: "US",
-    flagSrc: getCountryFlagProps("US").src,
+    flagSrc: getCountryFlag("US").src,
     countryName: "United States",
     entityName: avgeekUsEntity.name,
     id: "detroit",
@@ -62,7 +62,7 @@ export const avgeekOfficeAddresses = [
     address: avgeekIndiaEntity.address,
     city: "Coimbatore",
     countryCode: "IN",
-    flagSrc: getCountryFlagProps("IN").src,
+    flagSrc: getCountryFlag("IN").src,
     countryName: "India",
     entityName: avgeekIndiaEntity.name,
     id: "coimbatore",

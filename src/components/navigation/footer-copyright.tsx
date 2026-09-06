@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 
-import { CookieConsentSettings } from "@workspace/web-runtime/cookie-consent-settings";
+import { CookieConsentSettings } from "@avgeek-inc/runtime-web/cookie-consent-settings";
 import { TypographyText } from "@avgeek-inc/ds-web/typography/typography";
 
 import type { ApplicationPolicy } from "./navigation-types";

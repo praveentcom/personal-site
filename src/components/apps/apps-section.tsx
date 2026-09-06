@@ -3,11 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ButtonLink } from "@avgeek-inc/ds-web/buttons/button";
-import { IntegrationsSection } from "@workspace/web-page-sections/integrations-section";
+import { IntegrationsSection } from "@avgeek-inc/ds-web-sections/integrations-section";
 
 import { URLS } from "@/components/helpers/urls";
 import { App } from "@/types/app";
-import { HeaderSection } from "@workspace/web-page-sections/header-section";
+import { HeaderSection } from "@avgeek-inc/ds-web-sections/header-section";
 import { Typography } from "@avgeek-inc/ds-web/typography/typography";
 
 interface AppsSectionProps {

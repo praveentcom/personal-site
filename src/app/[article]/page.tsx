@@ -1,4 +1,4 @@
-import { TitleSection } from "@workspace/web-page-sections/title-section";
+import { TitleSection } from "@avgeek-inc/ds-web-sections/title-section";
 
 import { RssIcon } from "@hugeicons-pro/core-solid-rounded";
 import { HugeiconsIcon } from "@hugeicons/react";

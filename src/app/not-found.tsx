@@ -1,5 +1,5 @@
 import { ButtonLink } from "@avgeek-inc/ds-web/buttons/button";
-import { TitleSection } from "@workspace/web-page-sections/title-section";
+import { TitleSection } from "@avgeek-inc/ds-web-sections/title-section";
 import type { Metadata } from "next";
 
 import { plural } from "pluralize";

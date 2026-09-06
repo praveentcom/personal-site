@@ -1,4 +1,4 @@
-import type { BrandName } from "@workspace/image-assets/constants/brand-assets";
+import type { BrandName } from "@avgeek-inc/ref-data/brands";
 import type { CompanyOffice } from "@avgeek-inc/ds-web/overlays/office-locations";
 
 import type { IconSvgElement as SidebarIcon } from "@hugeicons/react";

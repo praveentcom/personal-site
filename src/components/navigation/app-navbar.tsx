@@ -16,7 +16,7 @@ import {
   getGravatarUrl,
   getProfileInitials,
 } from "@avgeek-inc/ds-web/lib/gravatar";
-import { getBrandLogoProps } from "@workspace/image-assets/constants/brand-assets";
+import { getBrandLogo } from "@avgeek-inc/ref-data/brands";
 import { ShellIcon } from "./shell-icon";
 import type {
   HeaderConfig,
@@ -112,7 +112,7 @@ function Navigation({
             rel={home?.external ? "noopener noreferrer" : undefined}
           >
             <BrandLockup
-              {...getBrandLogoProps(config.brand.id, {
+              {...getBrandLogo(config.brand.id, {
                 src: config.brand.logoSrc,
               })}
             >

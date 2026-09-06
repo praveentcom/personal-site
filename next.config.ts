@@ -1,6 +1,7 @@
+import path from "node:path";
 import createMDX from "@next/mdx";
 import { withSentry } from "@avgeek-inc/observability-sentry/next-config";
-import { createNextConfig } from "@workspace/web-runtime/next-config";
+import { createNextConfig } from "@avgeek-inc/runtime-web/next-config";
 import type { NextConfig } from "next";
 
 const withMDX = createMDX({
@@ -9,7 +10,8 @@ const withMDX = createMDX({
 
 const baseConfig = withSentry(
   createNextConfig((config) => withMDX(config), {
-    transpilePackages: ["@workspace/web-page-sections"],
+    rootDirectory: path.resolve(process.cwd(), "../.."),
+    transpilePackages: ["@avgeek-inc/ds-web-sections"],
   }),
   { project: "praveen-website" },
 );

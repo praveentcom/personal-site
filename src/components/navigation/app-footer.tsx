@@ -1,5 +1,5 @@
 "use client";
-import { getBrandLogoProps } from "@workspace/image-assets/constants/brand-assets";
+import { getBrandLogo } from "@avgeek-inc/ref-data/brands";
 
 import { cn } from "@avgeek-inc/ds-web/lib/utils";
 import { BrandLockup } from "@avgeek-inc/ds-web/media/brand-lockup";
@@ -45,7 +45,7 @@ export function AppFooter({
       >
         <div className="grid content-start gap-3">
           <BrandLockup
-            {...getBrandLogoProps(config.brand.id, {
+            {...getBrandLogo(config.brand.id, {
               src: config.brand.logoSrc,
             })}
           >

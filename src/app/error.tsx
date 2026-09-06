@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, ButtonLink } from "@avgeek-inc/ds-web/buttons/button";
-import { TitleSection } from "@workspace/web-page-sections/title-section";
+import { TitleSection } from "@avgeek-inc/ds-web-sections/title-section";
 
 import { plural } from "pluralize";
 

@@ -1,4 +1,4 @@
-import { TitleSection } from "@workspace/web-page-sections/title-section";
+import { TitleSection } from "@avgeek-inc/ds-web-sections/title-section";
 
 import { Markdown } from "@avgeek-inc/ds-web/typography/markdown";
 import { StructuredData } from "@avgeek-inc/ds-web/utilities/structured-data";

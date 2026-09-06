@@ -1,9 +1,8 @@
 @import "@avgeek-inc/ds-web/globals.css";
-@import "@workspace/web-runtime/browser.css";
+@import "@avgeek-inc/runtime-web/browser.css";
+@import "@avgeek-inc/ds-web-sections/styles.css";
 
 @source "../**/*.{ts,tsx}";
 @source "../../data/**/*.{ts,tsx,mdx}";
-@source "../../node_modules/@workspace/web-page-sections/src/**/*.{ts,tsx}";
 @source "../../node_modules/@workspace/identity-web-ui/src/**/*.{ts,tsx}";
 @source "../../node_modules/@workspace/avgeek-web-ui/src/**/*.{ts,tsx}";
-@source "../../node_modules/@workspace/web-runtime/src/**/*.{ts,tsx}";

@@ -1,12 +1,12 @@
 import { StructuredData } from "@avgeek-inc/ds-web/utilities/structured-data";
-import { HeroSection } from "@workspace/web-page-sections/hero-section";
+import { HeroSection } from "@avgeek-inc/ds-web-sections/hero-section";
 import type { Metadata } from "next";
 import Image from "next/image";
 
 import { ButtonLink } from "@avgeek-inc/ds-web/buttons/button";
 import { Markdown } from "@avgeek-inc/ds-web/typography/markdown";
 
-import { HeaderSection } from "@workspace/web-page-sections/header-section";
+import { HeaderSection } from "@avgeek-inc/ds-web-sections/header-section";
 
 import { AppsSection } from "@/components/apps/apps-section";
 import { ArticleSection } from "@/components/article/article-section";
