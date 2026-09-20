@@ -1,7 +1,7 @@
 import {
   captureRouterTransitionStart,
   initializeSentryClient,
-} from "@avgeek-inc/observability-sentry/next/client";
+} from "@avgeek-inc/observability/next/client";
 
 initializeSentryClient();
 

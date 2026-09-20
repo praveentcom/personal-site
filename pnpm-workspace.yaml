@@ -30,5 +30,8 @@ allowBuilds:
   sharp: true
   core-js-pure: true
   heroui-pro: true
+  "@newrelic/fn-inspect": false
+  "@newrelic/native-metrics": false
+  protobufjs: true
 minimumReleaseAgeExclude:
   - "@avgeek-inc/*"
