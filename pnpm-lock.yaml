@@ -91,12 +91,9 @@ importers:
         specifier: 4.3.6
         version: 4.3.6
     devDependencies:
-      "@avgeek-inc/config-eslint":
-        specifier: 0.1.2
-        version: 0.1.2(eslint@9.39.4(jiti@2.7.0))(turbo@2.10.12)(typescript@5.9.3)
-      "@avgeek-inc/config-ts":
-        specifier: 0.1.2
-        version: 0.1.2
+      "@avgeek-inc/config":
+        specifier: 0.1.0
+        version: 0.1.0(eslint@9.39.4(jiti@2.7.0))(turbo@2.10.12)(typescript@5.9.3)
       "@mdx-js/loader":
         specifier: 3.1.1
         version: 3.1.1(webpack@5.110.3)
@@ -182,23 +179,16 @@ packages:
         integrity: sha512-jk3acBAJecK8ctMGlkappcX5CtymTxmd0GGnUqh4ZX3Pk1RbXei/vzGEDTeOHcXJ6wsRkm8PhHsfOba0jxB67A==,
       }
 
-  "@avgeek-inc/config-eslint@0.1.2":
+  "@avgeek-inc/config@0.1.0":
     resolution:
       {
-        integrity: sha512-ejxtZCrcvWVEMrAfegpz1rlrHv+KUaXbem160tAt89yqpZSo3ZJYZrKCBVwEwGulqI4lepixAHH6hfsSvdbUww==,
-        tarball: https://npm.pkg.github.com/download/@avgeek-inc/config-eslint/0.1.2/5154821230dee3afd1348232a4a66d1b772ed76c,
+        integrity: sha512-Yb0EROEHVtZEV0YUDwN56Z3MVdRi1V5TnF/QACQ7ASD2hfZRlOf3XcYbSJ3lSnxExnzqT0PFmsr57YcFcqzR0w==,
+        tarball: https://npm.pkg.github.com/download/@avgeek-inc/config/0.1.0/2a2f3c2e5720da1dda968d1dd00b7f8d361e8943,
       }
     peerDependencies:
       eslint: ^9.39.4
       turbo: ^2.9.14
       typescript: ">=5.9.3 <6"
-
-  "@avgeek-inc/config-ts@0.1.2":
-    resolution:
-      {
-        integrity: sha512-BRBU95Tf9GfhzI1Ms36GZGNSrTUeLYZxgsTjc8iFrs3+NUukE3ApTuVMken80mvFroUkreIQ9MNUghDe038gHw==,
-        tarball: https://npm.pkg.github.com/download/@avgeek-inc/config-ts/0.1.2/a5dd423ace0e7bcfba36078b26994ff6ec12b416,
-      }
 
   "@avgeek-inc/ds-web-sections@0.1.0":
     resolution:
@@ -8485,7 +8475,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  "@avgeek-inc/config-eslint@0.1.2(eslint@9.39.4(jiti@2.7.0))(turbo@2.10.12)(typescript@5.9.3)":
+  "@avgeek-inc/config@0.1.0(eslint@9.39.4(jiti@2.7.0))(turbo@2.10.12)(typescript@5.9.3)":
     dependencies:
       "@eslint/js": 9.39.4
       "@next/eslint-plugin-next": 16.3.3(eslint@9.39.4(jiti@2.7.0))
@@ -8501,8 +8491,6 @@ snapshots:
       typescript-eslint: 8.59.0(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)
     transitivePeerDependencies:
       - supports-color
-
-  "@avgeek-inc/config-ts@0.1.2": {}
 
   "@avgeek-inc/ds-web-sections@0.1.0(@floating-ui/dom@1.8.0)(@react-spectrum/provider@3.11.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.5(react@19.2.5))(react-is@16.13.1)(react@19.2.5)(redux@5.0.1)(tailwindcss@4.2.4)":
     dependencies:
