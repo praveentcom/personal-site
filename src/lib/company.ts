@@ -1,4 +1,4 @@
-import { getCountryFlag } from "@avgeek-inc/ref-data/flags";
+import { getCountryFlag } from "@avgeek-inc/reference-data/flags";
 export interface CompanyOffice {
   address: string;
   city: string;

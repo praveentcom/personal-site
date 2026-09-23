@@ -1,5 +1,5 @@
 import createMDX from "@next/mdx";
-import { withSentry } from "@avgeek-inc/observability-sentry/next-config";
+import { withSentry } from "@avgeek-inc/observability/next-config";
 import { createNextConfig } from "@avgeek-inc/runtime-web/next-config";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";

@@ -1,5 +1,5 @@
 {
-  "extends": "@avgeek-inc/config-ts/nextjs.json",
+  "extends": "@avgeek-inc/config/typescript/nextjs.json",
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],

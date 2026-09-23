@@ -1,7 +1,7 @@
 import {
   captureRequestError,
   registerSentry,
-} from "@avgeek-inc/observability-sentry/next/server";
+} from "@avgeek-inc/observability/next/server";
 
 export async function register() {
   await registerSentry();
