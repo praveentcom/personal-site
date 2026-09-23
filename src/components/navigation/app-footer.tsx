@@ -1,5 +1,5 @@
 "use client";
-import { getBrandLogo } from "@avgeek-inc/ref-data/brands";
+import { getBrandLogo } from "@avgeek-inc/reference-data/brands";
 
 import { cn } from "@avgeek-inc/ds-web/lib/utils";
 import { BrandLockup } from "@avgeek-inc/ds-web/media/brand-lockup";

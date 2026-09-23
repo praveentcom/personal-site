@@ -16,7 +16,7 @@ import {
   getGravatarUrl,
   getProfileInitials,
 } from "@avgeek-inc/ds-web/lib/gravatar";
-import { getBrandLogo } from "@avgeek-inc/ref-data/brands";
+import { getBrandLogo } from "@avgeek-inc/reference-data/brands";
 import { ShellIcon } from "./shell-icon";
 import type {
   HeaderConfig,

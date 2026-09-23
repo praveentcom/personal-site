@@ -39,7 +39,7 @@ importers:
       "@avgeek-inc/observability":
         specifier: 0.1.0
         version: 0.1.0(@opentelemetry/core@2.8.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(@temporalio/activity@1.24.0)(hono@4.13.8)(next@16.3.3(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@24.12.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(webpack@5.110.3)
-      "@avgeek-inc/ref-data":
+      "@avgeek-inc/reference-data":
         specifier: 0.3.0
         version: 0.3.0
       "@avgeek-inc/runtime-web":
@@ -233,6 +233,13 @@ packages:
       {
         integrity: sha512-YDPF9RiPG79yS5JXH7dS77530+UyNpqmYdHaAVAO4m7FNq3nuq4rCsq+Kcxw5LQq1uJY+tTtZUQyUVX+eqivNA==,
         tarball: https://npm.pkg.github.com/download/@avgeek-inc/ref-data/0.3.0/9be644b894fa09ac20c2a290fe823e11d2c79c24,
+      }
+
+  "@avgeek-inc/reference-data@0.3.0":
+    resolution:
+      {
+        integrity: sha512-x3rs35+KJX8bsqx9ZUeDUNCWPLwfEoC8RUzYdQdcZfu4EGj3EG7a0XsDmMWwHP9nE4g7MWq5/FWfdpHIq0MiVA==,
+        tarball: https://npm.pkg.github.com/download/@avgeek-inc/reference-data/0.3.0/0a8d3d1a757d247993c8413575ec9ed7fdc59d90,
       }
 
   "@avgeek-inc/runtime-web@0.1.0":
@@ -8590,6 +8597,8 @@ snapshots:
       - webpack
 
   "@avgeek-inc/ref-data@0.3.0": {}
+
+  "@avgeek-inc/reference-data@0.3.0": {}
 
   "@avgeek-inc/runtime-web@0.1.0(@floating-ui/dom@1.8.0)(@react-spectrum/provider@3.11.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(next@16.3.3(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@24.12.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react-is@16.13.1)(react@19.2.5)(redux@5.0.1)(tailwindcss@4.2.4)":
     dependencies:

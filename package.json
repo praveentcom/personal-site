@@ -58,7 +58,7 @@
     "remark-gfm": "4.0.1",
     "tailwindcss": "4.2.4",
     "zod": "4.3.6",
-    "@avgeek-inc/ref-data": "0.3.0",
+    "@avgeek-inc/reference-data": "0.3.0",
     "@avgeek-inc/runtime-web": "0.1.0",
     "@avgeek-inc/ds-web-sections": "0.1.0",
     "remark-frontmatter": "5.0.0",
