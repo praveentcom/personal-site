@@ -43,8 +43,8 @@ importers:
         specifier: 0.3.0
         version: 0.3.0
       "@avgeek-inc/runtime-web":
-        specifier: 0.1.0
-        version: 0.1.0(@floating-ui/dom@1.8.0)(@react-spectrum/provider@3.11.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(next@16.3.3(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@24.12.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react-is@16.13.1)(react@19.2.5)(redux@5.0.1)(tailwindcss@4.2.4)
+        specifier: 0.1.1
+        version: 0.1.1(@floating-ui/dom@1.8.0)(@react-spectrum/provider@3.11.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(next@16.3.3(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@24.12.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react-is@16.13.1)(react@19.2.5)(redux@5.0.1)(tailwindcss@4.2.4)
       "@hugeicons-pro/core-solid-rounded":
         specifier: 4.2.2
         version: 4.2.2
@@ -228,13 +228,6 @@ packages:
       react: ">=19.0.0 <20"
       react-dom: ">=19.0.0 <20"
 
-  "@avgeek-inc/ref-data@0.3.0":
-    resolution:
-      {
-        integrity: sha512-YDPF9RiPG79yS5JXH7dS77530+UyNpqmYdHaAVAO4m7FNq3nuq4rCsq+Kcxw5LQq1uJY+tTtZUQyUVX+eqivNA==,
-        tarball: https://npm.pkg.github.com/download/@avgeek-inc/ref-data/0.3.0/9be644b894fa09ac20c2a290fe823e11d2c79c24,
-      }
-
   "@avgeek-inc/reference-data@0.3.0":
     resolution:
       {
@@ -242,11 +235,11 @@ packages:
         tarball: https://npm.pkg.github.com/download/@avgeek-inc/reference-data/0.3.0/0a8d3d1a757d247993c8413575ec9ed7fdc59d90,
       }
 
-  "@avgeek-inc/runtime-web@0.1.0":
+  "@avgeek-inc/runtime-web@0.1.1":
     resolution:
       {
-        integrity: sha512-uWN11pXVUoQx4xc8582UJew/aLAPk/kayfaaL9HZEUs8FuMQYlp3yCgc4ForsLwwEw0yWIWe5SFDKqkMcRHb0Q==,
-        tarball: https://npm.pkg.github.com/download/@avgeek-inc/runtime-web/0.1.0/aadd904f6109fde26f4145a775f63b4cae138eb0,
+        integrity: sha512-SUmbcgGYMWXZ/gTeylPQpeHWqDQMZSy/Qns3F6U3OWpcoC3TiZbML2IOaWuDCUeFpTw0NDQx0prYO+EPZ7Sr4w==,
+        tarball: https://npm.pkg.github.com/download/@avgeek-inc/runtime-web/0.1.1/3fac2e527d01a7dad5ff9e18c4340648d3e589c6,
       }
     engines: { node: ">=24" }
     peerDependencies:
@@ -8596,14 +8589,12 @@ snapshots:
       - utf-8-validate
       - webpack
 
-  "@avgeek-inc/ref-data@0.3.0": {}
-
   "@avgeek-inc/reference-data@0.3.0": {}
 
-  "@avgeek-inc/runtime-web@0.1.0(@floating-ui/dom@1.8.0)(@react-spectrum/provider@3.11.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(next@16.3.3(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@24.12.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react-is@16.13.1)(react@19.2.5)(redux@5.0.1)(tailwindcss@4.2.4)":
+  "@avgeek-inc/runtime-web@0.1.1(@floating-ui/dom@1.8.0)(@react-spectrum/provider@3.11.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(next@16.3.3(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@24.12.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react-is@16.13.1)(react@19.2.5)(redux@5.0.1)(tailwindcss@4.2.4)":
     dependencies:
       "@avgeek-inc/ds-web": 0.1.3(@floating-ui/dom@1.8.0)(@react-spectrum/provider@3.11.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.5(react@19.2.5))(react-is@16.13.1)(react@19.2.5)(redux@5.0.1)(tailwindcss@4.2.4)
-      "@avgeek-inc/ref-data": 0.3.0
+      "@avgeek-inc/reference-data": 0.3.0
       agentation: 3.0.2(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       next: 16.3.3(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@24.12.2)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       react: 19.2.5

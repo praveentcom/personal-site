@@ -59,7 +59,7 @@
     "tailwindcss": "4.2.4",
     "zod": "4.3.6",
     "@avgeek-inc/reference-data": "0.3.0",
-    "@avgeek-inc/runtime-web": "0.1.0",
+    "@avgeek-inc/runtime-web": "0.1.1",
     "@avgeek-inc/ds-web-sections": "0.1.0",
     "remark-frontmatter": "5.0.0",
     "@mdx-js/react": "3.1.1"
