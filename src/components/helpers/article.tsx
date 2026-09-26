@@ -1,7 +1,6 @@
 import { cache } from "react";
 import { ArticleSchema } from "@/types/article";
 import { readEntries, isPublished, contentYear } from "@/lib/content";
-import { getContentComponent } from "@/lib/mdx";
 
 const getArticles = cache(async () =>
   (await readEntries("blog", ArticleSchema))
@@ -32,25 +31,5 @@ export async function getAllArticlesIndex(limit?: number) {
 export async function getArticleBySlugRaw(slug: string) {
   return (
     (await getArticles()).find((entry) => entry.meta.slug === slug) ?? null
-  );
-}
-export async function getArticleContent(slug: string) {
-  return getContentComponent("blog", slug);
-}
-export async function getAllCategories() {
-  return [
-    ...new Set(
-      (await getAllArticleSlugs()).flatMap((article) => article.categories),
-    ),
-  ];
-}
-export async function getAllTags() {
-  return [
-    ...new Set((await getAllArticleSlugs()).flatMap((article) => article.tags)),
-  ];
-}
-export async function getArticlesByCategory(category: string) {
-  return (await getAllArticleSlugs()).filter((article) =>
-    article.categories.includes(category),
   );
 }

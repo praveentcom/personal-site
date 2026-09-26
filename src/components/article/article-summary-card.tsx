@@ -1,48 +1,29 @@
-"use client";
-
-import { Link } from "@avgeek-inc/ds-web/navigation/link";
-import { TypographyParagraph } from "@avgeek-inc/ds-web/typography/typography";
-
-import { formatDate } from "@/components/helpers/date";
+import Link from "next/link";
 import { URLS } from "@/components/helpers/urls";
-import { Article } from "@/types/article";
+import type { Article } from "@/types/article";
 
-export type ArticleLike = Pick<
-  Article,
-  | "slug"
-  | "title"
-  | "description"
-  | "date"
-  | "readTime"
-  | "tags"
-  | "categories"
-  | "published"
-  | "image"
-> & { year: string };
+type ArticleSummary = Pick<Article, "slug" | "title" | "emoji" | "date">;
 
-export function ArticleSummaryCard({ article }: { article: ArticleLike }) {
+export function ArticleSummaryCard({ article }: { article: ArticleSummary }) {
+  const date = new Date(article.date).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  });
   return (
-    <article className="py-3 first:pt-0 last:pb-0">
-      <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4">
-        <TypographyParagraph className="sm:min-w-24" color="muted">
-          {formatDate(article.date)}
-        </TypographyParagraph>
-        <div className="grid min-w-0 gap-1">
-          <Link href={URLS.ARTICLES(article.slug)} className="sm:line-clamp-1">
-            {article.title}
-          </Link>
-          {article.description ? (
-            <TypographyParagraph
-              className="line-clamp-2"
-              color="muted"
-              size="sm"
-              title={article.description}
-            >
-              {article.description}
-            </TypographyParagraph>
-          ) : null}
-        </div>
-      </div>
+    <article>
+      <Link className="article-row" href={URLS.ARTICLES(article.slug)}>
+        <span className="article-title">
+          {article.emoji && (
+            <span className="article-list-emoji" aria-hidden="true">
+              {article.emoji}
+            </span>
+          )}
+          <span>{article.title}</span>
+        </span>
+        <time dateTime={article.date}>{date}</time>
+      </Link>
     </article>
   );
 }

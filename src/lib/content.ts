@@ -3,13 +3,7 @@ import path from "node:path";
 import matter from "gray-matter";
 import { z } from "zod";
 
-export type Collection =
-  | "blog"
-  | "apps"
-  | "community"
-  | "education"
-  | "work"
-  | "profile";
+export type Collection = "blog";
 const root = path.join(process.cwd(), "content");
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 

@@ -16,6 +16,7 @@ apps:
         - .npmrc
         - package.json
         - pnpm-lock.yaml
+        - patches/**
         - pnpm-workspace.yaml
         - next.config.ts
         - postcss.config.mjs

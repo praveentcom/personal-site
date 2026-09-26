@@ -1,14 +1,11 @@
 "use client";
 
-import { Button, ButtonLink } from "@avgeek-inc/ds-web/buttons/button";
-import { TitleSection } from "@avgeek-inc/ds-web-sections/title-section";
-
-import { plural } from "pluralize";
-
-import { getArticleLabel } from "@/components/helpers/config";
-import { URLS } from "@/components/helpers/urls";
-
-const articleLabel = plural(getArticleLabel());
+import { Button } from "@avgeek-inc/ds-web/buttons/button";
+import { Link } from "@avgeek-inc/ds-web/navigation/link";
+import {
+  TypographyHeading,
+  TypographyParagraph,
+} from "@avgeek-inc/ds-web/typography/typography";
 
 export default function Error({
   reset,
@@ -17,22 +14,19 @@ export default function Error({
   reset: () => void;
 }) {
   return (
-    <TitleSection
-      titleLevel={1}
-      actions={
-        <>
-          <Button onPress={reset}>Try again</Button>
-          <ButtonLink variant="secondary" href={URLS.HOME()}>
-            Home
-          </ButtonLink>
-          <ButtonLink variant="secondary" href={URLS.ARTICLES_LIST()}>
-            Browse {articleLabel.toLowerCase()}
-          </ButtonLink>
-        </>
-      }
-      breadcrumbAncestors={[{ href: URLS.HOME(), label: "Praveen" }]}
-      description={`We couldn't load these ${articleLabel.toLowerCase()}. Try again or choose another destination.`}
-      title={`${articleLabel} unavailable`}
-    />
+    <section className="status-page">
+      <TypographyHeading elementType="h1" level={3}>
+        Couldn’t load this page
+      </TypographyHeading>
+      <TypographyParagraph>
+        Please try again, or return to the homepage.
+      </TypographyParagraph>
+      <div className="status-actions">
+        <Button onPress={reset} variant="secondary">
+          Try again
+        </Button>
+        <Link href="/">Home</Link>
+      </div>
+    </section>
   );
 }

@@ -1,4 +1,4 @@
-# Praveen Website
+# Praveen’s personal website
 
 Personal website and blog built with Next.js and local MDX.
 
@@ -13,27 +13,19 @@ pnpm build
 Private dependencies require GitHub Packages and Hugeicons credentials in your
 user npm configuration, plus `HEROUI_AUTH_TOKEN` during installation.
 
+Creations are listed in `data/creations.ts` with a name, URL, and optional logo path.
+
 ## Writing
 
 Add `content/blog/<slug>/index.mdx`; its URL is `/blog/<slug>`. Frontmatter needs
-`title`, `description`, `date` (`YYYY-MM-DD`), and `tags`. Use `published: false`
+`title`, `description`, `date` (`YYYY-MM-DD`), and `tags`; optional `emoji` appears in the list and article header. Use `published: false`
 or `private: true` to exclude a post from public pages and feeds.
 
-Keep article images beside the MDX file and import them with Next Image:
-
-```mdx
-import Image from "next/image";
-import diagram from "./diagram.png";
-
-<Image
-  src={diagram}
-  alt="Deployment flow"
-  sizes="(max-width: 768px) 100vw, 768px"
-/>
-```
+Blog bodies use the design system Markdown renderer. Use standard Markdown in the
+MDX files, including fenced code blocks. Store images in `public/images/blog/`
+and reference them as `![Description](/images/blog/example.png)`.
 
 Keep shared logos and social images in `public/images/`. Content and assets are
-committed and deployed together; no content upload or CDN synchronization is needed.
+committed and deployed together.
 
-Towbar deployment settings live in `.towbar/deployment.yml`. Automatic previews
-remain disabled until Towbar invalidates build caches when build secrets change.
+Towbar deployment settings live in `.towbar/deployment.yml`.

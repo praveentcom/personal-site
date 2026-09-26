@@ -1,18 +1,15 @@
-import { TitleSection } from "@avgeek-inc/ds-web-sections/title-section";
+import { Markdown } from "@avgeek-inc/ds-web/typography/markdown";
+import Link from "next/link";
+import { TypographyHeading } from "@avgeek-inc/ds-web/typography/typography";
 
 import { StructuredData } from "@avgeek-inc/ds-web/utilities/structured-data";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { plural } from "pluralize";
-
-import { ArticleTitleDetails } from "@/components/article/article-header";
 import {
   getAllArticleSlugs,
   getArticleBySlugRaw,
-  getArticleContent,
 } from "@/components/helpers/article";
-import { getArticleLabel } from "@/components/helpers/config";
 import {
   createNotFoundMetadata,
   createPageMetadata,
@@ -26,7 +23,7 @@ interface PageProps {
   }>;
 }
 
-const articleLabel = plural(getArticleLabel());
+const articleLabel = "Writings";
 
 export async function generateStaticParams() {
   const articles = await getAllArticleSlugs();
@@ -45,37 +42,45 @@ export default async function ArticlePage({ params }: PageProps) {
   }
 
   const article = rawArticle.meta;
-  const Content = await getArticleContent(slug);
-
-  const mdUrl = URLS.ARTICLE_MARKDOWN(article.slug);
 
   return (
     <>
-      <TitleSection
-        titleLevel={1}
-        breadcrumbAncestors={[
-          { href: URLS.HOME(), label: "Home" },
-          { href: URLS.ARTICLES_LIST(), label: articleLabel },
-        ]}
-        description={article.description}
-        title={article.title}
-      />
+      <header className="page-intro article-intro">
+        <Link className="back-link" href="/">
+          ← Writings
+        </Link>
+        {article.emoji && (
+          <div className="article-emoji" aria-hidden="true">
+            {article.emoji}
+          </div>
+        )}
+        <TypographyHeading elementType="h1" level={2}>
+          {article.title}
+        </TypographyHeading>
+        <div className="article-meta">
+          <time dateTime={article.date}>
+            {new Date(article.date).toLocaleDateString("en-GB", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+              timeZone: "UTC",
+            })}
+          </time>
+          <span>{article.readTime} min read</span>
+        </div>
+      </header>
       <StructuredData
         data={generateArticleSchema({
           ...article,
           content: rawArticle.raw,
         })}
       />
-      <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
-        <ArticleTitleDetails
-          article={article}
-          markdown={rawArticle.raw}
-          mdUrl={mdUrl}
-        />
-      </section>
-      <section className="grid gap-6 px-5 sm:px-6 py-5 sm:py-6">
-        <Content />
-      </section>
+      <article className="reading-content">
+        <Markdown content={rawArticle.raw} />
+      </article>
+      <div className="article-end">
+        <Link href="/">← Writings</Link>
+      </div>
     </>
   );
 }
