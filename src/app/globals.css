@@ -155,14 +155,6 @@
   scroll-margin-top: 24px;
   text-wrap: balance;
 }
-.article-code {
-  margin-block: 24px;
-}
-.article-code pre {
-  margin: 0;
-  padding: 16px;
-  font-size: var(--text-sm);
-}
 .status-page {
   display: grid;
   gap: 16px;
@@ -200,8 +192,7 @@
   .site-footer,
   .skip-link,
   .back-link,
-  .article-end,
-  .article-code button {
+  .article-end {
     display: none;
   }
   .reading-content pre {
@@ -363,11 +354,6 @@
     padding-bottom: 0;
   }
 }
-@media print {
-  .site-cover {
-    display: none;
-  }
-}
 
 .site-cover,
 .site-cover img,
@@ -458,5 +444,11 @@ html[data-theme="dark"] .avatar-dark {
   html.theme-changing[data-theme][data-light-period] body {
     transition-duration: 100ms !important;
     transition-delay: 0s !important;
+  }
+}
+
+@media print {
+  .site-cover {
+    display: none;
   }
 }

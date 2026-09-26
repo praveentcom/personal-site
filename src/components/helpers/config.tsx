@@ -8,7 +8,6 @@ export const PROFILE_NAME = `${profile.firstName} ${profile.lastName}`;
  */
 export const SITE_TITLE = configData.seo.title || PROFILE_NAME;
 export const SITE_DESCRIPTION = configData.seo.description || "";
-export const SITE_KEYWORDS = configData.seo.keywords || [];
 export const SITE_IMAGE = configData.seo.image || "";
 
 /**
