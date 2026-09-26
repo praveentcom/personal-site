@@ -1,13 +1,12 @@
-import { InterfaceAnimationPolicy } from "@avgeek-inc/runtime-web/interface-animation-policy";
-import { createAccessibilityScript } from "@avgeek-inc/runtime-web/accessibility-script";
+import { PersistedThemeProvider } from "@avgeek-inc/runtime-web/browser-theme";
 import { themeBootstrapScript } from "@avgeek-inc/runtime-web/theme-bootstrap";
 import { ToastProvider } from "@avgeek-inc/ds-web/overlays/toast";
-import { AgentationFeedback } from "@avgeek-inc/runtime-web/agentation-feedback";
-import { PersistedThemeProvider as Providers } from "@avgeek-inc/runtime-web/browser-theme";
 import type { Metadata } from "next";
 
 import "./globals.css";
 
+import { LightPeriod } from "@/components/light-period";
+import { lightPeriodBootstrapScript } from "@/components/helpers/light-period";
 import { ApplicationRuntime } from "@/components/application-runtime";
 import {
   SITE_DESCRIPTION,
@@ -29,21 +28,17 @@ export default function RootLayout({
     <html lang="en" data-theme="default" suppressHydrationWarning>
       <head>
         <script
-          id="color-scheme-bootstrap"
-          dangerouslySetInnerHTML={{ __html: themeBootstrapScript }}
-        />
-        <script
-          id="accessibility-bootstrap"
-          dangerouslySetInnerHTML={{ __html: createAccessibilityScript({}) }}
+          dangerouslySetInnerHTML={{
+            __html: themeBootstrapScript + lightPeriodBootstrapScript,
+          }}
         />
       </head>
-      <body className="font-sans min-h-dvh max-w-full overflow-x-clip">
-        <Providers>
-          <InterfaceAnimationPolicy />
+      <body className="min-h-dvh bg-background text-foreground font-sans">
+        <PersistedThemeProvider>
+          <LightPeriod />
           <ApplicationRuntime>{children}</ApplicationRuntime>
           <ToastProvider />
-          <AgentationFeedback />
-        </Providers>
+        </PersistedThemeProvider>
       </body>
     </html>
   );

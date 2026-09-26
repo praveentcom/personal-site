@@ -4,7 +4,7 @@ export const configData: ConfigData = {
   seo: {
     title: "Praveen Thirumurugan | Software Developer",
     description:
-      "I build and maintain multiple OSS projects in the developer tools space and share my insights and learnings through community talks and written articles.",
+      "I build software and write about what I learn. Thoughts and things I’ve made.",
     keywords: [
       "full stack developer",
       "software engineer",
@@ -31,23 +31,5 @@ export const configData: ConfigData = {
     twitterCard: "summary_large_image",
     twitterSite: "@praveentcom",
     twitterCreator: "@praveentcom",
-  },
-  navigation: {
-    home: false,
-    apps: true,
-    articles: true,
-    community: true,
-    education: true,
-    work: false,
-    customLinks: [],
-  },
-  misc: {
-    content: {
-      articleLabel: "Article",
-      articleSlug: "blog",
-    },
-    footerLabel: "Build. Ship. Repeat.",
-    locale: "en-IN",
-    timezone: "Asia/Kolkata",
   },
 };

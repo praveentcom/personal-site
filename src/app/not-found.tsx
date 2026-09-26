@@ -1,39 +1,22 @@
-import { ButtonLink } from "@avgeek-inc/ds-web/buttons/button";
-import { TitleSection } from "@avgeek-inc/ds-web-sections/title-section";
-import type { Metadata } from "next";
-
-import { plural } from "pluralize";
-
-import { getArticleLabel } from "@/components/helpers/config";
-import { createPageMetadata } from "@/components/helpers/metadata";
-import { URLS } from "@/components/helpers/urls";
-
-const articleLabel = plural(getArticleLabel());
+import { Link } from "@avgeek-inc/ds-web/navigation/link";
+import {
+  TypographyHeading,
+  TypographyParagraph,
+} from "@avgeek-inc/ds-web/typography/typography";
 
 export default function NotFound() {
   return (
-    <TitleSection
-      titleLevel={1}
-      actions={
-        <>
-          <ButtonLink href={URLS.HOME()}>Home</ButtonLink>
-          <ButtonLink variant="secondary" href={URLS.ARTICLES_LIST()}>
-            Browse {articleLabel.toLowerCase()}
-          </ButtonLink>
-        </>
-      }
-      breadcrumbAncestors={[{ href: URLS.HOME(), label: "Praveen" }]}
-      description="The page you're looking for doesn't exist or has been moved."
-      title="Page not found"
-    />
+    <section className="status-page">
+      <TypographyParagraph color="muted" size="sm">
+        404
+      </TypographyParagraph>
+      <TypographyHeading elementType="h1" level={3}>
+        Page not found
+      </TypographyHeading>
+      <TypographyParagraph>
+        This page may have moved, or the link may be incorrect.
+      </TypographyParagraph>
+      <Link href="/">Back to Praveen’s homepage</Link>
+    </section>
   );
-}
-
-export async function generateMetadata(): Promise<Metadata> {
-  const metadata = createPageMetadata({
-    title: `Page not found`,
-    description: `The page you're looking for doesn't exist or has been moved. Return to the homepage or browse ${articleLabel.toLowerCase()} to find what you're looking for.`,
-  });
-
-  return metadata;
 }

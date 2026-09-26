@@ -2,6 +2,7 @@ import { z } from "zod";
 
 const ArticleSchema = z.object({
   title: z.string(),
+  emoji: z.string().trim().min(1).optional(),
   description: z.string(),
   date: z.string(),
   tags: z.array(z.string()),

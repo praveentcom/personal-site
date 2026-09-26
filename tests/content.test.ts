@@ -4,10 +4,6 @@ import { access } from "node:fs/promises";
 import path from "node:path";
 import { readEntries, isPublished, contentYear } from "../src/lib/content.ts";
 import { ArticleSchema } from "../src/types/article.ts";
-import { AppSchema } from "../src/types/app.ts";
-import { WorkExperienceSchema } from "../src/types/work.ts";
-import { EducationSchema } from "../src/types/education.ts";
-import { CommunitySchema } from "../src/types/community.ts";
 import { URLS } from "../src/components/helpers/urls.ts";
 
 test("draft and private content is excluded from public discovery and lookups", () => {
@@ -23,36 +19,25 @@ test("content dates reject rollover and ambiguous input", () => {
   }
 });
 
-test("blog URLs omit the year and encode tag names once", () => {
-  assert.equal(URLS.ARTICLES("aws-s3-glacier"), "/blog/aws-s3-glacier");
+test("blog URLs encode path segments once", () => {
+  assert.equal(URLS.ARTICLES("example-post"), "/blog/example-post");
   assert.equal(
-    URLS.ARTICLES_TAG("Google Cloud Platform"),
-    "/blog/tag/Google%20Cloud%20Platform",
+    URLS.ARTICLE_MARKDOWN("example post"),
+    "/blog/example%20post/md",
   );
 });
 
-test("every content entry has valid metadata and its image assets exist locally", async () => {
-  const groups = await Promise.all([
-    readEntries("blog", ArticleSchema),
-    readEntries("apps", AppSchema),
-    readEntries("work", WorkExperienceSchema),
-    readEntries("education", EducationSchema),
-    readEntries("community", CommunitySchema),
-  ]);
-  assert.ok(groups.flat().length > 0);
-  for (const group of groups) {
-    assert.equal(new Set(group.map((item) => item.slug)).size, group.length);
-    for (const { meta, content } of group) {
-      const date = "date" in meta ? meta.date : meta.startDate;
-      contentYear(date);
-      if ("tags" in meta)
-        assert.ok(content.trim(), "article body must not be empty");
-      for (const image of [meta.image, meta.ogImage].filter(
-        (value): value is string => Boolean(value),
-      )) {
-        assert.ok(image.startsWith("/"), `Image must be local: ${image}`);
-        await access(path.join(process.cwd(), "public", image));
-      }
+test("blog entries have valid metadata and local image assets", async () => {
+  const entries = await readEntries("blog", ArticleSchema);
+  assert.equal(new Set(entries.map((item) => item.slug)).size, entries.length);
+  for (const { meta, content } of entries) {
+    contentYear(meta.date);
+    assert.ok(content.trim(), "article body must not be empty");
+    for (const image of [meta.image, meta.ogImage].filter(
+      (value): value is string => Boolean(value),
+    )) {
+      assert.ok(image.startsWith("/"), `Image must be local: ${image}`);
+      await access(path.join(process.cwd(), "public", image));
     }
   }
 });

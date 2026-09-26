@@ -1,0 +1,37 @@
+diff --git a/dist/typography/markdown.js b/dist/typography/markdown.js
+index bbbc495553bae2ad86b20e5d4d5b93e91f36cd5d..9d962a982fd2b4f352731b438c44939a0a577707 100644
+--- a/dist/typography/markdown.js
++++ b/dist/typography/markdown.js
+@@ -38,26 +38,26 @@ function MarkdownListItem({ children, className, node, ...props }) {
+ }
+ function MarkdownTable({ node: _node, className, ...props }) {
+     const styles = tableVariants();
+-    return _jsx("table", { className: styles.content({ className }), ...props });
++    return (_jsx("div", { className: styles.base(), children: _jsx("div", { className: styles.scrollContainer(), children: _jsx("table", { "data-slot": "table-content", className: styles.content({ className }), ...props }) }) }));
+ }
+ function MarkdownTableHeader({ node: _node, className, ...props }) {
+     const styles = tableVariants();
+-    return _jsx("thead", { className: styles.header({ className }), ...props });
++    return (_jsx("thead", { "data-slot": "table-header", className: styles.header({ className }), ...props }));
+ }
+ function MarkdownTableBody({ node: _node, className, ...props }) {
+     const styles = tableVariants();
+-    return _jsx("tbody", { className: styles.body({ className }), ...props });
++    return (_jsx("tbody", { "data-slot": "table-body", className: styles.body({ className }), ...props }));
+ }
+ function MarkdownTableRow({ node: _node, className, ...props }) {
+     const styles = tableVariants();
+-    return _jsx("tr", { className: styles.row({ className }), ...props });
++    return (_jsx("tr", { "data-slot": "table-row", className: styles.row({ className }), ...props }));
+ }
+ function MarkdownTableHead({ node: _node, className, ...props }) {
+     const styles = tableVariants();
+-    return _jsx("th", { className: styles.column({ className }), ...props });
++    return (_jsx("th", { "data-slot": "table-head", className: styles.column({ className }), ...props }));
+ }
+ function MarkdownTableCell({ node: _node, className, ...props }) {
+     const styles = tableVariants();
+-    return _jsx("td", { className: styles.cell({ className }), ...props });
++    return (_jsx("td", { "data-slot": "table-cell", className: styles.cell({ className }), ...props }));
+ }
+ export { Markdown, HeroMarkdown as MarkdownPrimitive, StreamMarkdown };
