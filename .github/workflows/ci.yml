@@ -46,5 +46,5 @@ jobs:
             --secret id=SENTRY_ALLOW_MISSING,env=SENTRY_ALLOW_MISSING .
           docker run -d --name website-test -p 3000:3000 -e SENTRY_ALLOW_MISSING=true praveen-website:test
           trap 'docker logs website-test; docker rm -f website-test' EXIT
-          curl --fail --retry 12 --retry-connrefused --retry-delay 2 http://localhost:3000/api/health
+          curl --fail --retry 12 --retry-all-errors --retry-delay 2 --connect-timeout 2 --max-time 5 http://localhost:3000/api/health
           curl --fail --silent http://localhost:3000/ > /dev/null
