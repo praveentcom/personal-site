@@ -44,7 +44,6 @@
   },
   "dependencies": {
     "@avgeek-inc/ds-web": "0.1.3",
-    "@avgeek-inc/observability": "0.1.0",
     "@avgeek-inc/runtime-web": "0.1.1",
     "gray-matter": "4.0.3",
     "next": "16.3.3",

@@ -52,7 +52,6 @@ secrets:
     - NEXT_PUBLIC_BASE_URL
     - NEXT_PUBLIC_ALLOW_ROBOTS
     - NEXT_PUBLIC_TOWBAR_ANALYTICS
-    - SENTRY_ALLOW_MISSING
 environments:
   production:
     server: 13.204.184.47

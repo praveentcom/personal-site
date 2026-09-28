@@ -37,8 +37,7 @@ website for memory.
 
 Set the declared build secrets in Towbar before deploying. Use
 `NEXT_PUBLIC_BASE_URL=https://www.praveent.com`, `NEXT_PUBLIC_ALLOW_ROBOTS=true`,
-`NEXT_PUBLIC_TOWBAR_ANALYTICS=true`, and `SENTRY_ALLOW_MISSING=true` when Sentry is not
-configured. Private dependency
+`NEXT_PUBLIC_TOWBAR_ANALYTICS=true`. Private dependency
 credentials are passed through Docker build secrets and are not stored in the image.
 
 Towbar collects request and pageview analytics for 30 days. The production page
