@@ -1,3 +1,13 @@
 "use client";
 
-export { SentryGlobalError as default } from "@avgeek-inc/observability/next/global-error";
+import NextError from "next/error";
+
+export default function GlobalError() {
+  return (
+    <html lang="en">
+      <body>
+        <NextError statusCode={500} />
+      </body>
+    </html>
+  );
+}

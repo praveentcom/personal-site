@@ -27,12 +27,9 @@ packageExtensions:
 allowBuilds:
   "@zowe/secrets-for-zowe-sdk": true
   "@heroui-pro/react": true
-  "@sentry/cli": true
   sharp: true
   core-js-pure: true
   heroui-pro: true
-  "@newrelic/fn-inspect": false
-  "@newrelic/native-metrics": false
   protobufjs: true
 minimumReleaseAgeExclude:
   - "@avgeek-inc/*"
