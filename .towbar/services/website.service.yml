@@ -5,6 +5,9 @@ deployment:
   type: dockerfile
   dockerfile: Dockerfile
   context: .
+  resources:
+    cpus: 2
+    memory: 4g
 vulnerabilityScanning: true
 autoDeploy:
   inputs:
