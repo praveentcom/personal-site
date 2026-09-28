@@ -28,4 +28,21 @@ and reference them as `![Description](/images/blog/example.png)`.
 Keep shared logos and social images in `public/images/`. Content and assets are
 committed and deployed together.
 
-Towbar deployment settings live in `.towbar/deployment.yml`.
+## Deployment
+
+`towbar.yml` declares the production environment. The website settings live in
+`.towbar/services/website.service.yml` and target the Praveen Apps server.
+Builds run on the larger Platform Services server so they do not compete with the
+website for memory.
+
+Set the declared build secrets in Towbar before deploying. Use
+`NEXT_PUBLIC_BASE_URL=https://www.praveent.com`, `NEXT_PUBLIC_ALLOW_ROBOTS=true`,
+`NEXT_PUBLIC_TOWBAR_ANALYTICS=true`, and `SENTRY_ALLOW_MISSING=true` when Sentry is not
+configured. Private dependency
+credentials are passed through Docker build secrets and are not stored in the image.
+
+Towbar collects request and pageview analytics for 30 days. The production page
+template loads the same-origin tracking script. Random browser identifiers enable
+visitor counts, bounce rate, and exit pages; health checks are excluded.
+Scout Agent on the Praveen Apps server provides CPU, memory, disk, and network
+monitoring in Towbar.

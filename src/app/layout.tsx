@@ -2,6 +2,7 @@ import { PersistedThemeProvider } from "@avgeek-inc/runtime-web/browser-theme";
 import { themeBootstrapScript } from "@avgeek-inc/runtime-web/theme-bootstrap";
 import { ToastProvider } from "@avgeek-inc/ds-web/overlays/toast";
 import type { Metadata } from "next";
+import Script from "next/script";
 
 import "./globals.css";
 
@@ -39,6 +40,12 @@ export default function RootLayout({
           <ApplicationRuntime>{children}</ApplicationRuntime>
           <ToastProvider />
         </PersistedThemeProvider>
+        {process.env.NEXT_PUBLIC_TOWBAR_ANALYTICS === "true" && (
+          <Script
+            src="/.well-known/towbar-analytics/script.js"
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   );

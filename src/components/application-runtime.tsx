@@ -1,6 +1,7 @@
 import { getImageProps } from "next/image";
 import { Link } from "@avgeek-inc/ds-web/navigation/link";
 import { TypographyParagraph } from "@avgeek-inc/ds-web/typography/typography";
+import { PalmScenery } from "@/components/palm-scenery";
 import { ThemeToggle } from "@/components/theme-toggle";
 import type { ReactNode } from "react";
 
@@ -87,6 +88,7 @@ export function ApplicationRuntime({ children }: { children: ReactNode }) {
         </footer>
       </div>
       <div className="site-cover" aria-hidden="true">
+        <PalmScenery />
         {scenery.map(({ theme, mobile, tablet, desktop }) => (
           <picture key={theme} className={`scenery-${theme}`}>
             <source

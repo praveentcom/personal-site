@@ -27,6 +27,7 @@ RUN --mount=type=secret,id=SENTRY_AUTH_TOKEN,env=SENTRY_AUTH_TOKEN \
     --mount=type=secret,id=SENTRY_PRAVEEN_WEBSITE_DSN,env=SENTRY_PRAVEEN_WEBSITE_DSN \
     --mount=type=secret,id=NEXT_PUBLIC_BASE_URL,env=NEXT_PUBLIC_BASE_URL \
     --mount=type=secret,id=NEXT_PUBLIC_ALLOW_ROBOTS,env=NEXT_PUBLIC_ALLOW_ROBOTS \
+    --mount=type=secret,id=NEXT_PUBLIC_TOWBAR_ANALYTICS,env=NEXT_PUBLIC_TOWBAR_ANALYTICS \
     --mount=type=secret,id=SENTRY_ALLOW_MISSING,env=SENTRY_ALLOW_MISSING \
     SENTRY_RELEASE="praveen-website@${SOURCE_COMMIT:-$(node -p 'crypto.randomUUID()')}" pnpm build
 
