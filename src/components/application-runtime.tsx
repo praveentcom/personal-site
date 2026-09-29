@@ -83,7 +83,7 @@ export function ApplicationRuntime({ children }: { children: ReactNode }) {
             You can find me on{" "}
             <Link href="https://github.com/praveentcom">GitHub</Link> and{" "}
             <Link href="https://x.com/praveentcom">X</Link>, or{" "}
-            <Link href="mailto:mail@praveent.com">send me an email</Link>.
+            <Link href="mailto:mail@praveent.com">send an email</Link>.
           </TypographyParagraph>
         </footer>
       </div>

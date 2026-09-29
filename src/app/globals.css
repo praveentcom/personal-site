@@ -289,10 +289,22 @@
   text-underline-offset: 0.12em;
 }
 
+html {
+  --scenery-background: oklch(0.744 0.055 106.32);
+}
+html[data-theme="dark"] {
+  --scenery-background: oklch(0.315 0.012 229.308);
+}
+html,
+body {
+  background-color: var(--scenery-background);
+}
+
 .site-shell {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  background-color: var(--background);
 }
 .personal-site {
   flex: 1 0 auto;
@@ -389,6 +401,7 @@ html[data-theme="dark"] .theme-label-dark {
   display: block;
 }
 html[data-theme="light"][data-light-period="dusk"] {
+  --scenery-background: oklch(0.628 0.081 82.292);
   --background: #f6eadd;
   --surface: #fbf2e9;
   --surface-secondary: #efdecc;
@@ -438,10 +451,10 @@ html[data-theme="dark"] .avatar-dark {
   opacity: 1;
 }
 @media (prefers-reduced-motion: no-preference) {
-  html[data-theme][data-light-period] body {
+  html[data-theme][data-light-period] :is(body, .site-shell) {
     transition: background-color 100ms ease !important;
   }
-  html.theme-changing[data-theme][data-light-period] body {
+  html.theme-changing[data-theme][data-light-period] :is(body, .site-shell) {
     transition-duration: 100ms !important;
     transition-delay: 0s !important;
   }
