@@ -1,7 +1,7 @@
 import { PersistedThemeProvider } from "@avgeek-inc/runtime-web/browser-theme";
 import { themeBootstrapScript } from "@avgeek-inc/runtime-web/theme-bootstrap";
 import { ToastProvider } from "@avgeek-inc/ds-web/overlays/toast";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 
 import "./globals.css";
@@ -20,6 +20,10 @@ import { configData } from "@/data/config";
 
 export const revalidate = 3600;
 
+export const viewport: Viewport = {
+  viewportFit: "cover",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -34,7 +38,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-dvh bg-background text-foreground font-sans">
+      <body className="min-h-dvh text-foreground font-sans">
         <PersistedThemeProvider>
           <LightPeriod />
           <ApplicationRuntime>{children}</ApplicationRuntime>
