@@ -1,3 +1,4 @@
+fetchTimeout: 300000
 overrides:
   "@opentelemetry/core@2.7.1": 2.8.0
   "@tootallnate/once@2.0.0": 2.0.1
