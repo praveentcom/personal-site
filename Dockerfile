@@ -6,17 +6,16 @@ ENV NEXT_TELEMETRY_DISABLED=1
 FROM base AS dependencies
 RUN apk add --no-cache libc6-compat && corepack enable pnpm
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
-COPY patches ./patches
 RUN --mount=type=cache,id=praveen-website-pnpm,target=/pnpm/store \
-    --mount=type=secret,id=GITHUB_PACKAGES_TOKEN,env=GITHUB_PACKAGES_TOKEN,required=true \
+    --mount=type=secret,id=NPM_READ_TOKEN,env=NPM_READ_TOKEN,required=true \
     --mount=type=secret,id=HUGEICONS_LICENSE_KEY,env=HUGEICONS_LICENSE_KEY,required=true \
     --mount=type=secret,id=HEROUI_AUTH_TOKEN,env=HEROUI_AUTH_TOKEN,required=true \
     set -eu; \
     umask 077; \
     npmrc="$(mktemp)"; \
     trap 'rm -f "$npmrc"' EXIT; \
-    printf '//npm.pkg.github.com/:_authToken=%s\n//npm.hugeicons.com/:_authToken=%s\n' \
-      "$GITHUB_PACKAGES_TOKEN" "$HUGEICONS_LICENSE_KEY" > "$npmrc"; \
+    printf '//registry.npmjs.org/:_authToken=%s\n//npm.hugeicons.com/:_authToken=%s\n' \
+      "$NPM_READ_TOKEN" "$HUGEICONS_LICENSE_KEY" > "$npmrc"; \
     NPM_CONFIG_USERCONFIG="$npmrc" pnpm install --frozen-lockfile --store-dir /pnpm/store --config.blockExoticSubdeps=false
 
 FROM dependencies AS builder

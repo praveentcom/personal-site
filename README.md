@@ -10,8 +10,7 @@ pnpm verify
 pnpm build
 ```
 
-Private dependencies require GitHub Packages and Hugeicons credentials in your
-user npm configuration, plus `HEROUI_AUTH_TOKEN` during installation.
+Private dependencies require npm read access to the Avgeek organization and Hugeicons credentials in your user npm configuration, plus `HEROUI_AUTH_TOKEN` during installation.
 
 Creations are listed in `data/creations.ts` with a name, URL, and optional logo path.
 
@@ -48,6 +47,4 @@ monitoring in Towbar.
 
 Next.js configuration, robots rules, and `/api/health` are owned by this app.
 Theme persistence uses `next-themes` with the existing `workspace-ui-theme` key;
-day/twilight/night scenery keeps its separate light-period preference. Remaining
-legacy design-system/config imports resolve through npm aliases to their moved
-GitHub Packages under `avgeek-labs`. Runtime Web is not required.
+day/twilight/night scenery keeps its separate light-period preference. The site uses the private npm package `@avgeek/ds-web`; configure npm read access for the Avgeek organization. Runtime Web is not required.

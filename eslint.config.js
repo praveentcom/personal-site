@@ -1,4 +1,5 @@
-import { nextJsConfig } from "@avgeek-inc/config/eslint/next-js";
+import { defineConfig } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTypescript from "eslint-config-next/typescript";
 
-/** @type {import("eslint").Linter.Config} */
-export default nextJsConfig;
+export default defineConfig([...nextVitals, ...nextTypescript]);

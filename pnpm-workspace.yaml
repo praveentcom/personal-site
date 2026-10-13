@@ -31,8 +31,7 @@ allowBuilds:
   core-js-pure: true
   heroui-pro: true
   protobufjs: true
+  unrs-resolver: true
 minimumReleaseAgeExclude:
-  - "@avgeek-inc/*"
-  - "@avgeek-labs/*"
-patchedDependencies:
-  "@avgeek-inc/ds-web": patches/@avgeek-inc__ds-web.patch
+  - "@avgeek/ds-web@0.2.0"
+  - "@avgeek-oss/country-data@0.1.0"

@@ -1,8 +1,9 @@
-import { Markdown } from "@avgeek-inc/ds-web/typography/markdown";
+import { Markdown } from "@avgeek/ds-web/base/markdown";
 import Link from "next/link";
-import { TypographyHeading } from "@avgeek-inc/ds-web/typography/typography";
+import { Typography } from "@avgeek/ds-web/base/typography";
+import { typographyVariants } from "@heroui/styles";
 
-import { StructuredData } from "@avgeek-inc/ds-web/utilities/structured-data";
+import { StructuredData } from "@/components/structured-data";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -54,9 +55,12 @@ export default async function ArticlePage({ params }: PageProps) {
             {article.emoji}
           </div>
         )}
-        <TypographyHeading elementType="h1" level={2}>
+        <Typography.Heading
+          level={1}
+          className={typographyVariants({ type: "h2" }).base()}
+        >
           {article.title}
-        </TypographyHeading>
+        </Typography.Heading>
         <div className="article-meta">
           <time dateTime={article.date}>
             {new Date(article.date).toLocaleDateString("en-GB", {
@@ -76,7 +80,7 @@ export default async function ArticlePage({ params }: PageProps) {
         })}
       />
       <article className="reading-content">
-        <Markdown content={rawArticle.raw} />
+        <Markdown>{rawArticle.raw}</Markdown>
       </article>
       <div className="article-end">
         <Link href="/">← Writings</Link>

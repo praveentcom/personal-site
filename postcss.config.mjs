@@ -1,1 +1,3 @@
-export { default } from "@avgeek-inc/ds-web/postcss.config";
+const config = { plugins: { "@tailwindcss/postcss": {} } };
+
+export default config;

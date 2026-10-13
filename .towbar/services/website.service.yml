@@ -16,7 +16,6 @@ autoDeploy:
     - .npmrc
     - package.json
     - pnpm-lock.yaml
-    - patches/**
     - pnpm-workspace.yaml
     - next.config.ts
     - postcss.config.mjs
@@ -46,7 +45,7 @@ analytics:
     - /api/health
 secrets:
   build:
-    - GITHUB_PACKAGES_TOKEN
+    - NPM_READ_TOKEN
     - HUGEICONS_LICENSE_KEY
     - HEROUI_AUTH_TOKEN
     - NEXT_PUBLIC_BASE_URL

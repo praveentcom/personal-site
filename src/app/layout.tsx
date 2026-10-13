@@ -1,4 +1,3 @@
-import { ToastProvider } from "@avgeek-inc/ds-web/overlays/toast";
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 
@@ -41,7 +40,6 @@ export default function RootLayout({
         <ThemeProvider>
           <LightPeriod />
           <ApplicationRuntime>{children}</ApplicationRuntime>
-          <ToastProvider />
         </ThemeProvider>
         {process.env.NEXT_PUBLIC_TOWBAR_ANALYTICS === "true" && (
           <Script

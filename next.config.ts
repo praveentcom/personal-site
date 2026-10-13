@@ -17,7 +17,7 @@ export default function nextConfig(phase: string): NextConfig {
     turbopack: {
       root: process.cwd(),
     },
-    transpilePackages: ["@avgeek-inc/ds-web"],
+    transpilePackages: ["@avgeek/ds-web"],
     pageExtensions: ["ts", "tsx", "md", "mdx"],
     compress: true,
     poweredByHeader: false,

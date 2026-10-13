@@ -1,11 +1,9 @@
 "use client";
 
-import { Button } from "@avgeek-inc/ds-web/buttons/button";
-import { Link } from "@avgeek-inc/ds-web/navigation/link";
-import {
-  TypographyHeading,
-  TypographyParagraph,
-} from "@avgeek-inc/ds-web/typography/typography";
+import { Button } from "@avgeek/ds-web/base/button";
+import { Link } from "@avgeek/ds-web/base/link";
+import { Typography } from "@avgeek/ds-web/base/typography";
+import { typographyVariants } from "@heroui/styles";
 
 export default function Error({
   reset,
@@ -15,12 +13,15 @@ export default function Error({
 }) {
   return (
     <section className="status-page">
-      <TypographyHeading elementType="h1" level={3}>
+      <Typography.Heading
+        level={1}
+        className={typographyVariants({ type: "h3" }).base()}
+      >
         Couldn’t load this page
-      </TypographyHeading>
-      <TypographyParagraph>
+      </Typography.Heading>
+      <Typography.Paragraph>
         Please try again, or return to the homepage.
-      </TypographyParagraph>
+      </Typography.Paragraph>
       <div className="status-actions">
         <Button onPress={reset} variant="secondary">
           Try again

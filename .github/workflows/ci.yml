@@ -22,24 +22,24 @@ jobs:
       - run: corepack enable
       - name: Install dependencies
         env:
-          GITHUB_PACKAGES_TOKEN: ${{ secrets.PACKAGES_READ_TOKEN }}
+          NPM_READ_TOKEN: ${{ secrets.NPM_READ_TOKEN }}
           HUGEICONS_LICENSE_KEY: ${{ secrets.HUGEICONS_LICENSE_KEY }}
         run: |
           umask 077
           npmrc="$(mktemp)"
           trap 'rm -f "$npmrc"' EXIT
-          printf '//npm.pkg.github.com/:_authToken=%s\n//npm.hugeicons.com/:_authToken=%s\n' \
-            "$GITHUB_PACKAGES_TOKEN" "$HUGEICONS_LICENSE_KEY" > "$npmrc"
+          printf '//registry.npmjs.org/:_authToken=%s\n//npm.hugeicons.com/:_authToken=%s\n' \
+            "$NPM_READ_TOKEN" "$HUGEICONS_LICENSE_KEY" > "$npmrc"
           NPM_CONFIG_USERCONFIG="$npmrc" pnpm install --frozen-lockfile --config.blockExoticSubdeps=false
       - run: pnpm verify
       - run: pnpm build
       - name: Build and smoke-test production container
         env:
-          GITHUB_PACKAGES_TOKEN: ${{ secrets.PACKAGES_READ_TOKEN }}
+          NPM_READ_TOKEN: ${{ secrets.NPM_READ_TOKEN }}
           HUGEICONS_LICENSE_KEY: ${{ secrets.HUGEICONS_LICENSE_KEY }}
         run: |
           docker build -t praveen-website:test \
-            --secret id=GITHUB_PACKAGES_TOKEN,env=GITHUB_PACKAGES_TOKEN \
+            --secret id=NPM_READ_TOKEN,env=NPM_READ_TOKEN \
             --secret id=HUGEICONS_LICENSE_KEY,env=HUGEICONS_LICENSE_KEY \
             --secret id=HEROUI_AUTH_TOKEN,env=HEROUI_AUTH_TOKEN .
           docker run -d --name website-test -p 3000:3000 praveen-website:test

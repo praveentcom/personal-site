@@ -1,4 +1,4 @@
-@import "@avgeek-inc/ds-web/globals.css";
+@import "@avgeek/ds-web/globals.css";
 
 @source "../**/*.{ts,tsx}";
 @source "../../data/**/*.{ts,tsx,mdx}";
