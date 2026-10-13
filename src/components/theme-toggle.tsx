@@ -1,9 +1,17 @@
 "use client";
 
-import { useTheme } from "@avgeek-inc/ds-web/utilities/providers";
+import { useTheme } from "next-themes";
+import { useSyncExternalStore } from "react";
+
+const subscribeToHydration = () => () => {};
 
 export function ThemeToggle() {
-  const { setThemeMode, isHydrated } = useTheme();
+  const { setTheme } = useTheme();
+  const isHydrated = useSyncExternalStore(
+    subscribeToHydration,
+    () => true,
+    () => false,
+  );
   const cycleTheme = () => {
     const root = document.documentElement;
     const isNight = root.dataset.theme === "dark";
@@ -15,7 +23,7 @@ export function ThemeToggle() {
     } catch {
       // Storage can be unavailable in private browsing; keep the current appearance.
     }
-    setThemeMode(!isNight && isTwilight ? "dark" : "light");
+    setTheme(!isNight && isTwilight ? "dark" : "light");
   };
   return (
     <button

@@ -33,5 +33,6 @@ allowBuilds:
   protobufjs: true
 minimumReleaseAgeExclude:
   - "@avgeek-inc/*"
+  - "@avgeek-labs/*"
 patchedDependencies:
   "@avgeek-inc/ds-web": patches/@avgeek-inc__ds-web.patch

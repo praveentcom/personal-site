@@ -1,5 +1,3 @@
-import { PersistedThemeProvider } from "@avgeek-inc/runtime-web/browser-theme";
-import { themeBootstrapScript } from "@avgeek-inc/runtime-web/theme-bootstrap";
 import { ToastProvider } from "@avgeek-inc/ds-web/overlays/toast";
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
@@ -8,6 +6,7 @@ import "./globals.css";
 
 import { LightPeriod } from "@/components/light-period";
 import { lightPeriodBootstrapScript } from "@/components/helpers/light-period";
+import { ThemeProvider } from "@/components/theme-provider";
 import { ApplicationRuntime } from "@/components/application-runtime";
 import {
   SITE_DESCRIPTION,
@@ -34,16 +33,16 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: themeBootstrapScript + lightPeriodBootstrapScript,
+            __html: lightPeriodBootstrapScript,
           }}
         />
       </head>
       <body className="min-h-dvh text-foreground font-sans">
-        <PersistedThemeProvider>
+        <ThemeProvider>
           <LightPeriod />
           <ApplicationRuntime>{children}</ApplicationRuntime>
           <ToastProvider />
-        </PersistedThemeProvider>
+        </ThemeProvider>
         {process.env.NEXT_PUBLIC_TOWBAR_ANALYTICS === "true" && (
           <Script
             src="/.well-known/towbar-analytics/script.js"

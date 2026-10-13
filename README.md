@@ -45,3 +45,9 @@ template loads the same-origin tracking script. Random browser identifiers enabl
 visitor counts, bounce rate, and exit pages; health checks are excluded.
 Scout Agent on the Praveen Apps server provides CPU, memory, disk, and network
 monitoring in Towbar.
+
+Next.js configuration, robots rules, and `/api/health` are owned by this app.
+Theme persistence uses `next-themes` with the existing `workspace-ui-theme` key;
+day/twilight/night scenery keeps its separate light-period preference. Remaining
+legacy design-system/config imports resolve through npm aliases to their moved
+GitHub Packages under `avgeek-labs`. Runtime Web is not required.
