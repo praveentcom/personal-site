@@ -6,12 +6,12 @@
 
 .creations-list {
   display: grid;
-  gap: 16px;
+  gap: 8px;
 }
 .creations-list li {
-  display: grid;
-  gap: 4px;
-  justify-items: start;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .page-intro {
   margin-bottom: 32px;
@@ -67,7 +67,7 @@
   width: 48px;
   height: 48px;
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: 12px;
   margin-bottom: -4px;
 }
 .home-intro > p {
@@ -86,7 +86,7 @@
   text-underline-offset: 0.12em;
   text-decoration-thickness: 1px;
 }
-.personal-site a:hover {
+.personal-site a:not(.creation-link):hover {
   text-decoration-color: currentColor;
 }
 .personal-site :is(a, button, pre):focus-visible {
@@ -129,9 +129,7 @@
   font-weight: 400;
 }
 .creation-link {
-  font-weight: 400;
   min-height: 44px;
-  gap: 8px;
 }
 .external-mark {
   color: var(--muted);
@@ -229,10 +227,6 @@
   flex-shrink: 0;
 }
 
-.creation-link,
-.creation-link:hover {
-  text-decoration: none;
-}
 .footer-actions {
   display: flex;
   flex-wrap: wrap;
@@ -266,22 +260,18 @@
   color: var(--foreground);
   font-weight: 400;
 }
-.article-row,
-.creation-link {
+.article-row {
   color: var(--foreground);
 }
-.article-row time,
-.creation-link .external-mark {
+.article-row time {
   color: inherit;
 }
-.article-row:is(:hover, :focus-visible),
-.creation-link:is(:hover, :focus-visible) {
+.article-row:is(:hover, :focus-visible) {
   color: var(--foreground);
   text-decoration: none;
 }
 
-.article-row:hover .article-title > span:last-child:not(.article-list-emoji),
-.creation-link:hover .creation-name {
+.article-row:hover .article-title > span:last-child:not(.article-list-emoji) {
   text-decoration-line: underline;
   text-decoration-color: var(--separator-secondary);
   text-decoration-thickness: 1px;
