@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://towbar.dev/schemas/app.v2.json
 id: praveen-website
-name: Praveen Website
+name: Praveen Site
 deployment:
   type: dockerfile
   dockerfile: Dockerfile
