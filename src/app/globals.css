@@ -6,7 +6,7 @@
 
 .creations-list {
   display: grid;
-  gap: 8px;
+  gap: 4px;
 }
 .creations-list li {
   display: flex;

@@ -86,7 +86,7 @@ export default async function HomePage() {
                 />
               )}
               <Link href={creation.url} className="creation-link">
-                {creation.name} <Link.Icon aria-hidden="true">↗</Link.Icon>
+                {creation.name}
               </Link>
             </li>
           ))}
