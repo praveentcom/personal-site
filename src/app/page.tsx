@@ -76,20 +76,17 @@ export default async function HomePage() {
         <ul className="creations-list">
           {creations.map((creation) => (
             <li key={creation.url}>
+              {creation.logo && (
+                <Image
+                  src={creation.logo}
+                  alt=""
+                  width={28}
+                  height={28}
+                  className="creation-logo"
+                />
+              )}
               <Link href={creation.url} className="creation-link">
-                {creation.logo && (
-                  <Image
-                    src={creation.logo}
-                    alt=""
-                    width={28}
-                    height={28}
-                    className="creation-logo"
-                  />
-                )}
-                <span className="creation-name">{creation.name}</span>
-                <span aria-hidden="true" className="external-mark">
-                  ↗
-                </span>
+                {creation.name} <Link.Icon aria-hidden="true">↗</Link.Icon>
               </Link>
             </li>
           ))}
