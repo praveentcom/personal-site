@@ -1,9 +1,7 @@
-import { Link } from "@avgeek-inc/ds-web/navigation/link";
-import {
-  TypographyHeading,
-  TypographyParagraph,
-} from "@avgeek-inc/ds-web/typography/typography";
-import { StructuredData } from "@avgeek-inc/ds-web/utilities/structured-data";
+import { Link } from "@avgeek/ds-web/base/link";
+import { Typography } from "@avgeek/ds-web/base/typography";
+import { typographyVariants } from "@heroui/styles";
+import { StructuredData } from "@/components/structured-data";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { ArticleSummaryCard } from "@/components/article/article-summary-card";
@@ -41,13 +39,16 @@ export default async function HomePage() {
             />
           ))}
         </div>
-        <TypographyHeading elementType="h1" level={3}>
+        <Typography.Heading
+          level={1}
+          className={typographyVariants({ type: "h3" }).base()}
+        >
           Praveen Thirumurugan
-        </TypographyHeading>
-        <TypographyParagraph>
+        </Typography.Heading>
+        <Typography.Paragraph>
           I build software and write about what I learn. This is a place for my
           thoughts and things I’ve made.
-        </TypographyParagraph>
+        </Typography.Paragraph>
       </section>
       {articles.length > 0 && (
         <section
@@ -55,9 +56,13 @@ export default async function HomePage() {
           id="writing"
           aria-labelledby="writing-heading"
         >
-          <TypographyHeading elementType="h2" level={5} id="writing-heading">
+          <Typography.Heading
+            level={2}
+            className={typographyVariants({ type: "h5" }).base()}
+            id="writing-heading"
+          >
             Writings
-          </TypographyHeading>
+          </Typography.Heading>
           <div className="article-list">
             {articles.map((article) => (
               <ArticleSummaryCard key={article.slug} article={article} />
@@ -69,9 +74,13 @@ export default async function HomePage() {
         className="home-section home-creations"
         aria-labelledby="creations-heading"
       >
-        <TypographyHeading elementType="h2" level={5} id="creations-heading">
+        <Typography.Heading
+          level={2}
+          className={typographyVariants({ type: "h5" }).base()}
+          id="creations-heading"
+        >
           Creations
-        </TypographyHeading>
+        </Typography.Heading>
         <ul className="creations-list">
           {creations.map((creation) => (
             <li key={creation.url}>

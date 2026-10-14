@@ -1,6 +1,6 @@
 import { getImageProps } from "next/image";
-import { Link } from "@avgeek-inc/ds-web/navigation/link";
-import { TypographyParagraph } from "@avgeek-inc/ds-web/typography/typography";
+import { Link } from "@avgeek/ds-web/base/link";
+import { Typography } from "@avgeek/ds-web/base/typography";
 import { PalmScenery } from "@/components/palm-scenery";
 import { ThemeToggle } from "@/components/theme-toggle";
 import type { ReactNode } from "react";
@@ -75,7 +75,7 @@ export function ApplicationRuntime({ children }: { children: ReactNode }) {
             </a>
             <ThemeToggle />
           </div>
-          <TypographyParagraph
+          <Typography.Paragraph
             color="muted"
             size="sm"
             className="footer-contact"
@@ -84,7 +84,7 @@ export function ApplicationRuntime({ children }: { children: ReactNode }) {
             <Link href="https://github.com/praveentcom">GitHub</Link> and{" "}
             <Link href="https://x.com/praveentcom">X</Link>, or{" "}
             <Link href="mailto:mail@praveent.com">send an email</Link>.
-          </TypographyParagraph>
+          </Typography.Paragraph>
         </footer>
       </div>
       <div className="site-cover" aria-hidden="true">
@@ -106,7 +106,7 @@ export function ApplicationRuntime({ children }: { children: ReactNode }) {
               height={1024}
             />
             {/* Native img is required for picture art direction; sources are optimized by Next. */}
-            <img {...desktop} draggable={false} />
+            <img {...desktop} alt="" draggable={false} />
           </picture>
         ))}
       </div>

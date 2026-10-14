@@ -1,7 +1,12 @@
-import { createHealthResponse } from "@avgeek-inc/runtime-web/health-route";
-
 export const dynamic = "force-dynamic";
 
 export function GET() {
-  return createHealthResponse("praveen-website");
+  return Response.json(
+    {
+      ok: true,
+      service: "praveen-website",
+      checkedAt: new Date().toISOString(),
+    },
+    { headers: { "Cache-Control": "no-store" } },
+  );
 }

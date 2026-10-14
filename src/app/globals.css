@@ -1,5 +1,4 @@
-@import "@avgeek-inc/ds-web/globals.css";
-@import "@avgeek-inc/runtime-web/browser.css";
+@import "@avgeek/ds-web/globals.css";
 
 @source "../**/*.{ts,tsx}";
 @source "../../data/**/*.{ts,tsx,mdx}";
@@ -453,10 +452,6 @@ html[data-theme="dark"] .avatar-dark {
 @media (prefers-reduced-motion: no-preference) {
   html[data-theme][data-light-period] :is(body, .site-shell) {
     transition: background-color 100ms ease !important;
-  }
-  html.theme-changing[data-theme][data-light-period] :is(body, .site-shell) {
-    transition-duration: 100ms !important;
-    transition-delay: 0s !important;
   }
 }
 
