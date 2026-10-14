@@ -23,21 +23,13 @@ export default async function HomePage() {
       <StructuredData data={schema} />
       <section className="home-intro">
         <div className="home-avatar">
-          {(["light", "dark"] as const).map((theme) => (
-            <Image
-              key={theme}
-              src={
-                theme === "dark"
-                  ? "/images/logos/praveen-avatar-dark-v3.png"
-                  : "/images/logos/praveen-avatar-light-v2.png"
-              }
-              alt=""
-              width={48}
-              height={48}
-              draggable={false}
-              className={`avatar-${theme}`}
-            />
-          ))}
+          <Image
+            src="/images/logos/praveen-portrait.png"
+            alt="Praveen Thirumurugan"
+            width={48}
+            height={48}
+            draggable={false}
+          />
         </div>
         <Typography.Heading
           level={1}

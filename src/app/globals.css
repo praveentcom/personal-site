@@ -434,21 +434,6 @@ html[data-theme="light"][data-light-period="dusk"] .theme-label-twilight {
   display: block;
 }
 
-.home-avatar {
-  display: grid;
-}
-.home-avatar img {
-  grid-area: 1 / 1;
-}
-.avatar-dark {
-  opacity: 0;
-}
-html[data-theme="dark"] .avatar-light {
-  opacity: 0;
-}
-html[data-theme="dark"] .avatar-dark {
-  opacity: 1;
-}
 @media (prefers-reduced-motion: no-preference) {
   html[data-theme][data-light-period] :is(body, .site-shell) {
     transition: background-color 100ms ease !important;
