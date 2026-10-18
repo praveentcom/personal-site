@@ -5,6 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  "@avgeek-oss/country-data": 0.1.1
   "@opentelemetry/core@2.7.1": 2.8.0
   "@tootallnate/once@2.0.0": 2.0.1
   axios@1.15.2: 1.18.0
@@ -146,10 +147,11 @@ packages:
         integrity: sha512-sdg9NxU3zR4Mnawfbc/x6GB5Wf17WYud5qOuEuxXjaKpYpMkISSJEjItGebXJ2bQ4DIcly4NYH23mtkGJjvKUw==,
       }
 
-  "@avgeek-oss/country-data@0.1.0":
+  "@avgeek-oss/country-data@0.1.1":
     resolution:
       {
-        integrity: sha512-WXJpQNoZgwohe3bsYJXqqiERG/GBEdx85J9Yg9rr6kSyjlZGuxY/4TfHuTnJ+g8NyDoqeJokoCS6cASlRH+tBg==,
+        integrity: sha512-zMzKOTsWMFOebbDueBAxX3lVrWXtWNLTiH7C7TLaci/x6LPYEholBeO1JpH3x6LsCXNdXdz90qGHfsrWfzpkiw==,
+        tarball: https://registry.npmjs.org/@avgeek-oss/country-data/-/country-data-0.1.1.tgz,
       }
     engines: { node: ">=22" }
 
@@ -5775,11 +5777,11 @@ snapshots:
       package-manager-detector: 1.9.0
       tinyexec: 1.3.1
 
-  "@avgeek-oss/country-data@0.1.0": {}
+  "@avgeek-oss/country-data@0.1.1": {}
 
   "@avgeek/ds-web@0.2.0(@internationalized/date@3.12.4)(@react-aria/ssr@3.10.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(@react-aria/utils@3.34.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(@react-spectrum/provider@3.11.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(react-aria-components@1.22.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-aria@3.53.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(tailwind-merge@3.7.0)(tailwindcss@4.2.4)":
     dependencies:
-      "@avgeek-oss/country-data": 0.1.0
+      "@avgeek-oss/country-data": 0.1.1
       "@fontsource-variable/inter": 5.3.0
       "@heroui-pro/react": 1.0.0-beta.10
       "@heroui/react": 3.2.6(@internationalized/date@3.12.4)(@react-aria/ssr@3.10.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(@react-aria/utils@3.34.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(@react-spectrum/provider@3.11.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(react-aria-components@1.22.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-aria@3.53.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(tailwind-merge@3.7.0)(tailwindcss@4.2.4)
