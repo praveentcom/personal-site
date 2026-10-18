@@ -150,7 +150,7 @@ packages:
   "@avgeek-oss/country-data@0.1.1":
     resolution:
       {
-        integrity: sha512-MGM16Cv9WcZQflOl4D9uoJOubhiFeAldZ5eAQgLSi7QC6lR3uA24J62fSwOdxFxDNgsUNcPcEo2aFSGtX3fp6Q==,
+        integrity: sha512-QovRKCGcrcrGRx//p6s/ddIj7AKEQGZjBAeI6WETMtsXVOCbAlS/7B/dDmFI4cHxytahOmwjej/kwIAxKHw23Q==,
         tarball: https://registry.npmjs.org/@avgeek-oss/country-data/-/country-data-0.1.1.tgz,
       }
     engines: { node: ">=22" }
