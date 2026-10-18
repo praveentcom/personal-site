@@ -1,5 +1,6 @@
 fetchTimeout: 300000
 overrides:
+  "@avgeek-oss/country-data": 0.1.1
   "@opentelemetry/core@2.7.1": 2.8.0
   "@tootallnate/once@2.0.0": 2.0.1
   axios@1.15.2: 1.18.0
@@ -35,4 +36,4 @@ allowBuilds:
   unrs-resolver: true
 minimumReleaseAgeExclude:
   - "@avgeek/ds-web@0.2.0"
-  - "@avgeek-oss/country-data@0.1.0"
+  - "@avgeek-oss/country-data@0.1.1"
