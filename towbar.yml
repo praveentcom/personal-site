@@ -3,4 +3,6 @@ version: 2
 buildServer:
   ip: 13.206.149.158
 environments:
-  production: {}
+  production:
+    previews:
+      enabled: true
