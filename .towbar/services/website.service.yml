@@ -36,6 +36,10 @@ domains:
   primary: www.praveent.com
 tls:
   mode: cloudflare-dns
+preview:
+  enabled: true
+  domain: praveent.com
+  ttlHours: 168
 analytics:
   enabled: true
   pageviews: true

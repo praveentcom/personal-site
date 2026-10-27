@@ -12,7 +12,8 @@ pnpm build
 
 Private dependencies require npm read access to the Avgeek organization and Hugeicons credentials in your user npm configuration, plus `HEROUI_AUTH_TOKEN` during installation.
 
-Creations are listed in `data/creations.ts` with a name, URL, and optional logo path.
+Creations are listed in `data/creations.ts` with a name, URL, GitHub repository, and
+optional logo path. Star counts come from the GitHub API and refresh hourly.
 
 ## Writing
 
@@ -38,6 +39,11 @@ Set the declared build secrets in Towbar before deploying. Use
 `NEXT_PUBLIC_BASE_URL=https://www.praveent.com`, `NEXT_PUBLIC_ALLOW_ROBOTS=true`,
 `NEXT_PUBLIC_TOWBAR_ANALYTICS=true`. Private dependency
 credentials are passed through Docker build secrets and are not stored in the image.
+
+Pull requests against `main` get Towbar preview deployments at
+`*.praveent.com`, removed after 7 days or when the pull request closes. Save
+separate preview build secrets in Towbar, with `NEXT_PUBLIC_ALLOW_ROBOTS=false`
+and `NEXT_PUBLIC_TOWBAR_ANALYTICS=false`.
 
 Towbar collects request and pageview analytics for 30 days. The production page
 template loads the same-origin tracking script. Random browser identifiers enable
