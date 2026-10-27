@@ -52,5 +52,7 @@ Scout Agent on the Praveen Apps server provides CPU, memory, disk, and network
 monitoring in Towbar.
 
 Next.js configuration, robots rules, and `/api/health` are owned by this app.
-Theme persistence uses `next-themes` with the existing `workspace-ui-theme` key;
-day/twilight/night scenery keeps its separate light-period preference. The site uses the private npm package `@avgeek/ds-web`; configure npm read access for the Avgeek organization. Runtime Web is not required.
+The site has a single twilight appearance: `globals.css` layers its palette over
+the design system's default theme, and the cover scenery is generated from the
+pastel sources in `scripts/assets` by `scripts/grade-farm-scenery.mjs` and
+`scripts/prepare-palm-layers.mjs`. The site uses the private npm package `@avgeek/ds-web`; configure npm read access for the Avgeek organization. Runtime Web is not required.
