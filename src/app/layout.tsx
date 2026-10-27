@@ -3,9 +3,6 @@ import Script from "next/script";
 
 import "./globals.css";
 
-import { LightPeriod } from "@/components/light-period";
-import { lightPeriodBootstrapScript } from "@/components/helpers/light-period";
-import { ThemeProvider } from "@/components/theme-provider";
 import { ApplicationRuntime } from "@/components/application-runtime";
 import {
   SITE_DESCRIPTION,
@@ -28,19 +25,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="default" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: lightPeriodBootstrapScript,
-          }}
-        />
-      </head>
+    <html lang="en" data-theme="default">
       <body className="min-h-dvh text-foreground font-sans">
-        <ThemeProvider>
-          <LightPeriod />
-          <ApplicationRuntime>{children}</ApplicationRuntime>
-        </ThemeProvider>
+        <ApplicationRuntime>{children}</ApplicationRuntime>
         {process.env.NEXT_PUBLIC_TOWBAR_ANALYTICS === "true" && (
           <Script
             src="/.well-known/towbar-analytics/script.js"

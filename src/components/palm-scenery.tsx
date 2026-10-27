@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import palmAssets from "../../data/palm-assets.json";
 
-const themes = ["day", "twilight", "night"] as const;
+const layers = ["landscape", "tree", "right-trees"] as const;
 const vertexSource = `
 attribute vec2 position;
 attribute vec2 texturePosition;
@@ -161,7 +161,6 @@ export function PalmScenery() {
     let frame = 0;
     let lastTime = 0;
     let elapsed = 0;
-    let activeTheme = 0;
     const textures: WebGLTexture[] = [];
     const buffers: WebGLBuffer[] = [];
     const shaders: WebGLShader[] = [];
@@ -185,15 +184,11 @@ export function PalmScenery() {
     const scenery = mesh(0, 0, 2172, 724, 1, 1);
     const palm = mesh(20, 70, 320, 470, 40, 59);
     const rightPalms = mesh(1760, 60, 412, 485, 52, 61);
-    const drawLayer = (
-      index: number,
-      vertices: Float32Array,
-      layer: number,
-    ) => {
+    const drawLayer = (vertices: Float32Array, layer: number) => {
       gl.bindBuffer(gl.ARRAY_BUFFER, buffers[layer]!);
       gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 16, 0);
       gl.vertexAttribPointer(texturePosition, 2, gl.FLOAT, false, 16, 8);
-      gl.bindTexture(gl.TEXTURE_2D, textures[index]!);
+      gl.bindTexture(gl.TEXTURE_2D, textures[layer]!);
       gl.uniform1f(tree, layer);
       gl.drawArrays(gl.TRIANGLES, 0, vertices.length / 4);
     };
@@ -202,9 +197,9 @@ export function PalmScenery() {
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.uniform1f(time, elapsed);
       gl.uniform1f(moving, reducedMotion.matches ? 0 : 1);
-      drawLayer(activeTheme * 3, scenery, 0);
-      drawLayer(activeTheme * 3 + 1, palm, 1);
-      drawLayer(activeTheme * 3 + 2, rightPalms, 2);
+      drawLayer(scenery, 0);
+      drawLayer(palm, 1);
+      drawLayer(rightPalms, 2);
     };
     const tick = (now: number) => {
       if (lastTime) elapsed += Math.min((now - lastTime) / 1000, 0.05);
@@ -216,13 +211,6 @@ export function PalmScenery() {
       if (disposed) return;
       cancelAnimationFrame(frame);
       lastTime = 0;
-      const root = document.documentElement;
-      activeTheme =
-        root.dataset.theme === "dark"
-          ? 2
-          : root.dataset.lightPeriod === "dusk"
-            ? 1
-            : 0;
       render();
       if (
         initialized &&
@@ -248,14 +236,12 @@ export function PalmScenery() {
       loading = true;
       try {
         const images = await Promise.all(
-          themes.flatMap((theme) =>
-            ["landscape", "tree", "right-trees"].map(async (layer) => {
-              const image = new Image();
-              image.src = `/images/covers/palm/${layer}-${theme}.webp?v=${palmAssets.revision}`;
-              await image.decode();
-              return image;
-            }),
-          ),
+          layers.map(async (layer) => {
+            const image = new Image();
+            image.src = `/images/covers/palm/${layer}-twilight.webp?v=${palmAssets.revision}`;
+            await image.decode();
+            return image;
+          }),
         );
         if (disposed) return;
         shader(gl.VERTEX_SHADER, vertexSource);
@@ -316,13 +302,8 @@ export function PalmScenery() {
       update();
     });
     const sizing = new ResizeObserver(resize);
-    const themeObserver = new MutationObserver(update);
     observer.observe(canvas);
     sizing.observe(canvas);
-    themeObserver.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["data-theme", "data-light-period"],
-    });
     const contextLost = () => {
       initialized = false;
       cancelAnimationFrame(frame);
@@ -338,7 +319,6 @@ export function PalmScenery() {
       cancelAnimationFrame(frame);
       observer.disconnect();
       sizing.disconnect();
-      themeObserver.disconnect();
       canvas.removeEventListener("webglcontextlost", contextLost);
       desktop.removeEventListener("change", load);
       reducedMotion.removeEventListener("change", update);
