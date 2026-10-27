@@ -5,8 +5,9 @@
 @source "../../content/**/*.mdx";
 
 .creations-list {
-  display: grid;
-  gap: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
 }
 .creations-list li {
   display: flex;
@@ -86,7 +87,7 @@
   text-underline-offset: 0.12em;
   text-decoration-thickness: 1px;
 }
-.personal-site a:not(.creation-link):hover {
+.personal-site a:not(.creation-link, .creation-stars):hover {
   text-decoration-color: currentColor;
 }
 .personal-site :is(a, button, pre):focus-visible {
@@ -130,6 +131,24 @@
 }
 .creation-link {
   min-height: 44px;
+}
+.creation-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+}
+.creation-stars:hover {
+  color: var(--foreground);
+}
+.creation-stars svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
 }
 .external-mark {
   color: var(--muted);

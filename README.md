@@ -12,7 +12,8 @@ pnpm build
 
 Private dependencies require npm read access to the Avgeek organization and Hugeicons credentials in your user npm configuration, plus `HEROUI_AUTH_TOKEN` during installation.
 
-Creations are listed in `data/creations.ts` with a name, URL, and optional logo path.
+Creations are listed in `data/creations.ts` with a name, URL, GitHub repository, and
+optional logo path. Star counts come from the GitHub API and refresh hourly.
 
 ## Writing
 
