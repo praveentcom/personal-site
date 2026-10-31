@@ -1,8 +1,4 @@
-export const BASE_URL =
-  process.env.NEXT_PUBLIC_BASE_URL || "https://www.praveent.com";
-
 export const URLS = {
-  HOME: () => "/",
   SITEMAP: () => "/sitemap.xml",
   RSS_FEED: () => "/blog/rss.xml",
   ARTICLES: (slug: string) => `/blog/${encodeURIComponent(slug)}`,

@@ -1,9 +1,6 @@
-import { createRequire } from "node:module";
+import sharp from "sharp";
 import { Buffer } from "node:buffer";
 import path from "node:path";
-const require = createRequire(import.meta.url);
-const nextRequire = createRequire(require.resolve("next/package.json"));
-const sharp = nextRequire("sharp");
 const directory = path.resolve(import.meta.dirname, "../public/images/covers");
 const sources = path.resolve(import.meta.dirname, "assets");
 

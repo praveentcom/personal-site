@@ -1,50 +1,55 @@
-# Praveen’s personal website
+# Personal site
 
-Personal website and blog built with Next.js and local MDX.
+[praveent.com](https://www.praveent.com), built with Next.js and local Markdown posts.
+
+## Development
+
+Use Node 26 and pnpm 12 (`npm install --global pnpm@12.16.1`).
 
 ```sh
 pnpm install
-cp .env.example .env.local
 pnpm dev
-pnpm verify
-pnpm build
 ```
 
-Requires Node.js 24 or later and pnpm. All dependencies install from public npm
-packages without registry tokens or UI licenses.
+Open [localhost:8001](http://localhost:8001). Run `pnpm verify` before committing
+and `pnpm build` to check the production build.
+
+Site details live in `src/lib/site.ts`; styles live in `src/app/globals.css`.
 
 ## Writing
 
-Add `content/blog/<slug>/index.mdx`; its URL is `/blog/<slug>`. Frontmatter needs
-`title`, `description`, `date` (`YYYY-MM-DD`), and `tags`; optional `emoji` appears in the list and article header. Use `published: false`
-or `private: true` to exclude a post from public pages and feeds.
+Add `content/blog/<slug>/index.mdx` with standard Markdown and frontmatter:
 
-Blog bodies use the local Markdown renderer, with GitHub-flavored Markdown,
-syntax highlighting, and copyable code blocks. Use standard Markdown in the
-MDX files, including fenced code blocks. Store images in `public/images/blog/`
-and reference them as `![Description](/images/blog/example.png)`.
+```md
+---
+title: My post
+description: A short summary.
+date: "2026-11-01"
+tags: [software]
+---
 
-Keep shared logos and social images in `public/images/`. Content and assets are
-committed and deployed together.
+Post content.
+```
 
-## Deployment
+The post appears at `/blog/<slug>`. Set `published: false` or `private: true` to
+exclude it from pages, feeds, and lookups. Optional `emoji` appears beside the
+title. Store images in `public/images/blog/` and reference their `/images/blog/`
+paths. Markdown supports tables, task lists, syntax highlighting, and copyable
+code blocks; JSX is not supported.
 
-The Dockerfile builds a standalone Next.js server. Public build settings can be
-passed as Docker build secrets:
+## Production
 
 ```sh
-NEXT_PUBLIC_BASE_URL=https://www.praveent.com NEXT_PUBLIC_ALLOW_ROBOTS=true \
-  docker build -t personal-site \
-  --secret id=NEXT_PUBLIC_BASE_URL,env=NEXT_PUBLIC_BASE_URL \
-  --secret id=NEXT_PUBLIC_ALLOW_ROBOTS,env=NEXT_PUBLIC_ALLOW_ROBOTS .
+docker build -t personal-site \
+  --build-arg NEXT_PUBLIC_BASE_URL=https://www.praveent.com \
+  --build-arg NEXT_PUBLIC_ALLOW_ROBOTS=true .
 docker run --rm -p 3000:3000 personal-site
 ```
 
-Use `NEXT_PUBLIC_ALLOW_ROBOTS=false` for previews. `/api/health` reports server
-readiness.
+`/api/health` reports readiness. Previews block crawlers by default; enable
+`NEXT_PUBLIC_ALLOW_ROBOTS` only for production. These public settings are read
+at build time. For local overrides, copy `.env.example` to `.env.local`.
 
-Next.js configuration, robots rules, and `/api/health` are owned by this app.
-The site has a single twilight appearance owned by `globals.css`. Inter is
-self-hosted through the public Fontsource package. The cover scenery is generated from the
-pastel sources in `scripts/assets` by `scripts/grade-farm-scenery.mjs` and
-`scripts/prepare-palm-layers.mjs`.
+The scenery assets are committed. To regenerate them from `scripts/assets`,
+run `node scripts/grade-farm-scenery.mjs` and then
+`node scripts/prepare-palm-layers.mjs`.

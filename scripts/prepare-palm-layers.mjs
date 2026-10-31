@@ -1,10 +1,8 @@
 import { createHash } from "node:crypto";
 import { readFile, writeFile, unlink } from "node:fs/promises";
 import { Buffer } from "node:buffer";
-import { createRequire } from "node:module";
+import sharp from "sharp";
 import path from "node:path";
-const require = createRequire(import.meta.url);
-const sharp = createRequire(require.resolve("next/package.json"))("sharp");
 const directory = path.resolve(import.meta.dirname, "../public/images/covers");
 const width = 2172;
 const height = 724;

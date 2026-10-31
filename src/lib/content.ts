@@ -1,17 +1,13 @@
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
-import { z } from "zod";
+import { ArticleSchema } from "../types/article.ts";
 
-export type Collection = "blog";
-const root = path.join(process.cwd(), "content");
+const root = path.join(process.cwd(), "content", "blog");
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
-export async function readEntries<T extends z.ZodType>(
-  collection: Collection,
-  schema: T,
-) {
-  const folders = await readdir(path.join(root, collection), {
+export async function readBlogEntries() {
+  const folders = await readdir(root, {
     withFileTypes: true,
   });
   return Promise.all(
@@ -20,13 +16,13 @@ export async function readEntries<T extends z.ZodType>(
       .map(async (folder) => {
         const slug = folder.name;
         if (!slugPattern.test(slug))
-          throw new Error(`Invalid content slug: ${collection}/${slug}`);
+          throw new Error(`Invalid content slug: blog/${slug}`);
         const source = await readFile(
-          path.join(root, collection, slug, "index.mdx"),
+          path.join(root, slug, "index.mdx"),
           "utf8",
         );
         const { data, content } = matter(source);
-        const meta = schema.parse({ ...data, slug });
+        const meta = ArticleSchema.parse(data);
         return { meta, slug, content };
       }),
   );
@@ -34,9 +30,4 @@ export async function readEntries<T extends z.ZodType>(
 
 export function isPublished(meta: { published?: boolean; private?: boolean }) {
   return meta.published !== false && meta.private !== true;
-}
-
-export function contentYear(date: string) {
-  z.iso.date().parse(date);
-  return date.slice(0, 4);
 }

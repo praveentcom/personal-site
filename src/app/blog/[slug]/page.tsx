@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import {
-  getAllArticleSlugs,
+  getAllArticlesIndex,
   getArticleBySlugRaw,
 } from "@/components/helpers/article";
 import {
@@ -25,7 +25,7 @@ interface PageProps {
 const articleLabel = "Writings";
 
 export async function generateStaticParams() {
-  const articles = await getAllArticleSlugs();
+  const articles = await getAllArticlesIndex();
 
   return articles.map((article) => ({
     slug: article.slug,
@@ -94,7 +94,7 @@ export async function generateMetadata({
 
   const article = rawArticle.meta;
 
-  const metadata = createPageMetadata({
+  return createPageMetadata({
     title: `${article.title} | ${articleLabel}`,
     description: article.description,
     type: "article",
@@ -111,13 +111,4 @@ export async function generateMetadata({
     url: URLS.ARTICLES(article.slug),
     image: article.ogImage || article.image,
   });
-
-  if (article.private) {
-    metadata.robots = {
-      index: false,
-      follow: false,
-    };
-  }
-
-  return metadata;
 }

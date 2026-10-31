@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { access } from "node:fs/promises";
 import path from "node:path";
-import { readEntries, isPublished, contentYear } from "../src/lib/content.ts";
+import { readBlogEntries, isPublished } from "../src/lib/content.ts";
 import { ArticleSchema } from "../src/types/article.ts";
 import { URLS } from "../src/components/helpers/urls.ts";
 
@@ -13,9 +13,9 @@ test("draft and private content is excluded from public discovery and lookups", 
 });
 
 test("content dates reject rollover and ambiguous input", () => {
-  assert.equal(contentYear("2024-02-29"), "2024");
+  assert.equal(ArticleSchema.shape.date.parse("2024-02-29"), "2024-02-29");
   for (const date of ["2023-02-29", "2024-02-31", "09/01/2024", "yesterday"]) {
-    assert.throws(() => contentYear(date));
+    assert.throws(() => ArticleSchema.shape.date.parse(date));
   }
 });
 
@@ -28,10 +28,9 @@ test("blog URLs encode path segments once", () => {
 });
 
 test("blog entries have valid metadata and local image assets", async () => {
-  const entries = await readEntries("blog", ArticleSchema);
+  const entries = await readBlogEntries();
   assert.equal(new Set(entries.map((item) => item.slug)).size, entries.length);
   for (const { meta, content } of entries) {
-    contentYear(meta.date);
     assert.ok(content.trim(), "article body must not be empty");
     for (const image of [meta.image, meta.ogImage].filter(
       (value): value is string => Boolean(value),

@@ -1,19 +1,19 @@
 # syntax=docker/dockerfile:1
-FROM node:24-alpine AS base
+FROM node:26-alpine AS base
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 
 FROM base AS dependencies
-RUN apk add --no-cache libc6-compat && corepack enable pnpm
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN npm install --global "$(node -p 'require("./package.json").packageManager')"
 RUN --mount=type=cache,id=praveen-website-pnpm,target=/pnpm/store \
     pnpm install --frozen-lockfile --store-dir /pnpm/store
 
 FROM dependencies AS builder
 COPY . .
-RUN --mount=type=secret,id=NEXT_PUBLIC_BASE_URL,env=NEXT_PUBLIC_BASE_URL \
-    --mount=type=secret,id=NEXT_PUBLIC_ALLOW_ROBOTS,env=NEXT_PUBLIC_ALLOW_ROBOTS \
-    pnpm build
+ARG NEXT_PUBLIC_BASE_URL=https://www.praveent.com
+ARG NEXT_PUBLIC_ALLOW_ROBOTS=false
+RUN pnpm build
 
 FROM base AS runner
 ENV NODE_ENV=production

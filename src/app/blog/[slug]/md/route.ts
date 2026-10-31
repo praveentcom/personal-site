@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import {
-  getAllArticleSlugs,
+  getAllArticlesIndex,
   getArticleBySlugRaw,
 } from "@/components/helpers/article";
 
@@ -14,7 +14,7 @@ interface RouteParams {
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  const articles = await getAllArticleSlugs();
+  const articles = await getAllArticlesIndex();
 
   return articles.map((article) => ({
     slug: article.slug,
@@ -31,7 +31,6 @@ export async function GET(_request: Request, { params }: RouteParams) {
 
   const { meta, raw } = rawArticle;
 
-  // Build markdown with frontmatter-like header
   const markdownContent = `# ${meta.title}
 
 ${meta.description}
