@@ -5,26 +5,14 @@ import { ArticleSummaryCard } from "@/components/article/article-summary-card";
 import { getAllArticlesIndex } from "@/components/helpers/article";
 import { SITE_DESCRIPTION, SITE_IMAGE } from "@/components/helpers/config";
 import { createPageMetadata } from "@/components/helpers/metadata";
-import {
-  formatStars,
-  getGitHubStars,
-  githubRepoUrl,
-} from "@/components/helpers/github";
 import { generateDefaultSchema } from "@/components/helpers/structured-data";
 import { URLS } from "@/components/helpers/urls";
 import { configData } from "@/data/config";
-import { creations } from "@/data/creations";
 
 export default async function HomePage() {
-  const [articles, schema, creationsWithStars] = await Promise.all([
+  const [articles, schema] = await Promise.all([
     getAllArticlesIndex(),
     generateDefaultSchema(),
-    Promise.all(
-      creations.map(async (creation) => ({
-        ...creation,
-        stars: await getGitHubStars(creation.repo),
-      })),
-    ),
   ]);
   return (
     <>
@@ -61,44 +49,6 @@ export default async function HomePage() {
           </div>
         </section>
       )}
-      <section
-        className="home-section home-creations"
-        aria-labelledby="creations-heading"
-      >
-        <h2 className="section-title" id="creations-heading">
-          Creations
-        </h2>
-        <ul className="creations-list">
-          {creationsWithStars.map((creation) => (
-            <li key={creation.url}>
-              {creation.logo && (
-                <Image
-                  src={creation.logo}
-                  alt=""
-                  width={28}
-                  height={28}
-                  className="creation-logo"
-                />
-              )}
-              <a href={creation.url} className="creation-link">
-                {creation.name}
-              </a>
-              {creation.stars !== null && (
-                <a
-                  href={githubRepoUrl(creation.repo)}
-                  className="creation-stars"
-                  aria-label={`${creation.name} on GitHub, ${creation.stars} stars`}
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 2.5l2.94 5.96 6.56.95-4.75 4.63 1.12 6.54L12 17.5l-5.87 3.08 1.12-6.54L2.5 9.41l6.56-.95z" />
-                  </svg>
-                  {formatStars(creation.stars)}
-                </a>
-              )}
-            </li>
-          ))}
-        </ul>
-      </section>
     </>
   );
 }
