@@ -1,7 +1,5 @@
-import { Markdown } from "@avgeek/ds-web/base/markdown";
+import { Markdown } from "@/components/markdown";
 import Link from "next/link";
-import { Typography } from "@avgeek/ds-web/base/typography";
-import { typographyVariants } from "@heroui/styles";
 
 import { StructuredData } from "@/components/structured-data";
 import type { Metadata } from "next";
@@ -55,12 +53,7 @@ export default async function ArticlePage({ params }: PageProps) {
             {article.emoji}
           </div>
         )}
-        <Typography.Heading
-          level={1}
-          className={typographyVariants({ type: "h2" }).base()}
-        >
-          {article.title}
-        </Typography.Heading>
+        <h1 className="article-heading">{article.title}</h1>
         <div className="article-meta">
           <time dateTime={article.date}>
             {new Date(article.date).toLocaleDateString("en-GB", {

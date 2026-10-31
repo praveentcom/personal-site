@@ -1,9 +1,62 @@
-@import "@avgeek/ds-web/globals.css";
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/inter/wght-italic.css";
+
+@theme {
+  --font-sans: "Inter Variable", sans-serif;
+}
 
 @source "../**/*.{ts,tsx}";
 @source "../../data/**/*.{ts,tsx,mdx}";
 @source "../../content/**/*.mdx";
 
+body {
+  min-height: 100dvh;
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.home-title,
+.article-heading,
+.section-title {
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+.home-title {
+  font-size: 24px;
+  line-height: 32px;
+}
+.article-heading {
+  font-size: 30px;
+  line-height: 36px;
+}
+.section-title {
+  font-size: 18px;
+  line-height: 28px;
+}
+.home-intro > p,
+.status-page > p {
+  line-height: 28px;
+}
+.status-code {
+  color: var(--muted);
+  font-size: 14px;
+}
+.retry-button {
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-secondary);
+  font-weight: 500;
+  cursor: pointer;
+}
+.retry-button:hover {
+  background: var(--surface-tertiary);
+}
 .creations-list {
   display: flex;
   flex-wrap: wrap;
@@ -29,6 +82,83 @@
 .reading-content {
   min-width: 0;
   overflow-wrap: anywhere;
+  font-size: 14px;
+  line-height: 1.625;
+}
+.reading-content > * + * {
+  margin-top: 12px;
+}
+.reading-content :is(h1, h2, h3, h4, h5, h6) {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.reading-content > :first-child {
+  margin-top: 0;
+}
+.reading-content h1 {
+  font-size: 24px;
+}
+.reading-content h2 {
+  font-size: 18px;
+}
+.reading-content :is(h3, h4, h5, h6) {
+  font-size: 16px;
+}
+.reading-content strong {
+  font-weight: 600;
+}
+.reading-content :is(ul, ol) {
+  padding-inline-start: 24px;
+}
+.reading-content ul {
+  list-style: disc;
+}
+.reading-content ol {
+  list-style: decimal;
+}
+.reading-content li + li,
+.reading-content li > :is(ul, ol) {
+  margin-top: 4px;
+}
+.reading-content input[type="checkbox"] {
+  margin-inline-end: 6px;
+}
+.reading-content blockquote {
+  border-inline-start: 2px solid var(--border);
+  padding-inline-start: 16px;
+  color: var(--muted);
+  font-style: italic;
+}
+.reading-content hr {
+  margin-block: 24px;
+  border-color: var(--separator);
+}
+.reading-content :not(pre) > code {
+  padding: 2px 4px;
+  border-radius: 4px;
+  background: var(--surface-secondary);
+}
+.code-block {
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--surface-secondary);
+}
+.code-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 12px 4px;
+  color: var(--muted);
+}
+.code-block-header button {
+  min-width: 44px;
+  min-height: 44px;
+  padding-inline: 8px;
+  color: var(--foreground);
+  font-size: 12px;
+  cursor: pointer;
 }
 .reading-content pre {
   max-width: 100%;
@@ -36,6 +166,26 @@
   white-space: pre;
   overflow-wrap: normal;
   tab-size: 2;
+  padding: 0 12px 12px;
+  font-size: 13px;
+  line-height: 1.625;
+}
+.markdown-table {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.markdown-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.markdown-table :is(th, td) {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  text-align: start;
+}
+.markdown-table th {
+  background: var(--surface-secondary);
+  font-weight: 500;
 }
 .reading-content img {
   max-width: 100%;
@@ -90,10 +240,13 @@
 .personal-site a:not(.creation-link, .creation-stars):hover {
   text-decoration-color: currentColor;
 }
-.personal-site :is(a, button, pre):focus-visible {
+.personal-site :is(a, button, pre, .markdown-table):focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 4px;
   border-radius: 4px;
+}
+.code-block :is(button, pre):focus-visible {
+  outline-offset: -4px;
 }
 .home-section {
   scroll-margin-top: 24px;
@@ -130,7 +283,10 @@
   font-weight: 400;
 }
 .creation-link {
+  display: inline-flex;
+  align-items: center;
   min-height: 44px;
+  font-weight: 500;
 }
 .creation-stars {
   display: inline-flex;
@@ -258,8 +414,12 @@
 
 .footer-contact {
   margin-top: 4px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 24px;
 }
 .footer-contact a {
+  display: inline-flex;
   color: var(--foreground);
   font-weight: 400;
 }
@@ -281,17 +441,14 @@
   text-underline-offset: 0.12em;
 }
 
-/* Twilight palette over the design system's default theme tokens. */
-html[data-theme="default"] {
+:root {
+  color-scheme: light;
   --scenery-background: oklch(0.628 0.081 82.292);
+  --foreground: oklch(0.2103 0.0059 285.89);
+  --focus: oklch(0.6204 0.195 253.83);
   --background: #f6eadd;
-  --surface: #fbf2e9;
   --surface-secondary: #efdecc;
   --surface-tertiary: #e8d3bf;
-  --default: #efdecc;
-  --overlay: #fbf2e9;
-  --field-background: #fbf2e9;
-  --segment: #fbf2e9;
   --border: #d8bda5;
   --muted: #886348;
   --separator: #e2cbb7;

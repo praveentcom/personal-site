@@ -1,9 +1,6 @@
 "use client";
 
-import { Button } from "@avgeek/ds-web/base/button";
-import { Link } from "@avgeek/ds-web/base/link";
-import { Typography } from "@avgeek/ds-web/base/typography";
-import { typographyVariants } from "@heroui/styles";
+import Link from "next/link";
 
 export default function Error({
   reset,
@@ -13,19 +10,12 @@ export default function Error({
 }) {
   return (
     <section className="status-page">
-      <Typography.Heading
-        level={1}
-        className={typographyVariants({ type: "h3" }).base()}
-      >
-        Couldn’t load this page
-      </Typography.Heading>
-      <Typography.Paragraph>
-        Please try again, or return to the homepage.
-      </Typography.Paragraph>
+      <h1 className="home-title">Couldn’t load this page</h1>
+      <p>Please try again, or return to the homepage.</p>
       <div className="status-actions">
-        <Button onPress={reset} variant="secondary">
+        <button type="button" className="retry-button" onClick={reset}>
           Try again
-        </Button>
+        </button>
         <Link href="/">Home</Link>
       </div>
     </section>

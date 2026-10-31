@@ -17,13 +17,9 @@ export default function nextConfig(phase: string): NextConfig {
     turbopack: {
       root: process.cwd(),
     },
-    transpilePackages: ["@avgeek/ds-web"],
     pageExtensions: ["ts", "tsx", "md", "mdx"],
     compress: true,
     poweredByHeader: false,
-    experimental: {
-      optimizePackageImports: ["hugeicons/react", "date-fns"],
-    },
     compiler: {
       removeConsole: phase === PHASE_PRODUCTION_BUILD,
     },

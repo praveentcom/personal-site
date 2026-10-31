@@ -1,6 +1,3 @@
-import { Link } from "@avgeek/ds-web/base/link";
-import { Typography } from "@avgeek/ds-web/base/typography";
-import { typographyVariants } from "@heroui/styles";
 import { StructuredData } from "@/components/structured-data";
 import Image from "next/image";
 import type { Metadata } from "next";
@@ -42,16 +39,11 @@ export default async function HomePage() {
             draggable={false}
           />
         </div>
-        <Typography.Heading
-          level={1}
-          className={typographyVariants({ type: "h3" }).base()}
-        >
-          Praveen Thirumurugan
-        </Typography.Heading>
-        <Typography.Paragraph>
+        <h1 className="home-title">Praveen Thirumurugan</h1>
+        <p>
           I build software and write about what I learn. This is a place for my
           thoughts and things I’ve made.
-        </Typography.Paragraph>
+        </p>
       </section>
       {articles.length > 0 && (
         <section
@@ -59,13 +51,9 @@ export default async function HomePage() {
           id="writing"
           aria-labelledby="writing-heading"
         >
-          <Typography.Heading
-            level={2}
-            className={typographyVariants({ type: "h5" }).base()}
-            id="writing-heading"
-          >
+          <h2 className="section-title" id="writing-heading">
             Writings
-          </Typography.Heading>
+          </h2>
           <div className="article-list">
             {articles.map((article) => (
               <ArticleSummaryCard key={article.slug} article={article} />
@@ -77,13 +65,9 @@ export default async function HomePage() {
         className="home-section home-creations"
         aria-labelledby="creations-heading"
       >
-        <Typography.Heading
-          level={2}
-          className={typographyVariants({ type: "h5" }).base()}
-          id="creations-heading"
-        >
+        <h2 className="section-title" id="creations-heading">
           Creations
-        </Typography.Heading>
+        </h2>
         <ul className="creations-list">
           {creationsWithStars.map((creation) => (
             <li key={creation.url}>
@@ -96,11 +80,11 @@ export default async function HomePage() {
                   className="creation-logo"
                 />
               )}
-              <Link href={creation.url} className="creation-link">
+              <a href={creation.url} className="creation-link">
                 {creation.name}
-              </Link>
+              </a>
               {creation.stars !== null && (
-                <Link
+                <a
                   href={githubRepoUrl(creation.repo)}
                   className="creation-stars"
                   aria-label={`${creation.name} on GitHub, ${creation.stars} stars`}
@@ -109,7 +93,7 @@ export default async function HomePage() {
                     <path d="M12 2.5l2.94 5.96 6.56.95-4.75 4.63 1.12 6.54L12 17.5l-5.87 3.08 1.12-6.54L2.5 9.41l6.56-.95z" />
                   </svg>
                   {formatStars(creation.stars)}
-                </Link>
+                </a>
               )}
             </li>
           ))}

@@ -1,8 +1,0 @@
-# yaml-language-server: $schema=https://towbar.dev/schemas/repository.v2.json
-version: 2
-buildServer:
-  ip: 13.206.149.158
-environments:
-  production:
-    previews:
-      enabled: true

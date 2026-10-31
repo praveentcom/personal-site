@@ -5,24 +5,14 @@ ENV NEXT_TELEMETRY_DISABLED=1
 
 FROM base AS dependencies
 RUN apk add --no-cache libc6-compat && corepack enable pnpm
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN --mount=type=cache,id=praveen-website-pnpm,target=/pnpm/store \
-    --mount=type=secret,id=NPM_READ_TOKEN,env=NPM_READ_TOKEN,required=true \
-    --mount=type=secret,id=HUGEICONS_LICENSE_KEY,env=HUGEICONS_LICENSE_KEY,required=true \
-    --mount=type=secret,id=HEROUI_AUTH_TOKEN,env=HEROUI_AUTH_TOKEN,required=true \
-    set -eu; \
-    umask 077; \
-    npmrc="$(mktemp)"; \
-    trap 'rm -f "$npmrc"' EXIT; \
-    printf '//registry.npmjs.org/:_authToken=%s\n//npm.hugeicons.com/:_authToken=%s\n' \
-      "$NPM_READ_TOKEN" "$HUGEICONS_LICENSE_KEY" > "$npmrc"; \
-    NPM_CONFIG_USERCONFIG="$npmrc" pnpm install --frozen-lockfile --store-dir /pnpm/store --config.blockExoticSubdeps=false
+    pnpm install --frozen-lockfile --store-dir /pnpm/store
 
 FROM dependencies AS builder
 COPY . .
 RUN --mount=type=secret,id=NEXT_PUBLIC_BASE_URL,env=NEXT_PUBLIC_BASE_URL \
     --mount=type=secret,id=NEXT_PUBLIC_ALLOW_ROBOTS,env=NEXT_PUBLIC_ALLOW_ROBOTS \
-    --mount=type=secret,id=NEXT_PUBLIC_TOWBAR_ANALYTICS,env=NEXT_PUBLIC_TOWBAR_ANALYTICS \
     pnpm build
 
 FROM base AS runner

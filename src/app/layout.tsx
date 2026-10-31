@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 
 import "./globals.css";
 
@@ -25,15 +24,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="default">
-      <body className="min-h-dvh text-foreground font-sans">
+    <html lang="en">
+      <body>
         <ApplicationRuntime>{children}</ApplicationRuntime>
-        {process.env.NEXT_PUBLIC_TOWBAR_ANALYTICS === "true" && (
-          <Script
-            src="/.well-known/towbar-analytics/script.js"
-            strategy="afterInteractive"
-          />
-        )}
       </body>
     </html>
   );

@@ -1,6 +1,5 @@
 fetchTimeout: 300000
 overrides:
-  "@avgeek-oss/country-data": 0.1.1
   "@opentelemetry/core@2.7.1": 2.8.0
   "@tootallnate/once@2.0.0": 2.0.1
   axios@1.15.2: 1.18.0
@@ -21,19 +20,6 @@ overrides:
   uuid@11.1.0: 11.1.1
   uuid@9.0.1: 11.1.1
   ws@8.19.0: 8.21.0
-packageExtensions:
-  "@heroui-pro/react@1.0.0-beta.8":
-    peerDependencies:
-      react: ">=19.0.0"
-      react-dom: ">=19.0.0"
 allowBuilds:
-  "@zowe/secrets-for-zowe-sdk": true
-  "@heroui-pro/react": true
   sharp: true
-  core-js-pure: true
-  heroui-pro: true
-  protobufjs: true
   unrs-resolver: true
-minimumReleaseAgeExclude:
-  - "@avgeek/ds-web@0.2.0"
-  - "@avgeek-oss/country-data@0.1.1"
