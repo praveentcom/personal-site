@@ -7,6 +7,5 @@ node_modules
 .env*
 *.tsbuildinfo
 README.md
-scripts
 tests
 AGENTS.md

@@ -49,7 +49,3 @@ docker run --rm -p 3000:3000 personal-site
 `/api/health` reports readiness. Previews block crawlers by default; enable
 `NEXT_PUBLIC_ALLOW_ROBOTS` only for production. These public settings are read
 at build time. For local overrides, copy `.env.example` to `.env.local`.
-
-The scenery assets are committed. To regenerate them from `scripts/assets`,
-run `node scripts/grade-farm-scenery.mjs` and then
-`node scripts/prepare-palm-layers.mjs`.
