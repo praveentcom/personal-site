@@ -41,16 +41,6 @@ export async function generateRSSFeed(): Promise<string> {
   const lastBuildDate = articles[0]
     ? new Date(articles[0].date).toUTCString()
     : new Date().toUTCString();
-  const categories = [
-    "articles",
-    "blog",
-    "development",
-    "technology",
-    "programming",
-    "tutorials",
-  ]
-    .map((category) => `<category>${wrapCdata(category)}</category>`)
-    .join("\n      ");
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -72,7 +62,6 @@ export async function generateRSSFeed(): Promise<string> {
       <width>144</width>
       <height>144</height>
     </image>
-    ${categories}
     <docs>https://www.rssboard.org/rss-specification</docs>
     <ttl>60</ttl>
 ${rssItems}
