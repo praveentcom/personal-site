@@ -24,10 +24,3 @@ jobs:
         run: pnpm install --frozen-lockfile
       - run: pnpm verify
       - run: pnpm build
-      - name: Build and smoke-test production container
-        run: |
-          docker build -t praveen-website:test .
-          docker run -d --name website-test -p 3000:3000 praveen-website:test
-          trap 'docker logs website-test; docker rm -f website-test' EXIT
-          curl --fail --retry 12 --retry-all-errors --retry-delay 2 --connect-timeout 2 --max-time 5 http://localhost:3000/api/health
-          curl --fail --silent http://localhost:3000/ > /dev/null

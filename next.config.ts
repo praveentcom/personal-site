@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "standalone",
+  outputFileTracingIncludes: { "/*": ["./content/blog/**/*"] },
   poweredByHeader: false,
   images: { qualities: [75, 95] },
   async redirects() {

@@ -37,15 +37,20 @@ title. Store images in `public/images/blog/` and reference their `/images/blog/`
 paths. Markdown supports tables, task lists, syntax highlighting, and copyable
 code blocks; JSX is not supported.
 
-## Production
+## Deployment
 
-```sh
-docker build -t personal-site \
-  --build-arg NEXT_PUBLIC_BASE_URL=https://www.praveent.com \
-  --build-arg NEXT_PUBLIC_ALLOW_ROBOTS=true .
-docker run --rm -p 3000:3000 personal-site
-```
+Import `praveentcom/personal-site` into Vercel with the Next.js preset. Keep the
+default build command and output directory. The repo specifies Node 26 and pnpm 12.
 
-`/api/health` reports readiness. Previews block crawlers by default; enable
-`NEXT_PUBLIC_ALLOW_ROBOTS` only for production. These public settings are read
-at build time. For local overrides, copy `.env.example` to `.env.local`.
+Set these project environment variables in Vercel:
+
+| Variable                       | Value                      | Environment |
+| ------------------------------ | -------------------------- | ----------- |
+| `ENABLE_EXPERIMENTAL_COREPACK` | `1`                        | All         |
+| `NEXT_PUBLIC_BASE_URL`         | `https://www.praveent.com` | Production  |
+| `NEXT_PUBLIC_ALLOW_ROBOTS`     | `true`                     | Production  |
+
+[Corepack](https://vercel.com/docs/builds/configure-a-build#corepack) makes Vercel
+use the pnpm version declared in `package.json`. Leave `NEXT_PUBLIC_ALLOW_ROBOTS`
+unset in Preview and Development so those builds block crawlers. Public settings
+are read at build time. For local overrides, copy `.env.example` to `.env.local`.
