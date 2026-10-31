@@ -1,6 +1,5 @@
 import { getImageProps } from "next/image";
 import { site } from "@/lib/site";
-import { PalmScenery } from "@/components/palm-scenery";
 import type { ReactNode } from "react";
 
 export function ApplicationRuntime({ children }: { children: ReactNode }) {
@@ -56,7 +55,6 @@ export function ApplicationRuntime({ children }: { children: ReactNode }) {
         </footer>
       </div>
       <div className="site-cover" aria-hidden="true">
-        <PalmScenery />
         <picture>
           <source
             media="(max-width: 639px)"
