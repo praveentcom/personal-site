@@ -3,6 +3,7 @@ import "./globals.css";
 import { ApplicationRuntime } from "@/components/application-runtime";
 import { createPageMetadata } from "@/components/helpers/metadata";
 import { site } from "@/lib/site";
+import { Analytics } from "@vercel/analytics/next";
 
 export const revalidate = 3600;
 
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ApplicationRuntime>{children}</ApplicationRuntime>
+        <Analytics />
       </body>
     </html>
   );
