@@ -40,17 +40,12 @@ code blocks; JSX is not supported.
 ## Deployment
 
 Import `praveentcom/personal-site` into Vercel with the Next.js preset. Keep the
-default build command and output directory. The repo specifies Node 26 and pnpm 12.
+default build command and output directory. Vercel detects the Node and pnpm
+versions declared in `package.json`.
 
-Set these project environment variables in Vercel:
+No custom environment variables are needed for `https://www.praveent.com`.
+Crawling is enabled for Vercel Production deployments and blocked for Preview,
+Development, and local builds using Vercel's automatic `VERCEL_ENV` value.
 
-| Variable                       | Value                      | Environment |
-| ------------------------------ | -------------------------- | ----------- |
-| `ENABLE_EXPERIMENTAL_COREPACK` | `1`                        | All         |
-| `NEXT_PUBLIC_BASE_URL`         | `https://www.praveent.com` | Production  |
-| `NEXT_PUBLIC_ALLOW_ROBOTS`     | `true`                     | Production  |
-
-[Corepack](https://vercel.com/docs/builds/configure-a-build#corepack) makes Vercel
-use the pnpm version declared in `package.json`. Leave `NEXT_PUBLIC_ALLOW_ROBOTS`
-unset in Preview and Development so those builds block crawlers. Public settings
-are read at build time. For local overrides, copy `.env.example` to `.env.local`.
+To use another domain, set `NEXT_PUBLIC_BASE_URL` before building. For local
+overrides, copy `.env.example` to `.env.local`.
