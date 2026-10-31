@@ -11,8 +11,8 @@ pnpm install
 pnpm dev
 ```
 
-Open [localhost:8001](http://localhost:8001). Run `pnpm verify` before committing
-and `pnpm build` to check the production build.
+Open [localhost:8001](http://localhost:8001). Run `pnpm verify` for formatting,
+lint, and TypeScript checks, and `pnpm build` to check the production build.
 
 Site details live in `src/lib/site.ts`; styles live in `src/app/globals.css`.
 

@@ -1,7 +1,7 @@
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
-import { ArticleSchema } from "../types/article.ts";
+import { ArticleSchema } from "@/types/article";
 
 const root = path.join(process.cwd(), "content", "blog");
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
