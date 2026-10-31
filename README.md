@@ -10,7 +10,8 @@ pnpm verify
 pnpm build
 ```
 
-Private dependencies require npm read access to the Avgeek organization and Hugeicons credentials in your user npm configuration, plus `HEROUI_AUTH_TOKEN` during installation.
+Requires Node.js 24 or later and pnpm. All dependencies install from public npm
+packages without registry tokens or UI licenses.
 
 Creations are listed in `data/creations.ts` with a name, URL, GitHub repository, and
 optional logo path. Star counts come from the GitHub API and refresh hourly.
@@ -21,7 +22,8 @@ Add `content/blog/<slug>/index.mdx`; its URL is `/blog/<slug>`. Frontmatter need
 `title`, `description`, `date` (`YYYY-MM-DD`), and `tags`; optional `emoji` appears in the list and article header. Use `published: false`
 or `private: true` to exclude a post from public pages and feeds.
 
-Blog bodies use the design system Markdown renderer. Use standard Markdown in the
+Blog bodies use the local Markdown renderer, with GitHub-flavored Markdown,
+syntax highlighting, and copyable code blocks. Use standard Markdown in the
 MDX files, including fenced code blocks. Store images in `public/images/blog/`
 and reference them as `![Description](/images/blog/example.png)`.
 
@@ -30,29 +32,22 @@ committed and deployed together.
 
 ## Deployment
 
-`towbar.yml` declares the production environment. The website settings live in
-`.towbar/services/website.service.yml` and target the Praveen Apps server.
-Builds run on the larger Platform Services server so they do not compete with the
-website for memory.
+The Dockerfile builds a standalone Next.js server. Public build settings can be
+passed as Docker build secrets:
 
-Set the declared build secrets in Towbar before deploying. Use
-`NEXT_PUBLIC_BASE_URL=https://www.praveent.com`, `NEXT_PUBLIC_ALLOW_ROBOTS=true`,
-`NEXT_PUBLIC_TOWBAR_ANALYTICS=true`. Private dependency
-credentials are passed through Docker build secrets and are not stored in the image.
+```sh
+NEXT_PUBLIC_BASE_URL=https://www.praveent.com NEXT_PUBLIC_ALLOW_ROBOTS=true \
+  docker build -t personal-site \
+  --secret id=NEXT_PUBLIC_BASE_URL,env=NEXT_PUBLIC_BASE_URL \
+  --secret id=NEXT_PUBLIC_ALLOW_ROBOTS,env=NEXT_PUBLIC_ALLOW_ROBOTS .
+docker run --rm -p 3000:3000 personal-site
+```
 
-Pull requests against `main` get Towbar preview deployments at
-`*.praveent.com`, removed after 7 days or when the pull request closes. Save
-separate preview build secrets in Towbar, with `NEXT_PUBLIC_ALLOW_ROBOTS=false`
-and `NEXT_PUBLIC_TOWBAR_ANALYTICS=false`.
-
-Towbar collects request and pageview analytics for 30 days. The production page
-template loads the same-origin tracking script. Random browser identifiers enable
-visitor counts, bounce rate, and exit pages; health checks are excluded.
-Scout Agent on the Praveen Apps server provides CPU, memory, disk, and network
-monitoring in Towbar.
+Use `NEXT_PUBLIC_ALLOW_ROBOTS=false` for previews. `/api/health` reports server
+readiness.
 
 Next.js configuration, robots rules, and `/api/health` are owned by this app.
-The site has a single twilight appearance: `globals.css` layers its palette over
-the design system's default theme, and the cover scenery is generated from the
+The site has a single twilight appearance owned by `globals.css`. Inter is
+self-hosted through the public Fontsource package. The cover scenery is generated from the
 pastel sources in `scripts/assets` by `scripts/grade-farm-scenery.mjs` and
-`scripts/prepare-palm-layers.mjs`. The site uses the private npm package `@avgeek/ds-web`; configure npm read access for the Avgeek organization. Runtime Web is not required.
+`scripts/prepare-palm-layers.mjs`.

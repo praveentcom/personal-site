@@ -1,6 +1,4 @@
 import { getImageProps } from "next/image";
-import { Link } from "@avgeek/ds-web/base/link";
-import { Typography } from "@avgeek/ds-web/base/typography";
 import { PalmScenery } from "@/components/palm-scenery";
 import type { ReactNode } from "react";
 
@@ -49,16 +47,12 @@ export function ApplicationRuntime({ children }: { children: ReactNode }) {
           >
             Subscribe via RSS
           </a>
-          <Typography.Paragraph
-            color="muted"
-            size="sm"
-            className="footer-contact"
-          >
+          <p className="footer-contact">
             You can find me on{" "}
-            <Link href="https://github.com/praveentcom">GitHub</Link> and{" "}
-            <Link href="https://x.com/praveentcom">X</Link>, or{" "}
-            <Link href="mailto:mail@praveent.com">send an email</Link>.
-          </Typography.Paragraph>
+            <a href="https://github.com/praveentcom">GitHub</a> and{" "}
+            <a href="https://x.com/praveentcom">X</a>, or{" "}
+            <a href="mailto:mail@praveent.com">send an email</a>.
+          </p>
         </footer>
       </div>
       <div className="site-cover" aria-hidden="true">

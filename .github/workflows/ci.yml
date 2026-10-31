@@ -12,7 +12,6 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     env:
-      HEROUI_AUTH_TOKEN: ${{ secrets.HEROUI_AUTH_TOKEN }}
       NEXT_TELEMETRY_DISABLED: "1"
     steps:
       - uses: actions/checkout@v4
@@ -21,27 +20,12 @@ jobs:
           node-version: 24
       - run: corepack enable
       - name: Install dependencies
-        env:
-          NPM_READ_TOKEN: ${{ secrets.NPM_READ_TOKEN }}
-          HUGEICONS_LICENSE_KEY: ${{ secrets.HUGEICONS_LICENSE_KEY }}
-        run: |
-          umask 077
-          npmrc="$(mktemp)"
-          trap 'rm -f "$npmrc"' EXIT
-          printf '//registry.npmjs.org/:_authToken=%s\n//npm.hugeicons.com/:_authToken=%s\n' \
-            "$NPM_READ_TOKEN" "$HUGEICONS_LICENSE_KEY" > "$npmrc"
-          NPM_CONFIG_USERCONFIG="$npmrc" pnpm install --frozen-lockfile --config.blockExoticSubdeps=false
+        run: pnpm install --frozen-lockfile
       - run: pnpm verify
       - run: pnpm build
       - name: Build and smoke-test production container
-        env:
-          NPM_READ_TOKEN: ${{ secrets.NPM_READ_TOKEN }}
-          HUGEICONS_LICENSE_KEY: ${{ secrets.HUGEICONS_LICENSE_KEY }}
         run: |
-          docker build -t praveen-website:test \
-            --secret id=NPM_READ_TOKEN,env=NPM_READ_TOKEN \
-            --secret id=HUGEICONS_LICENSE_KEY,env=HUGEICONS_LICENSE_KEY \
-            --secret id=HEROUI_AUTH_TOKEN,env=HEROUI_AUTH_TOKEN .
+          docker build -t praveen-website:test .
           docker run -d --name website-test -p 3000:3000 praveen-website:test
           trap 'docker logs website-test; docker rm -f website-test' EXIT
           curl --fail --retry 12 --retry-all-errors --retry-delay 2 --connect-timeout 2 --max-time 5 http://localhost:3000/api/health
