@@ -1,19 +1,6 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import { site } from "@/lib/site";
 
-import {
-  getFaviconPaths,
-  PROFILE_NAME,
-  SITE_IMAGE,
-  SITE_TITLE,
-} from "@/components/helpers/config";
-import { BASE_URL } from "@/components/helpers/urls";
-import { configData } from "@/data/config";
-
-/**
- * Create a not found metadata object
- * @param type - The type of the not found metadata
- * @returns The not found metadata object
- */
 export function createNotFoundMetadata(type: string): Metadata {
   return {
     title: `${type} not found`,
@@ -21,79 +8,63 @@ export function createNotFoundMetadata(type: string): Metadata {
   };
 }
 
-/**
- * Create a complete metadata object with OpenGraph and Twitter cards
- * @param _ - The metadata object
- * @returns The complete metadata object
- */
-export function createPageMetadata(_: {
+export function createPageMetadata({
+  title,
+  description = site.description,
+  type = "website",
+  image = site.image,
+  keywords = site.keywords,
+  publishedTime,
+  url,
+}: {
   title?: string;
   description?: string;
-  type?: "website" | "article" | "profile";
+  type?: "website" | "article";
   image?: string;
   keywords?: string[];
   publishedTime?: string;
-  authors?: string[];
   url?: string;
 }): Metadata {
   const ogImage = {
-    url: _.image ? _.image : SITE_IMAGE,
+    url: image,
     width: 1200,
     height: 630,
-    alt: _.title,
+    alt: title ?? site.title,
   };
 
-  const icons = getFaviconPaths();
-
-  const metadata: Metadata = {
-    metadataBase: new URL(BASE_URL),
-    title: _.title ? `${_.title} | ${SITE_TITLE}` : SITE_TITLE,
-    description: _.description || "",
+  return {
+    metadataBase: new URL(site.url),
+    title: title ? `${title} | ${site.title}` : site.title,
+    description,
+    keywords,
     icons: {
       icon: [
-        {
-          url: icons.ico,
-          type: "image/x-icon",
-        },
-        {
-          url: icons.png,
-          type: "image/png",
-        },
+        { url: "/favicon.ico", type: "image/x-icon" },
+        { url: "/favicon.png", type: "image/png" },
       ],
     },
     openGraph: {
-      title: _.title || SITE_TITLE,
-      description: _.description || "",
-      type: _.type || "website",
+      title: title ?? site.title,
+      description,
+      type,
+      ...(type === "article" ? { publishedTime } : {}),
       images: [ogImage],
-      siteName: SITE_TITLE,
-      url: _.url ? new URL(_.url, BASE_URL).href : undefined,
+      siteName: site.title,
+      url: url ? new URL(url, site.url).href : undefined,
     },
     twitter: {
-      card: configData.seo.twitterCard || "summary_large_image",
-      title: _.title || SITE_TITLE,
-      description: _.description || "",
+      card: "summary_large_image",
+      title: title ?? site.title,
+      description,
       images: [ogImage],
-      site: configData.seo.twitterSite,
-      creator: configData.seo.twitterCreator,
+      site: "@praveentcom",
+      creator: "@praveentcom",
     },
-    authors: _.authors?.map((name) => ({ name })) || [
-      {
-        name: PROFILE_NAME,
-        url: BASE_URL,
-      },
-    ],
+    authors: [{ name: site.name, url: site.url }],
+    appleWebApp: {
+      capable: true,
+      title: title ?? site.title,
+      statusBarStyle: "black-translucent",
+    },
   };
-
-  if (_.keywords) {
-    metadata.keywords = _.keywords;
-  }
-
-  metadata.appleWebApp = {
-    capable: true,
-    title: _.title || SITE_TITLE,
-    statusBarStyle: "black-translucent",
-  };
-
-  return metadata;
 }

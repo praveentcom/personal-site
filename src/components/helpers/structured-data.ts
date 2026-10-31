@@ -1,18 +1,16 @@
-import { PROFILE_NAME } from "@/components/helpers/config";
-import { BASE_URL, URLS } from "@/components/helpers/urls";
-import { configData } from "@/data/config";
-import { profile } from "@/data/profile";
-import { Article } from "@/types/article";
+import { site } from "@/lib/site";
+import { URLS } from "@/components/helpers/urls";
+import type { Article } from "@/types/article";
 
 export function generateDefaultSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: PROFILE_NAME,
-    description: configData.seo.description,
-    url: BASE_URL,
-    image: profile.image,
-    sameAs: Object.values(profile.socialLinks ?? {}),
+    name: site.name,
+    description: site.description,
+    url: site.url,
+    image: new URL(site.profileImage, site.url).href,
+    sameAs: Object.values(site.socialLinks),
   };
 }
 
@@ -22,25 +20,25 @@ export function generateArticleSchema(article: Article) {
     "@type": "BlogPosting",
     headline: article.title,
     description: article.description,
-    image: new URL(article.image, BASE_URL).href,
+    image: new URL(article.image, site.url).href,
     datePublished: new Date(article.date).toISOString(),
     dateModified: new Date(article.date).toISOString(),
     author: {
       "@type": "Person",
-      name: PROFILE_NAME,
-      url: BASE_URL,
+      name: site.name,
+      url: site.url,
     },
     publisher: {
       "@type": "Person",
-      name: PROFILE_NAME,
+      name: site.name,
       logo: {
         "@type": "ImageObject",
-        url: configData.seo.image,
+        url: new URL(site.image, site.url).href,
       },
     },
-    url: new URL(URLS.ARTICLES(article.slug), BASE_URL).href,
-    wordCount: article.content?.split(" ").length || 0,
-    timeRequired: `PT${Math.max(1, Math.ceil((article.content?.split(" ").length || 0) / 200))}M`,
+    url: new URL(URLS.ARTICLES(article.slug), site.url).href,
+    wordCount: article.content.trim().split(/\s+/).length,
+    timeRequired: `PT${article.readTime}M`,
     keywords: article.tags.join(", "),
   };
 }

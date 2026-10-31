@@ -4,7 +4,7 @@
   "private": true,
   "license": "UNLICENSED",
   "engines": {
-    "node": ">=24"
+    "node": "26.x"
   },
   "browserslist": [
     "last 2 Chrome versions",
@@ -30,44 +30,41 @@
     }
   ],
   "scripts": {
-    "dev": "next dev --hostname 0.0.0.0 --port 8001 --webpack",
+    "dev": "next dev --hostname 0.0.0.0 --port 8001",
     "start": "next start",
-    "build": "next build --webpack",
+    "build": "next build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "typecheck": "next typegen && tsc --noEmit",
     "format": "prettier --write .",
     "analyze": "next build --analyze",
     "format:check": "prettier --check .",
-    "test": "node --experimental-transform-types --test tests/*.test.ts",
-    "verify": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test"
+    "verify": "pnpm format:check && pnpm lint && pnpm typecheck"
   },
   "dependencies": {
     "@fontsource-variable/inter": "5.3.0",
     "gray-matter": "4.0.3",
-    "next": "16.3.3",
-    "react": "19.2.5",
-    "react-dom": "19.2.5",
+    "next": "16.4.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
     "react-markdown": "10.1.0",
     "remark-breaks": "4.0.0",
     "remark-gfm": "4.0.1",
-    "shiki": "4.4.3",
-    "tailwindcss": "4.2.4",
-    "zod": "4.3.6"
+    "shiki": "4.5.0",
+    "zod": "4.6.7"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "4.2.4",
-    "@types/node": "24.12.2",
-    "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.5",
-    "eslint": "9.39.4",
-    "eslint-config-next": "16.3.3",
-    "prettier": "3.8.3",
-    "typescript": "5.9.3"
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.3",
+    "prettier": "3.9.10",
+    "typescript": "6.0.3"
   },
-  "packageManager": "pnpm@11.5.3+sha512.7ac1c919341c213a34dc0d02afb7143c5c26ac26ee8c4782deea821b8ac64d2134a081fd8941dae6e29bbb48f58dfc2b7fbceeccc07cb2f09d219d342a4969ed",
+  "packageManager": "pnpm@12.16.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/praveen-thirumurugan/personal-site.git"
+    "url": "https://github.com/praveentcom/personal-site.git"
   }
 }

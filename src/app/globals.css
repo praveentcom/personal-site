@@ -1,19 +1,81 @@
-@import "tailwindcss";
 @import "@fontsource-variable/inter";
 @import "@fontsource-variable/inter/wght-italic.css";
 
-@theme {
-  --font-sans: "Inter Variable", sans-serif;
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid;
 }
-
-@source "../**/*.{ts,tsx}";
-@source "../../data/**/*.{ts,tsx,mdx}";
-@source "../../content/**/*.mdx";
+html {
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+}
+code,
+pre {
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 1em;
+}
+ol,
+ul {
+  list-style: none;
+}
+img,
+svg,
+video,
+canvas {
+  display: block;
+  vertical-align: middle;
+}
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+hr {
+  border-top-width: 1px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
 
 body {
   min-height: 100dvh;
   color: var(--foreground);
-  font-family: var(--font-sans);
+  font-family: "Inter Variable", sans-serif;
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -66,7 +128,7 @@ body {
   align-items: baseline;
   gap: 16px;
   color: var(--muted);
-  font-size: var(--text-sm);
+  font-size: 14px;
   margin-top: 16px;
 }
 .reading-content {
@@ -280,7 +342,7 @@ body {
 .back-link,
 .article-end > a {
   min-height: 44px;
-  font-size: var(--text-sm);
+  font-size: 14px;
 }
 .page-intro > h1 {
   text-wrap: balance;
@@ -307,15 +369,6 @@ body {
   }
   .home-intro {
     gap: 16px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .personal-site *,
-  .personal-site *::before,
-  .personal-site *::after {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
   }
 }
 @media print {
@@ -489,28 +542,5 @@ body {
 @media print {
   .site-cover {
     display: none;
-  }
-}
-
-.palm-scenery {
-  display: none;
-}
-@media (min-width: 1280px) {
-  .site-cover {
-    position: relative;
-  }
-  .palm-scenery {
-    display: block;
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-  }
-  .palm-scenery[data-ready="true"] {
-    opacity: 1;
-  }
-  .site-cover:has(.palm-scenery[data-ready="true"]) > picture {
-    visibility: hidden;
   }
 }

@@ -1,5 +1,5 @@
 import { getImageProps } from "next/image";
-import { PalmScenery } from "@/components/palm-scenery";
+import { site } from "@/lib/site";
 import type { ReactNode } from "react";
 
 export function ApplicationRuntime({ children }: { children: ReactNode }) {
@@ -48,15 +48,13 @@ export function ApplicationRuntime({ children }: { children: ReactNode }) {
             Subscribe via RSS
           </a>
           <p className="footer-contact">
-            You can find me on{" "}
-            <a href="https://github.com/praveentcom">GitHub</a> and{" "}
-            <a href="https://x.com/praveentcom">X</a>, or{" "}
-            <a href="mailto:mail@praveent.com">send an email</a>.
+            You can find me on <a href={site.socialLinks.github}>GitHub</a> and{" "}
+            <a href={site.socialLinks.x}>X</a>, or{" "}
+            <a href={`mailto:${site.email}`}>send an email</a>.
           </p>
         </footer>
       </div>
       <div className="site-cover" aria-hidden="true">
-        <PalmScenery />
         <picture>
           <source
             media="(max-width: 639px)"

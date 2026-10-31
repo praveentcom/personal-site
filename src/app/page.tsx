@@ -1,33 +1,26 @@
 import { StructuredData } from "@/components/structured-data";
 import Image from "next/image";
-import type { Metadata } from "next";
 import { ArticleSummaryCard } from "@/components/article/article-summary-card";
 import { getAllArticlesIndex } from "@/components/helpers/article";
-import { SITE_DESCRIPTION, SITE_IMAGE } from "@/components/helpers/config";
-import { createPageMetadata } from "@/components/helpers/metadata";
 import { generateDefaultSchema } from "@/components/helpers/structured-data";
-import { URLS } from "@/components/helpers/urls";
-import { configData } from "@/data/config";
+import { site } from "@/lib/site";
 
 export default async function HomePage() {
-  const [articles, schema] = await Promise.all([
-    getAllArticlesIndex(),
-    generateDefaultSchema(),
-  ]);
+  const articles = await getAllArticlesIndex();
   return (
     <>
-      <StructuredData data={schema} />
+      <StructuredData data={generateDefaultSchema()} />
       <section className="home-intro">
         <div className="home-avatar">
           <Image
-            src="/images/logos/praveen-portrait.png"
-            alt="Praveen Thirumurugan"
+            src={site.avatar}
+            alt={site.name}
             width={48}
             height={48}
             draggable={false}
           />
         </div>
-        <h1 className="home-title">Praveen Thirumurugan</h1>
+        <h1 className="home-title">{site.name}</h1>
         <p>
           I build software and write about what I learn. This is a place for my
           thoughts and things I’ve made.
@@ -51,13 +44,4 @@ export default async function HomePage() {
       )}
     </>
   );
-}
-
-export async function generateMetadata(): Promise<Metadata> {
-  return createPageMetadata({
-    description: SITE_DESCRIPTION,
-    keywords: configData.seo.keywords,
-    url: URLS.HOME(),
-    image: SITE_IMAGE,
-  });
 }

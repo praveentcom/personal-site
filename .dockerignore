@@ -1,9 +1,0 @@
-.git
-.github
-.next
-node_modules
-.pnpm-store
-.pnpm-state
-.env*
-*.tsbuildinfo
-README.md

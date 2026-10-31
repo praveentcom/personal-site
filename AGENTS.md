@@ -1,12 +1,11 @@
 # Repository guidance
 
 Read README.md. Keep shared components in their owning packages and run
-`pnpm verify` for website changes. Validate Dockerfile changes with a production
-container build and `/api/health` request. Keep documentation concise.
+`pnpm verify` and `pnpm build` for website changes. Keep documentation concise.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
-# This is NOT the Next.js you know
+## This is NOT the Next.js you know
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
 
