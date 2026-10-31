@@ -13,9 +13,6 @@ pnpm build
 Requires Node.js 24 or later and pnpm. All dependencies install from public npm
 packages without registry tokens or UI licenses.
 
-Creations are listed in `data/creations.ts` with a name, URL, GitHub repository, and
-optional logo path. Star counts come from the GitHub API and refresh hourly.
-
 ## Writing
 
 Add `content/blog/<slug>/index.mdx`; its URL is `/blog/<slug>`. Frontmatter needs
